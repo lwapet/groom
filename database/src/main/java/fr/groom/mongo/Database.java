@@ -7,11 +7,14 @@ import fr.groom.Storage;
 import org.bson.Document;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
+
 public class Database implements Storage {
 	DatabaseConnection databaseConnection = new DatabaseConnection();
 	public static int MONGO_DOCUMENT_SIZE_LIMIT = 16793600;
 
-	Database(String url, int port, String databaseName, boolean auth, String username, String password, String authSource) {
+
+	public Database(String url, int port, String databaseName, boolean auth, String username, String password, String authSource) {
 		databaseConnection.configure(
 				url,
 				port,

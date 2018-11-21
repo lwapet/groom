@@ -5,7 +5,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jsonschema2pojo'
 
-mainClassName = 'Main'
+mainClassName = 'fr.groom.Main'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -56,7 +56,7 @@ jar {
     baseName = 'static'
     version = '0.2.0'
     manifest {
-        attributes "Main-Class": "Main"
+        attributes "Main-Class": "fr.groom.Main"
     }
 
     from {

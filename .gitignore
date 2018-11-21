@@ -30,6 +30,8 @@ hs_err_pid*
 */build/
 */out/
 /instrumented_apks/
+*/instrumented_apks/
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -43,6 +45,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .DS_Store
+*-venv/
 
 static/main.json
 static/sootOutput
