@@ -29,6 +29,7 @@ hs_err_pid*
 /out/
 */build/
 */out/
+/instrumented_apks/
 
 # Ignore Gradle GUI config
 gradle-app.setting
