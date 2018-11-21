@@ -1,5 +1,7 @@
 package fr.groom;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
+import com.mongodb.util.JSON;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
@@ -211,6 +213,14 @@ public class Main {
 
 		FileUtils.copyFileToDynamicRepository(app.getFinalApk());
 
+		JSONObject updateFilter = new JSONObject();
+		filter.put("sha256", app.getSha256());
+//		storage.insertData(app.toJson(), "application");
+		JSONObject data = new JSONObject();
+		JSONObject set = new JSONObject();
+		set.put("$set", data);
+		data.put("file_name", app.getFinalApk().getName());
+		storage.update(updateFilter, set, "application");
 		System.out.println("apk_path : " + app.getFinalApk().getAbsolutePath());
 		System.out.println("Intrumentation finished !");
 
