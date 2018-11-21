@@ -1,10 +1,12 @@
 package fr.groom;
 
 import fr.groom.apk_instrumentation.SootInstrumenter;
+import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
 import fr.groom.apk_instrumentation.FridaInstrumenter;
 import fr.groom.apk_instrumentation.InstrumenterUtils;
 import fr.groom.models.Application;
+import fr.groom.mongo.Database;
 import fr.groom.static_analysis.StaticAnalysis;
 import org.apache.commons.cli.*;
 import org.json.JSONObject;
@@ -122,7 +124,21 @@ public class Main {
 				Configuration.v().getSootConfiguration().getAndroidPlatforms()
 		);
 
-		Storage storage = new Printer();
+		Storage storage;
+		if (Configuration.v().getDatabaseConfiguration().isConnectToDatabase()) {
+			DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
+			storage = new Database(
+					dbConfig.getUrl(),
+					dbConfig.getPort(),
+					dbConfig.getName(),
+					dbConfig.getAuthenticationConfiguration().isPerformAuthentication(),
+					dbConfig.getAuthenticationConfiguration().getUsername(),
+					dbConfig.getAuthenticationConfiguration().getPassword(),
+					dbConfig.getAuthenticationConfiguration().getAuthSourceDatabaseName()
+			);
+		} else {
+			storage = new Printer();
+		}
 
 		Application app = new Application(tempApk); // init Application object
 		JSONObject filter = new JSONObject();

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "connectToDatabase",
     "name",
     "url",
     "port",
@@ -22,6 +23,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class DatabaseConfiguration implements Serializable
 {
 
+    /**
+     * connect to database or use printer
+     * 
+     */
+    @JsonProperty("connectToDatabase")
+    @JsonPropertyDescription("connect to database or use printer")
+    private boolean connectToDatabase = false;
     /**
      * name of the database
      * (Required)
@@ -53,7 +61,7 @@ public class DatabaseConfiguration implements Serializable
     @JsonProperty("authenticationConfiguration")
     @JsonPropertyDescription("required authentication options")
     private AuthenticationConfiguration authenticationConfiguration;
-    private final static long serialVersionUID = -90560545942467868L;
+    private final static long serialVersionUID = -3678013662133954114L;
 
     /**
      * No args constructor for use in serialization
@@ -64,17 +72,37 @@ public class DatabaseConfiguration implements Serializable
 
     /**
      * 
+     * @param connectToDatabase
      * @param port
      * @param name
      * @param url
      * @param authenticationConfiguration
      */
-    public DatabaseConfiguration(String name, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
+    public DatabaseConfiguration(boolean connectToDatabase, String name, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
         super();
+        this.connectToDatabase = connectToDatabase;
         this.name = name;
         this.url = url;
         this.port = port;
         this.authenticationConfiguration = authenticationConfiguration;
+    }
+
+    /**
+     * connect to database or use printer
+     * 
+     */
+    @JsonProperty("connectToDatabase")
+    public boolean isConnectToDatabase() {
+        return connectToDatabase;
+    }
+
+    /**
+     * connect to database or use printer
+     * 
+     */
+    @JsonProperty("connectToDatabase")
+    public void setConnectToDatabase(boolean connectToDatabase) {
+        this.connectToDatabase = connectToDatabase;
     }
 
     /**
@@ -159,6 +187,10 @@ public class DatabaseConfiguration implements Serializable
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(DatabaseConfiguration.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("connectToDatabase");
+        sb.append('=');
+        sb.append(this.connectToDatabase);
+        sb.append(',');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
@@ -187,6 +219,7 @@ public class DatabaseConfiguration implements Serializable
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
+        result = ((result* 31)+(this.connectToDatabase? 1 : 0));
         result = ((result* 31)+ this.port);
         result = ((result* 31)+((this.url == null)? 0 :this.url.hashCode()));
         result = ((result* 31)+((this.authenticationConfiguration == null)? 0 :this.authenticationConfiguration.hashCode()));
@@ -202,7 +235,7 @@ public class DatabaseConfiguration implements Serializable
             return false;
         }
         DatabaseConfiguration rhs = ((DatabaseConfiguration) other);
-        return (((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&(this.port == rhs.port))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
+        return ((((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&(this.connectToDatabase == rhs.connectToDatabase))&&(this.port == rhs.port))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
     }
 
 }

@@ -206,6 +206,11 @@
         "collections"
       ],
       "properties": {
+        "connectToDatabase": {
+          "type": "boolean",
+          "description": "connect to database or use printer",
+          "default": false
+        },
         "name": {
           "type": "string",
           "description": "name of the database",

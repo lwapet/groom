@@ -6,9 +6,10 @@ import java.nio.file.StandardCopyOption;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 public class FileUtils {
-	public static final File TEMP_DIRECTORY = new File("temp");
+	public static final File TEMP_DIRECTORY = new File("temp" + UUID.randomUUID().toString());
 	public static String createSha1(File file) {
 		MessageDigest digest = null;
 		try {
