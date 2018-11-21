@@ -1,5 +1,7 @@
 package fr.groom;
 
+import fr.groom.server.EmulatorStatus;
+
 public interface IEmulatorEventListener {
 	public void onStart(Emulator emulator);
 
@@ -31,4 +33,6 @@ public interface IEmulatorEventListener {
 	public void onStopApkError(Emulator emulator);
 
 	public void onReady(Emulator emulator);
+
+	public void onStatusChange(Emulator emulator, EmulatorStatus status);
 }

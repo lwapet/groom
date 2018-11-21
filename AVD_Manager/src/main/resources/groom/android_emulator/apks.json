@@ -1,0 +1,23 @@
+[
+  {
+    "file_name": "locker-fe666e209e094968d3178ecf0cf817164c26d5501ed3cd9a80da786a4a3f3dc4-frida-soot-aligned-signed.apk",
+    "package_name": "com.lock.app",
+    "main_activity": "com.lock.app.StartShowActivity"
+  },
+  {
+    "file_name": "locker-fa9df1c998604f2bcd464913601c3e202025d48af6da344efc4d10dbfe6ae26d-frida-soot-aligned-signed.apk",
+    "package_name": "tk.jianmo.study",
+    "main_activity": "tk.jianmo.study.MainActivity"
+  },
+  {
+    "file_name": "locker-fa43a48840450ad5025634d37e8e3d4d7af44e65a3cbfb7822ce836c7397cabd-frida-soot-aligned-signed.apk",
+    "package_name": "content.app",
+    "main_activity": "content.app.MainActivity"
+  },
+  {
+    "file_name": "locker-f809cb43178b987cb2a42a3f89f9f8ef1fe496370ce29b08681d3b9a6f77cbf6-frida-soot-aligned-signed.apk",
+    "package_name": "com.anigilyator.org",
+    "main_activity": "com.anigilyator.org.Annotatio"
+  }
+]
+

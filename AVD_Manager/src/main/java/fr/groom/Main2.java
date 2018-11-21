@@ -7,8 +7,6 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import fr.groom.android_emulator.Constants;
-import org.python.antlr.op.And;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -141,7 +139,7 @@ public class Main2 {
 	public static void init() {
 
 		deviceHandlers = new ArrayList<>();
-		File sdkRoot = new File(System.getenv(Constants.ENV_VAR_ANDROID_SDK_HOME));
+		File sdkRoot = new File(System.getenv("ANDROID_SDK_HOME"));
 		AndroidDebugBridge.initIfNeeded(false);
 		adb = AndroidDebugBridge.createBridge("/Users/lgitzing/Library/Android/sdk/platform-tools/adb", true);
 		while (!adb.isConnected()) {
