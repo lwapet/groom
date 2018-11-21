@@ -1,0 +1,4 @@
+rootProject.name = 'AVD_Manager'
+include ':utils'
+project(':utils').projectDir = file('../utils')
+

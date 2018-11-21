@@ -1,0 +1,258 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Apk Instrumenter schema",
+  "description": "This schema describes available configurations for the program",
+  "type": "object",
+  "properties": {
+    "targetApk": {
+      "type": "string",
+      "description": "path to the target apk",
+      "default": ""
+    },
+    "isMalicious": {
+      "type": "boolean",
+      "description": "says if the apk is malicious or not (for training dataset)",
+      "default": null
+    },
+    "zipalignPath": {
+      "type": "string",
+      "description": "path to zipalign binary",
+      "default": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign"
+    },
+    "apksignerPath": {
+      "type": "string",
+      "description": "path to apksigner binary",
+      "default": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner"
+    },
+    "pathToKeystore": {
+      "type": "string",
+      "description": "path to keystore (sign)",
+      "default": "/Users/lgitzing/.android/keystore"
+    },
+    "keyPassword": {
+      "type": "string",
+      "description": "sign key password",
+      "default": ""
+    },
+    "categorizedSourcesFile": {
+      "type": "string",
+      "description": "path to the categorized_sources.txt file",
+      "default": "required_files/categorized_sources.txt"
+    },
+    "categorizedSinksFile": {
+      "type": "string",
+      "description": "path to the categorized_sinks.txt file",
+      "default": "required_files/categorized_sinks.txt"
+    },
+    "performStaticAnalysis": {
+      "type": "boolean",
+      "description": "Perform a global static analysis to extract static data",
+      "default": true
+    },
+    "repackageApk": {
+      "type": "boolean",
+      "description": "Repackage apk with soot",
+      "default": true
+    },
+    "dynamicAnalysisRepository": {
+      "type": "string",
+      "description": "repository handled by dynamic analysis",
+      "default": "../instrumented_apks"
+    },
+    "sootInstrumentationConfiguration": {
+      "type": "object",
+      "description": "soot instrumentation configuration",
+      "properties": {
+        "instrumentApkWithSoot": {
+          "type": "boolean",
+          "description": "inject log statement in apk byte code for dynamic analysis purpose",
+          "default": false
+        },
+        "groomPath": {
+          "type": "string",
+          "description": "path to groom dex file, the helper used to hook methods and statements",
+          "default": "required_files/Groom.dex"
+        }
+      }
+    },
+    "fridaInstrumenterConfiguration": {
+      "type": "object",
+      "description": "frida configuration for the program",
+      "properties": {
+        "instrumentApkWithFrida": {
+          "type": "boolean",
+          "description": "Does the apk needs to be instrumented",
+          "default": true
+        },
+        "fridaLibZipFile": {
+          "type": "string",
+          "description": "path to the zip containing frida .so files",
+          "default": "required_files/lib.zip"
+        },
+        "hookActivities": {
+          "type": "boolean",
+          "description": "Add Frida statement to each app activity",
+          "default": true
+        },
+        "hookReceivers": {
+          "type": "boolean",
+          "description": "Add Frida statement to each app receiver",
+          "default": true
+        },
+        "fridaSoFilesName": {
+          "type": "string",
+          "description": "filename given to frida .so files",
+          "default": "frida-gadget"
+        }
+      }
+    },
+    "staticAnalysisConfiguration": {
+      "type": "object",
+      "description": "parameters concerning dynamic analysis",
+      "properties": {
+        "runFlowDroid": {
+          "type": "boolean",
+          "description": "Does the program should run FlowDroid or not",
+          "default": false
+        },
+        "flowDroidConfiguration": {
+          "type": "object",
+          "description": "program can run flow droid after its main operations",
+          "properties": {
+            "contextSensitive": {
+              "type": "boolean",
+              "description": "Does FlowDroid should run in context sensitive mode",
+              "default": false
+            },
+            "flowSensitive": {
+              "type": "boolean",
+              "description": "Does FlowDroid should run in flow sensitive mode",
+              "default": true
+            },
+            "ignoreFlowsInSystemPackages": {
+              "type": "boolean",
+              "description": "Does FlowDroid should ignore system package flows",
+              "default": false
+            },
+            "flowDroidInputFiles": {
+              "type": "object",
+              "description": "input files required to run FlowDroid",
+              "properties": {
+                "androidCallbacks": {
+                  "type": "string",
+                  "description": "path to the target apk",
+                  "default": "required_files/AndroidCallbacks.txt"
+                },
+                "taintWrapperSource": {
+                  "type": "string",
+                  "description": "path to the target apk",
+                  "default": "required_files/EasyTaintWrapperSource.txt"
+                },
+                "sourcesAndSinksFiles": {
+                  "type": "object",
+                  "description": "how to handle sources and sinks",
+                  "properties": {
+                    "categorizedSourcesAndSinks": {
+                      "type": "boolean",
+                      "description": "Does FlowDroid should use categorized sources and sinks",
+                      "default": true
+                    },
+                    "sourceAndSinksTxtFile": {
+                      "type": "string",
+                      "description": "path to the SourcesAndSinks.txt file",
+                      "default": "required_files/SourcesAndSinks.txt"
+                    },
+                    "categorizedSourcesFile": {
+                      "type": "string",
+                      "description": "path to the categorized_sources.txt file",
+                      "default": "required_files/catSources_Short.txt"
+                    },
+                    "categorizedSinksFile": {
+                      "type": "string",
+                      "description": "path to the categorized_sinks.txt file",
+                      "default": "required_files/catSinks_Short.txt"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sootConfiguration": {
+      "type": "object",
+      "description": "soot configuration for the program",
+      "properties": {
+        "androidPlatforms": {
+          "type": "string",
+          "description": "path to the android platform folder",
+          "default": "/Users/lgitzing/Development/work/android-platforms"
+        },
+        "outputDirectory": {
+          "type": "string",
+          "description": "where to output soot instrumented apk",
+          "default": "./sootOutput"
+        }
+      }
+    },
+    "databaseConfiguration": {
+      "type": "object",
+      "description": "database configuration for mongodb instance",
+      "required": [
+        "name",
+        "url",
+        "port",
+        "collections"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name of the database",
+          "default": "dynamic"
+        },
+        "url": {
+          "type": "string",
+          "description": "url of the database, e.g localhost",
+          "default": "localhost"
+        },
+        "port": {
+          "type": "integer",
+          "description": "port on which the mongodb instance runs",
+          "default": 27017
+        },
+        "authenticationConfiguration": {
+          "type": "object",
+          "description": "required authentication options",
+          "properties": {
+            "performAuthentication": {
+              "type": "boolean",
+              "description": "whether the program should perform authentication or not",
+              "default": false
+            },
+            "authSourceDatabaseName": {
+              "type": "string",
+              "description": "name of the authentication database",
+              "default": "admin"
+            },
+            "username": {
+              "type": "string",
+              "description": "username to authenticate to the database",
+              "default": "lgitzing"
+            },
+            "password": {
+              "type": "string",
+              "description": "user password for authentication",
+              "default": "tout_petit_poney"
+            }
+          },
+          "required": [
+            "performAuthentication",
+            "username",
+            "password"
+          ]
+        }
+      }
+    }
+  }
+}

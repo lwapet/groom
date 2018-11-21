@@ -1,0 +1,3 @@
+rootProject.name = 'groom'
+include 'tcp_server', 'utils', 'database', 'static', 'injected_code', 'AVD_Manager'
+

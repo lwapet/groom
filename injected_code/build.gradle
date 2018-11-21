@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.groom'
+version '2'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

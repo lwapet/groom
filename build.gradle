@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.groom'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+allprojects {
+    task hello {
+        doLast {
+            task -> println "I'm $task.project.name"
+        }
+    }
+}
+
+subprojects {
+    hello {
+        doLast {
+            println "- I depend on groom"
+        }
+    }
+}

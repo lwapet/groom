@@ -1,0 +1,5 @@
+rootProject.name = 'static'
+include ':database', ':utils'
+project(':database').projectDir = file('../database')
+project(':utils').projectDir = file('../utils')
+
