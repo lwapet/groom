@@ -1,34 +1,26 @@
-import android.app.Activity;
+package fr.groom;
+
 import android.app.Application;
-import android.content.*;
-import android.graphics.Point;
-import android.view.WindowManager.LayoutParams;
-import android.content.res.Resources;
-import android.net.LocalSocket;
-import android.net.LocalSocketAddress;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.PatternMatcher;
-import android.util.DisplayMetrics;
-import android.util.JsonReader;
+import android.util.Base64;
 import android.util.Log;
-import android.view.*;
-import android.widget.RelativeLayout;
+import android.view.WindowManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.awt.*;
 import java.io.*;
-
-import android.util.Base64;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.text.NumberFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.UUID;
+import java.util.concurrent.*;
 import java.util.zip.GZIPOutputStream;
 
 
@@ -41,18 +33,20 @@ public class Groom {
 	private static String DATA_MARKER;
 	private static Application app;
 	private static PrintWriter out;
-	private static BufferedReader in;
-	private Socket clientSocket;
+	private static Future<PrintWriter> futurPrinter;
+	private static ExecutorService executor;
+
 
 	static {
-		Socket clientSocket = null;
-		try {
-			clientSocket = new Socket("10.0.2.2", 1993);
-			out = new PrintWriter(clientSocket.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		executor = Executors.newFixedThreadPool(1);
+		futurPrinter = executor.submit(new Callable<PrintWriter>() {
+			@Override
+			public PrintWriter call() throws Exception {
+				Socket clientSocket = new Socket("10.0.2.2", 1993);
+				return new PrintWriter(clientSocket.getOutputStream(), true);
+			}
+		});
+
 		try {
 			final Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
 			final Method method = activityThreadClass.getMethod("currentApplication");
@@ -79,8 +73,22 @@ public class Groom {
 		return obj.toByteArray();
 	}
 
-	private static void sendData(JSONObject data) {
-		out.println(MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
+	public static void sendData(JSONObject data) {
+		executor.submit(new Callable<Void>() {
+			@Override
+			public Void call() throws Exception {
+				if (out == null) {
+					try {
+						Log.d("GROOM_DEBUG", "RETRIEVING TCP CLIENT");
+						out = futurPrinter.get();
+					} catch (ExecutionException | InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				out.println(MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
+				return null;
+			}
+		});
 	}
 
 
