@@ -214,7 +214,7 @@ public class Main {
 		FileUtils.copyFileToDynamicRepository(app.getFinalApk());
 
 		JSONObject updateFilter = new JSONObject();
-		filter.put("sha256", app.getSha256());
+		updateFilter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
 		JSONObject data = new JSONObject();
 		JSONObject set = new JSONObject();

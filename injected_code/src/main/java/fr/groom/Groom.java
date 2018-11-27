@@ -46,7 +46,7 @@ public class Groom {
 				return new PrintWriter(clientSocket.getOutputStream(), true);
 			}
 		});
-
+//
 		try {
 			final Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
 			final Method method = activityThreadClass.getMethod("currentApplication");
@@ -79,7 +79,6 @@ public class Groom {
 			public Void call() throws Exception {
 				if (out == null) {
 					try {
-						Log.d("GROOM_DEBUG", "RETRIEVING TCP CLIENT");
 						out = futurPrinter.get();
 					} catch (ExecutionException | InterruptedException e) {
 						e.printStackTrace();
@@ -219,6 +218,9 @@ public class Groom {
 //					Log.d("TEST OBS", String.valueOf(view.getMeasuredWidth()));
 //					Log.d("TEST OBS", String.valueOf(view.getMeasuredHeight()));
 //
+				} else if (arg instanceof byte[]) {
+					byte[] bytes = (byte[]) arg;
+					value = new String(bytes);
 				} else {
 					value = arg.toString();
 				}

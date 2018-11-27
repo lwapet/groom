@@ -1,10 +1,11 @@
 package fr.groom.logs.models;
 
-import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
 
 public interface ILog {
 	public void parse();
-	public JSONObject toJson();
+	public JsonObject toJson();
 	public String getOriginalLine();
 	public String getRawData();
 }

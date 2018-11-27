@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee208366-545c-4832-bdea-198e7e12df64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/database/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/src/main/java/fr/groom/mongo/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/database/src/main/java/fr/groom/mongo/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/pristine/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/static/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/static/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/static/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -119,10 +117,11 @@
     <session id="-1356214172">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -130,7 +129,7 @@
           <entry key="gitignore" value="1" />
           <entry key="gradle" value="31" />
           <entry key="gradlew" value="2" />
-          <entry key="java" value="137" />
+          <entry key="java" value="141" />
           <entry key="json" value="6" />
           <entry key="txt" value="2" />
         </counts>
@@ -140,7 +139,7 @@
           <entry key="Bash" value="2" />
           <entry key="Git file" value="1" />
           <entry key="Groovy" value="31" />
-          <entry key="JAVA" value="137" />
+          <entry key="JAVA" value="141" />
           <entry key="JSON" value="6" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
@@ -150,7 +149,7 @@
           <entry key="dummy" value="9" />
           <entry key="gitignore" value="198" />
           <entry key="gradle" value="1313" />
-          <entry key="java" value="5134" />
+          <entry key="java" value="5718" />
           <entry key="json" value="841" />
         </counts>
       </usages-collector>
@@ -158,7 +157,7 @@
         <counts>
           <entry key="Git file" value="198" />
           <entry key="Groovy" value="1313" />
-          <entry key="JAVA" value="5134" />
+          <entry key="JAVA" value="5718" />
           <entry key="JSON" value="841" />
           <entry key="PLAIN_TEXT" value="9" />
         </counts>
@@ -166,76 +165,39 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/TcpServer.java">
+        <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+            <state relative-caret-position="392">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
+        <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="81" selection-start-line="1" selection-start-column="81" selection-end-line="1" selection-end-column="81" />
+            <state relative-caret-position="182">
+              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AVD_Manager/build.gradle">
+        <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+            <state relative-caret-position="612">
+              <caret line="154" column="56" lean-forward="true" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/Groom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tcp_server/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AVD_Manager/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tcp_server/gradlew">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tcp_server/build.gradle">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/ILogListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+            <state relative-caret-position="-3980">
+              <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -1361,7 +1323,7 @@
         <entry key="$PROJECT_DIR$/injected_code/settings.gradle" value="207755430" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="3944819142" />
         <entry key="$PROJECT_DIR$/static/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/static/build.gradle" value="4254957396" />
+        <entry key="$PROJECT_DIR$/static/build.gradle" value="3091544591" />
         <entry key="$PROJECT_DIR$/static/settings.gradle" value="80125246" />
         <entry key="$PROJECT_DIR$/tcp_server/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/tcp_server/build.gradle" value="3494306319" />
@@ -1670,8 +1632,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/models/Activity.java" />
-        <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/ResourceFileParser.java" />
         <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/models/Application.java" />
         <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis/IAnalysis.java" />
         <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis/BackwardAnalysis.java" />
@@ -1702,7 +1662,6 @@
         <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" />
         <option value="$PROJECT_DIR$/static/src/main/resources/json/InstrumenterConfiguration.json" />
         <option value="$PROJECT_DIR$/static/default.json" />
-        <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" />
         <option value="$PROJECT_DIR$/utils/src/main/java/logs/HookConstant.java" />
         <option value="$PROJECT_DIR$/utils/src/main/java/logs/models/ILog.java" />
         <option value="$PROJECT_DIR$/utils/build.gradle" />
@@ -1721,6 +1680,9 @@
         <option value="$PROJECT_DIR$/AVD_Manager/settings.gradle" />
         <option value="$PROJECT_DIR$/AVD_Manager/build.gradle" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" />
+        <option value="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" />
+        <option value="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java" />
       </list>
     </option>
   </component>
@@ -1739,8 +1701,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1751,30 +1711,25 @@
             <path>
               <item name="groom" type="b2602c69:ProjectViewProjectNode" />
               <item name="Groom" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="static" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="injected_code" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="groom" type="b2602c69:ProjectViewProjectNode" />
               <item name="Groom" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="tcp_server" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="groom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Groom" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="tcp_server" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="injected_code" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="groom" type="b2602c69:ProjectViewProjectNode" />
               <item name="Groom" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="tcp_server" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="injected_code" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="groom" type="b2602c69:ProjectViewProjectNode" />
               <item name="Groom" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="tcp_server" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="injected_code" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -1783,24 +1738,30 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542727198268" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542877904466" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/AVD_Manager/src/main/java/fr" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models" />
+      <recent name="$PROJECT_DIR$/static/required_files" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/static/src/main/resources" />
+      <recent name="$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fr.groom.logs" />
@@ -1809,12 +1770,9 @@
       <recent name="logs" />
       <recent name="fr.groom.apk_instrumentation" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models" />
-      <recent name="$PROJECT_DIR$/static/required_files" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/static/src/main/resources" />
-      <recent name="$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/AVD_Manager/pristine" />
+      <recent name="$PROJECT_DIR$/AVD_Manager/src/main/java/fr" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1974,18 +1932,19 @@
       <workItem from="1542796471938" duration="534000" />
       <workItem from="1542802972612" duration="213000" />
       <workItem from="1542812323841" duration="1227000" />
-      <workItem from="1542823361413" duration="148000" />
+      <workItem from="1542823361413" duration="591000" />
+      <workItem from="1542876593947" duration="1029000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13827000" />
+    <option name="totallyTimeSpent" value="15299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23375931" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -2027,20 +1986,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis/StaticAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis/FlowDroid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/static_analysis/FlowDroidResultsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -2124,13 +2069,6 @@
     <entry file="file://$PROJECT_DIR$/static/required_files/AndroidCallbacks.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/Groom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/Client.java" />
     <entry file="file://$PROJECT_DIR$/injected_code/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
@@ -2147,16 +2085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
           <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="52" lean-forward="true" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2264,13 +2192,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/TcpServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -2316,6 +2237,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/TcpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="154" column="56" lean-forward="true" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/Groom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3980">
+          <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
         </state>
       </provider>
     </entry>

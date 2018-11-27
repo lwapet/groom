@@ -1,11 +1,9 @@
 package fr.groom.logs.models;
 
+import com.google.gson.*;
 import fr.groom.logs.HookConstant;
 import models.Switch;
 import models.Switchable;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -23,15 +21,16 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 public class Log implements ILog {
+	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	static Pattern curlyBraceRegex = Pattern.compile("\\{(.*?)\\}");
 	private static final String ANDROID_LOG_TIME_FORMAT = "MM-dd kk:mm:ss.SSS";
 	private static SimpleDateFormat logCatDate = new SimpleDateFormat(ANDROID_LOG_TIME_FORMAT);
+	JsonObject logData;
 	private Timestamp timestamp;
 	String method;
 	String originalLine;
 	String rawData;
 	String applicationPackageName;
-	JSONObject logData;
 	ArrayList<StackTraceData> stackTrace = new ArrayList<>();
 	Intent intent;
 	int hashCode;
@@ -49,24 +48,33 @@ public class Log implements ILog {
 		Pattern p = Pattern.compile("#(.*)#");
 		Matcher m = p.matcher(this.originalLine);
 		if (m.find()) {
+			JsonParser parser = new JsonParser();
+			this.applicationPackageName = m.group(1);
+			JsonObject data = (JsonObject) parser.parse(this.rawData);
+			System.out.println(gson.toJson(data));
+		}
+	}
+
+	//	@Override
+	public void parse2() {
+		JsonParser parser = new JsonParser();
+		Pattern p = Pattern.compile("#(.*)#");
+		Matcher m = p.matcher(this.originalLine);
+		if (m.find()) {
 			this.applicationPackageName = m.group(1);
 			System.out.println(this.applicationPackageName);
 		}
-		JSONObject data = new JSONObject(this.rawData);
+		JsonObject data = (JsonObject) parser.parse(this.rawData);
 		this.logData = data;
-		for (Object argO : this.logData.getJSONArray("arguments")) {
-			JSONObject argument = null;
-			try {
-				argument = (JSONObject) argO;
-			} catch (JSONException e) {
-				System.out.println(argO);
-				e.printStackTrace();
-			}
-			if (!argument.isNull("type")) {
-				if (argument.getString("type").equals("android.view.WindowManager.LayoutParams")) {
+		for (JsonElement argO : this.logData.getAsJsonArray("arguments")) {
+			JsonObject argument = argO.getAsJsonObject();
+			System.out.println(argument);
+			JsonElement type = argument.get("type");
+			if (!type.isJsonNull()) {
+				if (type.getAsString().equals("android.view.WindowManager.LayoutParams")) {
 					ArrayList<String> flags = new ArrayList<>();
-					JSONObject value = argument.getJSONObject("value");
-					int flagsValue = value.getInt("flags");
+					JsonObject value = argument.get("value").getAsJsonObject();
+					int flagsValue = value.get("flags").getAsInt();
 					Arrays.stream(LayoutParamsFlags.values()).forEach(flag -> {
 						NumberFormat nf = NumberFormat.getInstance();
 						try {
@@ -79,25 +87,25 @@ public class Log implements ILog {
 						}
 //						long constantFlagValue = Integer.decode(flag.getHexString());
 					});
-				} else if (argument.getString("type").equals("android.widget.RelativeLayout")) {
-					System.out.println(data.getString("method_signature"));
-					System.out.println(argument.getString("value"));
+				} else if (type.getAsString().equals("android.widget.RelativeLayout")) {
+					System.out.println(data.get("method_signature").getAsString());
+					System.out.println(argument.get("value").getAsString());
 				}
 			}
 		}
 		if (data.has("intent")) {
-			this.intent = new Intent(data.getJSONObject("intent"));
+			this.intent = new Intent(data.getAsJsonObject("intent"));
 		}
 		if (data.has("hash_code")) {
-			this.hashCode = data.getInt("hash_code");
+			this.hashCode = data.get("hash_code").getAsInt();
 		}
-		this.method = data.getString("method_signature");
-		JSONArray elementArray = data.getJSONArray("stack_trace");
-		for (int i = 0; i < elementArray.length(); i++) {
-			JSONArray a = elementArray.getJSONArray(i);
-			String className = a.getString(0);
-			String methodName = a.getString(1);
-			int lineNumber = a.getInt(2);
+		this.method = data.get("method_signature").getAsString();
+		JsonArray elementArray = data.getAsJsonArray("stack_trace");
+		for (int i = 0; i < elementArray.size(); i++) {
+			JsonArray a = elementArray.get(i).getAsJsonArray();
+			String className = a.get(0).getAsString();
+			String methodName = a.get(1).getAsString();
+			int lineNumber = a.get(2).getAsInt();
 			StackTraceData stackTraceElement = new StackTraceData(className, methodName, lineNumber);
 			stackTrace.add(stackTraceElement);
 		}
@@ -105,10 +113,10 @@ public class Log implements ILog {
 	}
 
 	@Override
-	public JSONObject toJson() {
-		JSONObject object = new JSONObject();
-		object.put("type", this.getClass().getSimpleName());
-		object.put("timestamp", timestamp.toString());
+	public JsonObject toJson() {
+		JsonObject object = new JsonObject();
+		object.addProperty("type", this.getClass().getSimpleName());
+		object.addProperty("timestamp", timestamp.toString());
 		return object;
 	}
 
@@ -189,11 +197,11 @@ public class Log implements ILog {
 		}
 
 
-		public JSONObject toJson() {
-			JSONObject data = new JSONObject();
-			data.put("class_name", className);
-			data.put("method_name", methodName);
-			data.put("line_number", lineNumber);
+		public JsonObject toJson() {
+			 JsonObject data = new JsonObject();
+			data.addProperty("class_name", className);
+			data.addProperty("method_name", methodName);
+			data.addProperty("line_number", lineNumber);
 			return data;
 		}
 

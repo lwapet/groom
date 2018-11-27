@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class InstrumenterUtils {
+	public static String groomClassName = "fr.groom.Groom";
 
 	public static File alignApk(File apkToAlign, String pathToZipAlign) throws IOException {
 		System.out.println("Aligning apk.");
@@ -111,7 +112,7 @@ public class InstrumenterUtils {
 	}
 
 	public static void setGroomConstants(String constanteName, String value) {
-		SootClass sootClass = Scene.v().getSootClass("Groom");
+		SootClass sootClass = Scene.v().getSootClass(groomClassName);
 		RefType stringType = RefType.v("java.lang.String");
 		SootField sootField = new SootField(constanteName, stringType);
 		sootField = sootClass.getOrAddField(sootField);

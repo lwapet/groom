@@ -2,6 +2,7 @@ package fr.groom;
 
 import com.android.ddmlib.*;
 import com.android.ddmlib.logcat.LogCatReceiverTask;
+import com.android.instantapp.utils.LogcatService;
 import com.android.sdklib.devices.Device;
 import com.android.sdklib.internal.avd.AvdInfo;
 import fr.groom.commandline_handler.CommandHandler;
@@ -72,12 +73,17 @@ public class Emulator {
 	public void uninstallApk(String packageName) {
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		try {
-			device.uninstallPackage(packageName);
+			String result = device.uninstallPackage(packageName);
+			if (result == null) {
+				clone.forEach(l -> l.onUninstallApk(this));
+				setNewStatus(EmulatorStatus.IDLE);
+			} else {
+				clone.forEach(l -> l.onUninstallApkError(this, result));
+			}
 		} catch (InstallException e) {
+			e.printStackTrace();
 			clone.forEach(l -> l.onUninstallApkError(this, e.getMessage()));
 		}
-		clone.forEach(l -> l.onUninstallApk(this));
-		setNewStatus(EmulatorStatus.IDLE);
 	}
 
 	public void stop() {
@@ -129,6 +135,7 @@ public class Emulator {
 //			command.add(String.valueOf(this.port));
 			command.add("-no-snapshot-load");
 			command.add("-no-snapshot-save");
+			command.add("-wipe-data");
 			command.add("-verbose");
 			CommandHandler.runCommand(command, new NewLineListener() {
 				@Override

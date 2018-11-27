@@ -15,7 +15,7 @@ public class TcpServer implements Runnable {
 	Socket socket;
 
 	public TcpServer() {
-		this.reader = new SimplePrintLineListener();
+		this.reader = new TcpParser();
 	}
 
 	public TcpServer(NewLineListener reader) {

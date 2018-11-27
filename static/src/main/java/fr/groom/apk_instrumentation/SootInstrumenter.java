@@ -11,7 +11,7 @@ import java.util.*;
 public class SootInstrumenter extends SceneTransformer {
 	private Hooker hooker;
 	private StaticAnalysis staticAnalysis;
-	private String[] excludedClasses = {"MethodLogger", "Groom", "fakeActivity"};
+	private String[] excludedClasses = {"MethodLogger", InstrumenterUtils.groomClassName, "fakeActivity"};
 	private String[] reflectionInvokeMethods = {
 			"<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>"
 	};

@@ -1,8 +1,9 @@
 package fr.groom.logs.models;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.util.Pair;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -38,26 +39,26 @@ public class Intent {
 	private UUID uuid;
 	private ArrayList<String> extras = new ArrayList<>();
 
-	Intent(JSONObject jsonIntent) {
+	Intent(JsonObject jsonIntent) {
 		if (jsonIntent.has("action"))
-			this.action = jsonIntent.getString("action");
+			this.action = jsonIntent.get("action").getAsString();
 		if (jsonIntent.has("component"))
-			this.component = jsonIntent.getString("component");
+			this.component = jsonIntent.get("component").getAsString();
 		if (jsonIntent.has("categories"))
-			this.category = jsonIntent.get("categories").toString();
+			this.category = jsonIntent.get("categories").getAsString();
 		if (jsonIntent.has("package"))
-			this.packageName = jsonIntent.get("package").toString();
+			this.packageName = jsonIntent.get("package").getAsString();
 		if(jsonIntent.has("type"))
-			this.type = jsonIntent.get("type").toString();
+			this.type = jsonIntent.get("type").getAsString();
 		if(jsonIntent.has("data"))
-			this.data = jsonIntent.get("data").toString();
+			this.data = jsonIntent.get("data").getAsString();
 		if(jsonIntent.has("scheme"))
-			this.scheme = jsonIntent.get("scheme").toString();
+			this.scheme = jsonIntent.get("scheme").getAsString();
 		if(jsonIntent.has("selector"))
-			this.selector = new Intent(jsonIntent.getJSONObject("selector"));
+			this.selector = new Intent(jsonIntent.getAsJsonObject("selector"));
 
 		if (jsonIntent.has("flags")) {
-			flagsValue = jsonIntent.getInt("flags");
+			flagsValue = jsonIntent.get("flags").getAsInt();
 			Arrays.stream(IntentFlags.values()).forEach(flag -> {
 				long constantFlagValue = Integer.decode(flag.getHexString());
 				if ((constantFlagValue & flagsValue) != 0) {
@@ -66,14 +67,13 @@ public class Intent {
 			});
 		}
 		if (jsonIntent.has("extras")) {
-			JSONArray extras = jsonIntent.getJSONArray("extras");
-			Iterator<Object> i = extras.iterator();
+			JsonArray extras = jsonIntent.getAsJsonArray("extras");
+			Iterator<JsonElement> i = extras.iterator();
 			this.extras = new ArrayList<>();
 			while (i.hasNext()) {
-				Object extraObject = i.next();
-				JSONObject extra = (JSONObject) extraObject;
+				JsonObject extra = i.next().getAsJsonObject();
 				if (extra.has("UUID")) {
-					this.uuid = UUID.fromString(extra.getString("UUID"));
+					this.uuid = UUID.fromString(extra.get("UUID").getAsString());
 				} else {
 					this.extras.add(extra.toString());
 				}
@@ -141,15 +141,15 @@ public class Intent {
 				'}';
 	}
 
-	JSONObject toJson() {
-		JSONObject object = new JSONObject();
-		object.put("action", this.action);
-		object.put("component", this.component);
-		object.put("category", this.category);
-		object.put("flagsValue", this.flagsValue);
-		object.put("flags", this.flags.toString());
-		object.put("boundsValue", this.boundsValue);
-		object.put("hasExtras", !this.extras.isEmpty());
+	JsonObject toJson() {
+		JsonObject object = new JsonObject();
+		object.addProperty("action", this.action);
+		object.addProperty("component", this.component);
+		object.addProperty("category", this.category);
+		object.addProperty("flagsValue", this.flagsValue);
+		object.addProperty("flags", this.flags.toString());
+		object.addProperty("boundsValue", this.boundsValue);
+		object.addProperty("hasExtras", !this.extras.isEmpty());
 		return object;
 	}
 

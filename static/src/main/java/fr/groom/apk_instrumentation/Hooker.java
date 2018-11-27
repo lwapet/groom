@@ -26,7 +26,7 @@ public class Hooker {
 	private HashSet<SootMethod> ACTIVITY_CALLBACKS;
 	private HashSet<SootMethod> SERVICE_CALLBACKS;
 	private HashSet<SootMethod> RECEIVER_CALLBACKS;
-	private static SootClass GROOM = Scene.v().getSootClass("Groom");
+	private static SootClass GROOM = Scene.v().getSootClass(InstrumenterUtils.groomClassName);
 	private static SootClass FAKE_ACTIVITY = Scene.v().getSootClass("fakeActivity");
 	//	private static String INTENT_LOG_GROOM_METHOD = "logIntent";
 //	private static String METHOD_LOG_GROOM_METHOD = "logMethod";
