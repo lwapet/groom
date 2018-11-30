@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -27,6 +28,7 @@ public class Log implements ILog {
 	private static SimpleDateFormat logCatDate = new SimpleDateFormat(ANDROID_LOG_TIME_FORMAT);
 	JsonObject logData;
 	private Timestamp timestamp;
+	private UUID uuid;
 	String method;
 	String originalLine;
 	String rawData;
@@ -43,20 +45,21 @@ public class Log implements ILog {
 		this.rawData = data;
 	}
 
-	@Override
-	public void parse() {
-		Pattern p = Pattern.compile("#(.*)#");
-		Matcher m = p.matcher(this.originalLine);
-		if (m.find()) {
-			JsonParser parser = new JsonParser();
-			this.applicationPackageName = m.group(1);
-			JsonObject data = (JsonObject) parser.parse(this.rawData);
-			System.out.println(gson.toJson(data));
-		}
-	}
-
+//	@Override
+//	public void parse() {
+//		Pattern p = Pattern.compile("#(.*)#");
+//		Matcher m = p.matcher(this.originalLine);
+//		if (m.find()) {
+//			JsonParser parser = new JsonParser();
+//			this.applicationPackageName = m.group(1);
+//			JsonObject data = (JsonObject) parser.parse(this.rawData);
+//			System.out.println(this.applicationPackageName);
+//			System.out.println(gson.toJson(data));
+//		}
+//	}
+//
 	//	@Override
-	public void parse2() {
+	public void parse() {
 		JsonParser parser = new JsonParser();
 		Pattern p = Pattern.compile("#(.*)#");
 		Matcher m = p.matcher(this.originalLine);
@@ -109,6 +112,8 @@ public class Log implements ILog {
 			StackTraceData stackTraceElement = new StackTraceData(className, methodName, lineNumber);
 			stackTrace.add(stackTraceElement);
 		}
+		this.uuid = UUID.fromString(data.get("monitoring_id").getAsString());
+		System.out.println(this.uuid.toString());
 //		this.timestamp = parseLogTime(this.originalLine);
 	}
 

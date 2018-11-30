@@ -7,6 +7,7 @@ import com.android.sdklib.devices.Device;
 import com.android.sdklib.internal.avd.AvdInfo;
 import fr.groom.commandline_handler.CommandHandler;
 import fr.groom.commandline_handler.NewLineListener;
+import fr.groom.models.App;
 import fr.groom.server.EmulatorStatus;
 
 import java.io.File;
@@ -90,14 +91,14 @@ public class Emulator {
 		EmulatorConsole.getConsole(device).kill();
 	}
 
-	public void startApp(DynamicAnalysisManager.ApkData apkData) {
+	public void startApp(App app) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("am ");
 		stringBuilder.append("start ");
 		stringBuilder.append("-n ");
-		stringBuilder.append(apkData.getPackageName());
+		stringBuilder.append(app.getPackageName());
 		stringBuilder.append("/");
-		stringBuilder.append(apkData.getMainActivity());
+		stringBuilder.append(app.getMainActivity());
 		stringBuilder.append(" -a ");
 		stringBuilder.append("android.intent.action.MAIN ");
 		stringBuilder.append("-c ");
@@ -197,5 +198,9 @@ public class Emulator {
 
 	public void setDevice(IDevice device) {
 		this.device = device;
+	}
+
+	public boolean isIdle() {
+		return status.equals(EmulatorStatus.IDLE);
 	}
 }

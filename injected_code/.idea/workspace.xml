@@ -2,33 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba8bd1ce-a27a-48d6-a182-ded864911361" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/DynamicAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/DynamicAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/DynamicAnalysisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/DynamicAnalysisManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Emulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Emulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/server/EmulatorPoolHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/server/EmulatorPoolHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/server/EmulatorPoolHandlers/GetDevicesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/server/EmulatorPoolHandlers/GetDevicesHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_dex.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_dex.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Groom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Groom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../static/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../static/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../static/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/required_files/Groom.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../static/required_files/Groom.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/HookConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/HookConstant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/InstrumenterUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/InstrumenterUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Intent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Intent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -48,12 +42,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Groom" type="f1a62948:ProjectNode" />
+                <item name="injected_code" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="injected_code" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="injected_code" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -63,15 +71,14 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Groom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7514">
-              <caret line="442" column="8" selection-start-line="442" selection-start-column="8" selection-end-line="442" selection-end-column="8" />
+            <state relative-caret-position="517">
+              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1894#1895#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,9 +153,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1027" />
+    <option name="width" value="1920" />
+    <option name="height" value="1200" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -224,7 +230,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543335588419" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543358690801" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
@@ -254,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Bash.build_dex">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -284,6 +290,25 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/build_dex.sh" />
       <option name="PARAMETERS" value="" />
       <module name="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="injected_code [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -362,6 +387,16 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.DexFileCompiler" />
+      <item itemvalue="Bash.build_dex" />
+      <item itemvalue="Gradle.injected_code [build]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.injected_code [build]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -420,18 +455,21 @@
       <workItem from="1542207034137" duration="5295000" />
       <workItem from="1543246392448" duration="3470000" />
       <workItem from="1543250619003" duration="532000" />
-      <workItem from="1543311395778" duration="5087000" />
+      <workItem from="1543311395778" duration="5452000" />
+      <workItem from="1543511272549" duration="652000" />
+      <workItem from="1543515778240" duration="22000" />
+      <workItem from="1543569162439" duration="43000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149440000" />
+    <option name="totallyTimeSpent" value="150522000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19009584" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21747099" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -441,7 +479,7 @@
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32971996" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3541102" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.27642277" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.2710027" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -453,7 +491,6 @@
       <window_info anchor="bottom" id="Statistic" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="right" id="Google Cloud Storage" />
       <window_info anchor="right" id="Maven" order="0" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -462,11 +499,12 @@
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Mongo Explorer" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="right" id="Gradle" order="8" weight="0.32960597" />
+      <window_info anchor="right" id="Gradle" order="8" weight="0.37751985" />
       <window_info anchor="right" id="SciView" order="9" />
       <window_info anchor="right" id="Database" order="10" />
       <window_info anchor="right" id="Palette&#9;" order="11" />
       <window_info anchor="right" id="Theme Preview" order="12" />
+      <window_info anchor="right" id="Google Cloud Storage" order="13" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18636848" />
@@ -607,27 +645,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Utils.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Groom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3121">
-          <caret line="344" column="20" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="20" />
+        <state relative-caret-position="517">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -645,17 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Groom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7514">
-          <caret line="442" column="8" selection-start-line="442" selection-start-column="8" selection-end-line="442" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1894#1895#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

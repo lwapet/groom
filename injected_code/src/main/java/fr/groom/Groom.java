@@ -30,11 +30,14 @@ public class Groom {
 	private static String COMPONENT_METHOD;
 	private static String INTENT;
 	private static String PACKAGE_NAME;
+	private static String SHA_256;
 	private static String DATA_MARKER;
 	private static Application app;
 	private static PrintWriter out;
 	private static Future<PrintWriter> futurPrinter;
 	private static ExecutorService executor;
+	private static UUID uuid = UUID.randomUUID();
+	private static long startTime = System.currentTimeMillis();
 
 
 	static {
@@ -74,6 +77,11 @@ public class Groom {
 	}
 
 	public static void sendData(JSONObject data) {
+		try {
+			data.put("monitoring_id", uuid.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		executor.submit(new Callable<Void>() {
 			@Override
 			public Void call() throws Exception {

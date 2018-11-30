@@ -3,6 +3,7 @@ package fr.groom;
 public enum HookConstant {
 	MAIN_PATTERN("HOOK#"),
 	PACKAGE_NAME(null),
+	SHA_256(null),
 	INTENT("INTENT"),
 	COMPONENT_METHOD("COMPONENT_METHOD"),
 	DATA_MARKER("__");

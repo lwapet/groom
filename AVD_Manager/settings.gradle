@@ -1,4 +1,5 @@
 rootProject.name = 'AVD_Manager'
-include ':utils'
+include ':utils', ':database'
 project(':utils').projectDir = file('../utils')
+project(':database').projectDir = file('../database')
 

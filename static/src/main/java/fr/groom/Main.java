@@ -163,6 +163,7 @@ public class Main {
 		if (Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			// Prepare constants for instrumentation with Groom
 			HookConstant.PACKAGE_NAME.setValue(app.getPackageName());
+			HookConstant.SHA_256.setValue(app.getSha256());
 			for (HookConstant constant : HookConstant.values()) {
 				String field = constant.toString();
 				String value = constant.getValue();
