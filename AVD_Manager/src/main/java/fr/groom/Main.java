@@ -29,13 +29,13 @@ public class Main {
 		prop.load(input);
 
 		Database database = new Database(
-				"localhost",
-				27017,
-				"dynamic",
-				false,
-				null,
-				null,
-				null
+				prop.getProperty("database_url"),
+				Integer.valueOf(prop.getProperty("port")),
+				prop.getProperty("database_name"),
+				Boolean.valueOf(prop.getProperty("perform_auth")),
+				prop.getProperty("username"),
+				prop.getProperty("password"),
+				prop.getProperty("auth_source_database_name")
 		);
 
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
