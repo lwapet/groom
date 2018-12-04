@@ -10,9 +10,6 @@ sourceCompatibility = 1.8
 repositories {
     google()
     mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 dependencies {
@@ -22,7 +19,7 @@ dependencies {
     compile 'com.google.guava:guava:27.0-jre'
     compile group: 'com.android.tools.ddms', name: 'ddmlib', version: '26.4.0-alpha04'
     compile group: 'com.android.tools', name: 'sdklib', version: '26.4.0-alpha04'
-    compile group: 'com.android.tools', name: 'sdk-common', version: '26.4.0-alpha04'
+//    compile group: 'com.android.tools', name: 'sdk-common', version: '26.4.0-alpha04'
     compile group: 'io.undertow', name: 'undertow-core', version: '2.0.15.Final'
     compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
     compile project(':utils')
@@ -30,10 +27,12 @@ dependencies {
 }
 
 jar {
-    baseName = 'avd_manager'
+    baseName = 'avd-manager'
     version = '0.1.0'
     manifest {
-        attributes "Main-Class": "fr.groom.Main"
+        attributes(
+                'Main-Class': 'fr.groom.Main'
+        )
     }
 
     from {

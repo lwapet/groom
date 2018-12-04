@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Gradle: ca.mcgill.sable:soot:3.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/15b46aac8072bd45ec724cb4fd6414be7daafdf1/soot-3.1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/49c6c7499a527e8279f6d93d1989d92075290f8/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/4d325ac05fe75faa1984bb7433b5a8879b62ed15/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/47ad29753c1a9bfd94cde20b322f60a8a59d2b68/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/4b3ef97fbbdaca89040a21893ab909c27e8d51bf/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/6f11a291b8a115a22088a84762cf516b4f89d57b/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/592e8820e122dcf195fd1fcbcad8dff53276ce1c/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/2da55f16d0c8ceeb3cb3dffa5d23a8622340c7b9/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/1753d5a96a36df0c36b7fd8d4df879e699fede5a/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/1c04328cae2de6f3823f492cb02b140583cdafd5/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/fb42268a539a282588e9d5f2c91705707ff81a12/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/780b2a0f12aabd9c9d8f07c6ea6a47d1de721780/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/f01071802b344026fa731d9bdb2f9955db66ae3f/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

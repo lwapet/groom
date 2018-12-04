@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.secure-software-engineering.FlowDroid:soot-infoflow-cmd:develop-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/254bd4c54ff10a901813f1337ac4efbf11b7d4b3/soot-infoflow-cmd-develop-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/dc8d5f096030b482b2b0c304ccdc9b89eba5c745/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/e0b886fc9caea0fffb578da68e55ce682834d819/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/deab5aa0848cda602e13dff80eadf62b945f8a18/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/b452a0f1e91d230364cd34cdd8a8a98e7fd3e466/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/332c009a0cf7f2fdbe5d819d94776c9900ae1c8e/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/324e13b6173afc6765a783d5b68ad90a57aead74/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/c456db999a044b24fe55978fc4506c2b8d73b5a/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/5d56657086c0ee3683b002db45ef888c5ed81615/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/8897ba477249984f4c7ca7dd965373b4c96f29bf/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/9a40235ccc0aae4eff03d574e0ef08182350faa1/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/b7bce506e37ba9e2c539073776ed61ce9f48df5b/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/143faaf2d473ca870333be3508254404a5cc708/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/295441ea1250664a6a8e817bcb8c45499a7531c8/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/2b8c89a2c4b7e021a3ae7da8ee5d8ba855c15c87/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/5040810686de01016616af31669000ab1e036fb6/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/7f41f3b02bd8e4ddee34b6f4867f35de9877a127/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/906c805e3f68391850c8b1850cf0ea8d1e437a5/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/7c9640cea8c4ad506505b25852574305e43152e9/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.secure-software-engineering.FlowDroid/soot-infoflow-cmd/develop-SNAPSHOT/572d6e37b5f990f08bb0c0783f29e65815cac37b/soot-infoflow-cmd-develop-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

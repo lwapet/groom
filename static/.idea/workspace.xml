@@ -2,44 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e82ccb9-a2ad-4018-8aa1-0de8430d1893" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../database/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/database.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_bson_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_core_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils_main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils_test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database/database-database.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database_main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/Callable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/Main2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/AVD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/AVD_pristine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/AndroidAVDException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/AndroidEmulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/AndroidEmulatorContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/AAVDEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/AVD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/AVDControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/AVDManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/ControlChannel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/Emulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/EmulatorFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/IAVD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/IAVDControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/IAVDEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/IAVDManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/IEmulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/avd_manager/LogAVDEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/constants/AndroidKeyEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/AndroidSdk.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/DefaultToolLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/EmulatorToolLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/PlatformToolLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/SdkToolLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/Tool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/ToolLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommand00To03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommand04To22.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommandsCurrentBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkCliCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkCliCommandFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands00To16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands17To25_2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommandsCurrentBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/utils/ConfigFileUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/android_emulator/utils/StdoutReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/core/ArgumentListBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/core/Platform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/core/QuotedStringTokenizer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/core/VariableResolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/pristine/utils/VersionNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/TestServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../database/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../database/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../injected_code/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../injected_code/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../injected_code/src/main/java/fr/groom/Groom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../injected_code/src/main/java/fr/groom/Groom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/groom/android_emulator/Messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/groom/android_emulator/apks.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/required_files/Groom.dex" beforeDir="false" afterPath="$PROJECT_DIR$/required_files/Groom.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/Hooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/Hooker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/models/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -97,10 +119,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="799">
               <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
             </state>
           </provider>
@@ -109,7 +131,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="612">
               <caret line="52" selection-start-line="52" selection-end-line="52" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -123,7 +145,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
+            <state relative-caret-position="1258">
               <caret line="82" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -166,7 +188,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/IComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="289">
               <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -175,14 +197,22 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="49" column="62" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-391">
+            <state relative-caret-position="2788">
               <caret line="198" selection-start-line="198" selection-end-line="198" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7618#7626#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,7 +221,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/InstrumenterUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
+            <state relative-caret-position="1445">
               <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
             </state>
           </provider>
@@ -266,8 +296,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -314,13 +342,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543593449541" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543928393699" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
@@ -478,17 +508,19 @@
       <workItem from="1543515781007" duration="22000" />
       <workItem from="1543569036645" duration="13873000" />
       <workItem from="1543596240434" duration="12000" />
-      <workItem from="1543916102820" duration="3431000" />
+      <workItem from="1543916102820" duration="5411000" />
+      <workItem from="1543928444259" duration="536000" />
+      <workItem from="1543929157012" duration="1828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46439000" />
+    <option name="totallyTimeSpent" value="50783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18007459" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18007459" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -498,7 +530,7 @@
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49866807" visible="true" weight="0.6287263" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49866807" weight="0.19692864" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49973363" weight="0.40831074" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -837,6 +869,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/SootSetup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#13559#13560#0" expanded="true" />
+            <element signature="e#13590#13591#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/static_analysis/modules/DumpSourcesAndSinksModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/Hooker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5049">
@@ -855,17 +933,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/IComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="289">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/IComponent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        <state relative-caret-position="2788">
+          <caret line="198" selection-start-line="198" selection-end-line="198" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -874,65 +955,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/InstrumenterUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
+        <state relative-caret-position="1445">
           <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/static_analysis/modules/DumpSourcesAndSinksModule.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/SootSetup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13559#13560#0" expanded="true" />
-            <element signature="e#13590#13591#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7618#7626#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        <state relative-caret-position="644">
+          <caret line="49" column="62" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="62" />
         </state>
       </provider>
     </entry>

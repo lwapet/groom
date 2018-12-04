@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools:common:26.4.0-alpha04">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/26.4.0-alpha04/4eeb46b72293f2c90a8999cbd7d6a6fddd2aaf38/common-26.4.0-alpha04.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/26.4.0-alpha04/e8ffa3aa4ca3c987a1b95c0318d21bc92e2120e3/common-26.4.0-alpha04-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

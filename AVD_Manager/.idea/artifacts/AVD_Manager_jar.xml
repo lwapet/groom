@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AVD_Manager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AVD_Manager_jar</output-path>
+    <root id="archive" name="AVD_Manager.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

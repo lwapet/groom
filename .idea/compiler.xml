@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="fr.groom.AVD_Manager.main" target="1.8" />
+      <module name="fr.groom.AVD_Manager.test" target="1.8" />
+      <module name="fr.groom.database.main" target="1.8" />
+      <module name="fr.groom.database.test" target="1.8" />
+      <module name="fr.groom.emulator_manager.main" target="1.8" />
+      <module name="fr.groom.emulator_manager.test" target="1.8" />
+      <module name="fr.groom.groom.main" target="1.8" />
+      <module name="fr.groom.groom.test" target="1.8" />
+      <module name="fr.groom.injected_code.main" target="1.8" />
+      <module name="fr.groom.injected_code.test" target="1.8" />
+      <module name="fr.groom.static.main" target="1.8" />
+      <module name="fr.groom.static.test" target="1.8" />
+      <module name="fr.groom.tcp_server.main" target="1.8" />
+      <module name="fr.groom.tcp_server.test" target="1.8" />
+      <module name="fr.groom.utils.main" target="1.8" />
+      <module name="fr.groom.utils.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

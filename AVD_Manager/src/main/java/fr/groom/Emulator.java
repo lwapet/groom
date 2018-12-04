@@ -2,8 +2,8 @@ package fr.groom;
 
 import com.android.ddmlib.*;
 import com.android.ddmlib.logcat.LogCatReceiverTask;
-import com.android.instantapp.utils.LogcatService;
-import com.android.sdklib.devices.Device;
+//import com.android.instantapp.utils.LogcatService;
+//import com.android.sdklib.devices.Device;
 import com.android.sdklib.internal.avd.AvdInfo;
 import fr.groom.commandline_handler.CommandHandler;
 import fr.groom.commandline_handler.NewLineListener;

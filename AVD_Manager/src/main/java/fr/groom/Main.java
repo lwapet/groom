@@ -5,7 +5,10 @@ import com.android.sdklib.internal.avd.AvdInfo;
 import com.android.sdklib.internal.avd.AvdManager;
 import com.android.sdklib.repository.AndroidSdkHandler;
 import com.android.utils.StdLogger;
+import com.mongodb.DBCursor;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 import fr.groom.mongo.Database;
@@ -18,7 +21,7 @@ import java.util.Arrays;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, AndroidLocation.AndroidLocationException {
+	public static void main(String[] args) throws AndroidLocation.AndroidLocationException {
 
 		Database database = new Database(
 				"localhost",
@@ -31,8 +34,7 @@ public class Main {
 		);
 
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
-		MongoCollection applicationCollection = mongoDatabase.getCollection("application");
-		ArrayList<Document> apps = (ArrayList<Document>) applicationCollection.find().limit(5).into(new ArrayList<Document>());
+		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
 
 		File sdkRoot = new File(System.getenv("ANDROID_SDK_HOME"));
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
@@ -47,14 +49,13 @@ public class Main {
 //		server.start();
 
 
-
-		apps.forEach(appData -> {
+		for (Document appData : applicationCollection.find().limit(5)) {
 			App app = new App(
 					appData.getString("file_name"),
 					appData.getString("package_name"),
 					appData.getString("main_activity")
 			);
 			dam.addApp(app);
-		});
+		}
 	}
 }

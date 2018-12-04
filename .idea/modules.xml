@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.iml" filepath="$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.test.iml" filepath="$PROJECT_DIR$/.idea/modules/AVD_Manager/fr.groom.AVD_Manager.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.main.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.test.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.test.iml" filepath="$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.iml" filepath="$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.main.iml" filepath="$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.test.iml" filepath="$PROJECT_DIR$/.idea/modules/injected_code/fr.groom.injected_code.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/static/fr.groom.static.iml" filepath="$PROJECT_DIR$/.idea/modules/static/fr.groom.static.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/static/fr.groom.static.main.iml" filepath="$PROJECT_DIR$/.idea/modules/static/fr.groom.static.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/static/fr.groom.static.test.iml" filepath="$PROJECT_DIR$/.idea/modules/static/fr.groom.static.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.iml" filepath="$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/tcp_server/fr.groom.tcp_server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.test.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/fr.groom.utils.test.iml" />
+    </modules>
+  </component>
+</project>

@@ -12,9 +12,9 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile project(':utils')
     compile project(':database')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 jar {

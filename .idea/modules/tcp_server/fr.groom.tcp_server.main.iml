@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":tcp_server:main" external.linked.project.path="$MODULE_DIR$/../../../tcp_server" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="fr.groom" external.system.module.type="sourceSet" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../tcp_server/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../tcp_server/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../../tcp_server/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../tcp_server/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="fr.groom.database.main" />
+    <orderEntry type="module" module-name="fr.groom.utils.main" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.mongodb:mongodb-driver:3.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.json:json:20180813" level="project" />
+    <orderEntry type="library" name="Gradle: org.mongodb:mongodb-driver-core:3.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.mongodb:bson:3.6.1" level="project" />
+  </component>
+</module>
