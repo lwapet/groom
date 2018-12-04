@@ -26,12 +26,12 @@ public class Log implements ILog {
 	static Pattern curlyBraceRegex = Pattern.compile("\\{(.*?)\\}");
 	private static final String ANDROID_LOG_TIME_FORMAT = "MM-dd kk:mm:ss.SSS";
 	private static SimpleDateFormat logCatDate = new SimpleDateFormat(ANDROID_LOG_TIME_FORMAT);
-	JsonObject logData;
+	String originalLine;
 	private Timestamp timestamp;
+	String rawData;
+	JsonObject data;
 	private UUID uuid;
 	String method;
-	String originalLine;
-	String rawData;
 	String applicationPackageName;
 	ArrayList<StackTraceData> stackTrace = new ArrayList<>();
 	Intent intent;
@@ -45,33 +45,18 @@ public class Log implements ILog {
 		this.rawData = data;
 	}
 
-//	@Override
-//	public void parse() {
-//		Pattern p = Pattern.compile("#(.*)#");
-//		Matcher m = p.matcher(this.originalLine);
-//		if (m.find()) {
-//			JsonParser parser = new JsonParser();
-//			this.applicationPackageName = m.group(1);
-//			JsonObject data = (JsonObject) parser.parse(this.rawData);
-//			System.out.println(this.applicationPackageName);
-//			System.out.println(gson.toJson(data));
-//		}
-//	}
-//
-	//	@Override
+	@Override
 	public void parse() {
 		JsonParser parser = new JsonParser();
 		Pattern p = Pattern.compile("#(.*)#");
 		Matcher m = p.matcher(this.originalLine);
 		if (m.find()) {
 			this.applicationPackageName = m.group(1);
-			System.out.println(this.applicationPackageName);
 		}
-		JsonObject data = (JsonObject) parser.parse(this.rawData);
-		this.logData = data;
+		this.data = (JsonObject) parser.parse(this.rawData);
+		/*
 		for (JsonElement argO : this.logData.getAsJsonArray("arguments")) {
 			JsonObject argument = argO.getAsJsonObject();
-			System.out.println(argument);
 			JsonElement type = argument.get("type");
 			if (!type.isJsonNull()) {
 				if (type.getAsString().equals("android.view.WindowManager.LayoutParams")) {
@@ -91,8 +76,8 @@ public class Log implements ILog {
 //						long constantFlagValue = Integer.decode(flag.getHexString());
 					});
 				} else if (type.getAsString().equals("android.widget.RelativeLayout")) {
-					System.out.println(data.get("method_signature").getAsString());
-					System.out.println(argument.get("value").getAsString());
+					System.err.println(data.get("method_signature").getAsString());
+					System.err.println(argument.get("value").getAsString());
 				}
 			}
 		}
@@ -113,8 +98,8 @@ public class Log implements ILog {
 			stackTrace.add(stackTraceElement);
 		}
 		this.uuid = UUID.fromString(data.get("monitoring_id").getAsString());
-		System.out.println(this.uuid.toString());
 //		this.timestamp = parseLogTime(this.originalLine);
+*/
 	}
 
 	@Override
@@ -143,6 +128,11 @@ public class Log implements ILog {
 	@Override
 	public String getRawData() {
 		return null;
+	}
+
+	@Override
+	public JsonObject getData() {
+		return this.data;
 	}
 
 
@@ -203,7 +193,7 @@ public class Log implements ILog {
 
 
 		public JsonObject toJson() {
-			 JsonObject data = new JsonObject();
+			JsonObject data = new JsonObject();
 			data.addProperty("class_name", className);
 			data.addProperty("method_name", methodName);
 			data.addProperty("line_number", lineNumber);

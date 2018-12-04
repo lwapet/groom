@@ -79,7 +79,10 @@ public class SootInstrumenter extends SceneTransformer {
 		Iterator<SootClass> sootClassIterator = Scene.v().getApplicationClasses().snapshotIterator();
 		while (sootClassIterator.hasNext()) {
 			final SootClass sootClass = sootClassIterator.next();
-			if (Arrays.stream(excludedClasses).anyMatch(s -> sootClass.getName().equals(s))) {
+			if(sootClass.getName().contains("anonymous.com") && sootClass.getName().contains("MainActivity")) {
+				System.out.println("cii");
+			}
+			if (Arrays.stream(excludedClasses).anyMatch(s -> sootClass.getName().equals(s) || sootClass.getName().contains("fr.groom"))) {
 				continue;
 			}
 			if (sootClass.getName().startsWith("android.support")) {

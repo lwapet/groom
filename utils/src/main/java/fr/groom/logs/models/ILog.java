@@ -8,4 +8,5 @@ public interface ILog {
 	public JsonObject toJson();
 	public String getOriginalLine();
 	public String getRawData();
+	public JsonObject getData();
 }

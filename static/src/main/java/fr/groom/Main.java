@@ -2,6 +2,7 @@ package fr.groom;
 
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.mongodb.util.JSON;
+import com.sun.scenario.Settings;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
@@ -14,13 +15,21 @@ import org.apache.commons.cli.*;
 import org.json.JSONObject;
 import soot.PackManager;
 import soot.Transform;
+import soot.jimple.infoflow.android.axml.AXmlAttribute;
+import soot.jimple.infoflow.android.axml.AXmlHandler;
+import soot.jimple.infoflow.android.axml.AXmlNode;
+import soot.jimple.infoflow.android.axml.ApkHandler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import static fr.groom.FileUtils.TEMP_DIRECTORY;
 import static fr.groom.FileUtils.deleteDir;
@@ -183,6 +192,39 @@ public class Main {
 			// Add Soot transformer instrumenter
 			PackManager.v().getPack("wjtp").add(new Transform("wjtp.mainTransformer", new SootInstrumenter(app, staticAnalysis)));
 		}
+
+		String attr_ns = "http://schemas.android.com/apk/res/android";
+		String internet_permission = "android.permission.INTERNET";
+		if (!app.getPermissions().stream().anyMatch(s -> s.equals(internet_permission))) {
+			AXmlHandler aXmlHandler = app.getManifest().getAXml();
+			List<AXmlNode> nodeList = aXmlHandler.getNodesWithTag("manifest");
+			if (!nodeList.isEmpty()) {
+				AXmlNode manifestNode = nodeList.get(0);
+				AXmlNode internetPermission = new AXmlNode("uses-permission", null, null);
+				AXmlAttribute<String> name = new AXmlAttribute<String>("name", internet_permission, attr_ns);
+				internetPermission.addAttribute(name);
+				manifestNode.addChild(internetPermission);
+				byte[] newManifestBytes = aXmlHandler.toByteArray();
+				FileOutputStream fileOuputStream = new FileOutputStream(TEMP_DIRECTORY.getAbsolutePath() + File.separatorChar + "AndroidManifest.xml");
+				fileOuputStream.write(newManifestBytes);
+				fileOuputStream.close();
+				File newManifest = new File(TEMP_DIRECTORY.getAbsolutePath() + File.separatorChar + "AndroidManifest.xml");
+				try {
+					ApkHandler apkH = new ApkHandler(app.getLastEditedApk());
+					apkH.addFilesToApk(Collections.singletonList(newManifest));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException("error when writing new manifest: "+ e);
+				}
+				newManifest.delete();
+				app.setManifest(Application.getManifest(app.getLastEditedApk().getAbsolutePath()));
+
+				AXmlHandler aXmlHandler2 = app.getManifest().getAXml();
+				List<AXmlNode> nodeList2 = aXmlHandler2.getNodesWithTag("manifest");
+			}
+		}
+
+
 		System.out.println("Running soot packs");
 		PackManager.v().runPacks();
 
@@ -224,6 +266,10 @@ public class Main {
 		storage.update(updateFilter, set, "application");
 		System.out.println("apk_path : " + app.getFinalApk().getAbsolutePath());
 		System.out.println("Intrumentation finished !");
+		if (storage instanceof Database) {
+			Database s = (Database) storage;
+			s.close();
+		}
 
 //		DynamicAnalysis dynamicAnalysis = new DynamicAnalysis(app, storage);
 //		dynamicAnalysis.run();

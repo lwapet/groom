@@ -417,6 +417,10 @@ public class Application {
 		return jo;
 	}
 
+	public void setManifest(ProcessManifest manifest) {
+		this.manifest = manifest;
+	}
+
 	@Override
 	public String toString() {
 		return toJson().toString();

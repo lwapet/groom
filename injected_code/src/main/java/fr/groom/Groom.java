@@ -39,7 +39,6 @@ public class Groom {
 	private static UUID uuid = UUID.randomUUID();
 	private static long startTime = System.currentTimeMillis();
 
-
 	static {
 		executor = Executors.newFixedThreadPool(1);
 		futurPrinter = executor.submit(new Callable<PrintWriter>() {
@@ -79,6 +78,7 @@ public class Groom {
 	public static void sendData(JSONObject data) {
 		try {
 			data.put("monitoring_id", uuid.toString());
+			data.put("sha256", SHA_256);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -88,11 +88,13 @@ public class Groom {
 				if (out == null) {
 					try {
 						out = futurPrinter.get();
+						return null;
 					} catch (ExecutionException | InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 				out.println(MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
+				Log.d("GROOM",MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
 				return null;
 			}
 		});

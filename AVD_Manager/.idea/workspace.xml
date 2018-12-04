@@ -5,25 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e40e1b5-713c-451a-b2eb-09ed2d936ecc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/database.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_bson_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_core_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils_main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/1496583301/utils_test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database/database-database.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database_main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../database/.idea/modules/database_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../database/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../database/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../database/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../injected_code/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../injected_code/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../injected_code/src/main/java/fr/groom/Groom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../injected_code/src/main/java/fr/groom/Groom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../static/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../static/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/required_files/Groom.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../static/required_files/Groom.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/main/java/fr/groom/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/main/java/fr/groom/models/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/TcpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/ILog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/logs/models/Log.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -103,116 +121,6 @@
         </projects_view>
       </state>
     </system>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="66" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="876">
-              <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/server/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#417#418#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/server/EmulatorPoolHandlers/InstallPackageHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#269#270#0" expanded="true" />
-                <element signature="e#287#288#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../database/src/main/java/fr/groom/mongo/DatabaseConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/26.4.0-alpha04/8c09be0253ef4c2d3472b9f7cfe488bb093023be/sdklib-26.4.0-alpha04-sources.jar!/com/android/sdklib/devices/Device.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7633">
-              <caret line="525" column="25" selection-start-line="525" selection-start-column="25" selection-end-line="525" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.undertow/undertow-core/2.0.15.Final/45ee678c0275b3c0bfe91ee225e35236464a11ec/undertow-core-2.0.15.Final-sources.jar!/io/undertow/Handlers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/IEmulatorEventListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -323,7 +231,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1920" />
     <option name="height" value="1200" />
   </component>
@@ -334,7 +242,56 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fr" type="462c0819:PsiDirectoryNode" />
+              <item name="groom" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -532,11 +489,11 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.AVD_Manager [clean]" />
-      <item itemvalue="Gradle.AVD_Manager [build]" />
+      <item itemvalue="Application.Server" />
       <item itemvalue="Gradle.AVD_Manager [assemble]" />
+      <item itemvalue="Gradle.AVD_Manager [build]" />
+      <item itemvalue="Gradle.AVD_Manager [clean]" />
     </list>
     <recent_temporary>
       <list>
@@ -579,17 +536,18 @@
       <workItem from="1543502366900" duration="44000" />
       <workItem from="1543502808951" duration="6604000" />
       <workItem from="1543515768019" duration="21000" />
+      <workItem from="1543571933710" duration="5477000" />
+      <workItem from="1543915899723" duration="1373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136843000" />
+    <option name="totallyTimeSpent" value="143693000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6449935" weight="0.17199148" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6449935" visible="true" weight="0.17155035" />
       <window_info id="Structure" order="1" sideWeight="0.35500652" side_tool="true" weight="0.26091588" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -598,7 +556,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32971996" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.35230353" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5248419" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41463414" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -969,45 +927,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysis.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/IEmulatorEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+        <state relative-caret-position="528">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.undertow/undertow-core/2.0.15.Final/45ee678c0275b3c0bfe91ee225e35236464a11ec/undertow-core-2.0.15.Final-sources.jar!/io/undertow/Handlers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/26.4.0-alpha04/8c09be0253ef4c2d3472b9f7cfe488bb093023be/sdklib-26.4.0-alpha04-sources.jar!/com/android/sdklib/devices/Device.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="525" column="25" selection-start-line="525" selection-start-column="25" selection-end-line="525" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../database/src/main/java/fr/groom/mongo/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="66" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/server/EmulatorPoolHandlers/InstallPackageHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="120">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1017,48 +977,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state relative-caret-position="432">
+          <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../database/src/main/java/fr/groom/mongo/DatabaseConnection.java">
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="96">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/26.4.0-alpha04/8c09be0253ef4c2d3472b9f7cfe488bb093023be/sdklib-26.4.0-alpha04-sources.jar!/com/android/sdklib/devices/Device.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7633">
-          <caret line="525" column="25" selection-start-line="525" selection-start-column="25" selection-end-line="525" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.undertow/undertow-core/2.0.15.Final/45ee678c0275b3c0bfe91ee225e35236464a11ec/undertow-core-2.0.15.Final-sources.jar!/io/undertow/Handlers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/IEmulatorEventListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="624">
+          <caret line="26" column="66" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="876">
-          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+        <state relative-caret-position="-153">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

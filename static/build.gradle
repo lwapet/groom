@@ -43,6 +43,7 @@ dependencies {
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     compile group: 'ca.mcgill.sable', name: 'soot', version: '3.0.0-SNAPSHOT'
     compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+    compile group: 'org.json', name: 'json', version: '20180813'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
     compile project(':database')
     compile project(':utils')

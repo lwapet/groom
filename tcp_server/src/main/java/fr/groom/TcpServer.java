@@ -16,6 +16,7 @@ public class TcpServer implements Runnable {
 
 	public TcpServer() {
 		this.reader = new TcpParser();
+		((TcpParser) this.reader).addLogListener(new LogStorer());
 	}
 
 	public TcpServer(NewLineListener reader) {

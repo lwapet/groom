@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/database.iml" filepath="$PROJECT_DIR$/.idea/database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/database-database.iml" filepath="$PROJECT_DIR$/.idea/modules/database/database-database.iml" group="database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database_main.iml" filepath="$PROJECT_DIR$/.idea/modules/database_main.iml" group="database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/database_test.iml" filepath="$PROJECT_DIR$/.idea/modules/database_test.iml" group="database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1496583301/utils.iml" filepath="$PROJECT_DIR$/.idea/modules/1496583301/utils.iml" group="utils" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1496583301/utils_main.iml" filepath="$PROJECT_DIR$/.idea/modules/1496583301/utils_main.iml" group="utils" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1496583301/utils_test.iml" filepath="$PROJECT_DIR$/.idea/modules/1496583301/utils_test.iml" group="utils" />
+    </modules>
+  </component>
+</project>

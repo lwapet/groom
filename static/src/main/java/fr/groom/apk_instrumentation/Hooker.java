@@ -39,6 +39,16 @@ public class Hooker {
 		this.ACTIVITY_CALLBACKS = new HashSet<>();
 
 		this.app.getComponents().forEach(IComponent::addCallbacks);
+
+		SootMethod groomStaticInitializer = GROOM.getMethodByName(SootMethod.staticInitializerName);
+		SootClass klass = Scene.v().getSootClass("java.lang.Class");
+		SootMethod forName = klass.getMethod("forName",Collections.singletonList(STRING_TYPE));
+		ArrayList<Value> args = new ArrayList<>();
+		args.add(StringConstant.v(groomStaticInitializer.getName()));
+		StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(forName.makeRef(),args);
+		InvokeStmt injectedStmt = Jimple.v().newInvokeStmt(staticInvokeExpr);
+
+
 	}
 
 	public void hookCallbacks() {

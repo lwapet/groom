@@ -2,25 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee208366-545c-4832-bdea-198e7e12df64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/database.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__org_mongodb_bson_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/libraries/Gradle__org_mongodb_mongodb_driver_core_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/1496583301/utils.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/1496583301/utils_main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/1496583301/utils_test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/database/database-database.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/database_main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/.idea/modules/database_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/DynamicAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/DynamicAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/DynamicAnalysisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/DynamicAnalysisManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/database/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/database/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/database/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/database/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/database/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injected_code/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/injected_code/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injected_code/src/main/java/fr/groom/Groom.java" beforeDir="false" afterPath="$PROJECT_DIR$/injected_code/src/main/java/fr/groom/Groom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/static/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/static/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/required_files/Groom.dex" beforeDir="false" afterPath="$PROJECT_DIR$/static/required_files/Groom.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/main/java/fr/groom/apk_instrumentation/Hooker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/main/java/fr/groom/apk_instrumentation/SootInstrumenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/main/java/fr/groom/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/main/java/fr/groom/models/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/LogStorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/LogStorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/src/main/java/fr/groom/TcpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models/ILog.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models/ILog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/java/fr/groom/logs/models/Log.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -113,8 +131,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="255">
               <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+              <folding>
+                <element signature="e#1743#1744#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,7 +161,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/fr/groom/Groom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
+            <state relative-caret-position="1026">
               <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
             </state>
           </provider>
@@ -158,7 +179,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
+            <state relative-caret-position="612">
               <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
             </state>
           </provider>
@@ -264,9 +285,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -466,16 +487,17 @@
       <workItem from="1542823361413" duration="591000" />
       <workItem from="1542876593947" duration="1029000" />
       <workItem from="1543502977794" duration="3120000" />
+      <workItem from="1543920220178" duration="179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18419000" />
+    <option name="totallyTimeSpent" value="18598000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23335369" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2333511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -757,8 +779,11 @@
     <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/Groom.java" />
     <entry file="file://$PROJECT_DIR$/static/src/main/java/fr/groom/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="255">
           <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding>
+            <element signature="e#1743#1744#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -785,7 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
+        <state relative-caret-position="612">
           <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
         </state>
       </provider>
@@ -799,7 +824,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/injected_code/src/main/java/fr/groom/Groom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
+        <state relative-caret-position="1026">
           <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
         </state>
       </provider>

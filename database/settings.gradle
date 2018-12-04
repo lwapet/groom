@@ -1,2 +1,4 @@
 rootProject.name = 'database'
+include ':utils', ':database'
+project(':utils').projectDir = file('../utils')
 

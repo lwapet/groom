@@ -1,6 +1,5 @@
 package fr.groom;
 
-import com.android.ide.common.build.ApkInfo;
 import com.android.prefs.AndroidLocation;
 import com.android.sdklib.internal.avd.AvdInfo;
 import com.android.sdklib.internal.avd.AvdManager;
@@ -10,16 +9,12 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 import fr.groom.mongo.Database;
-import fr.groom.mongo.DatabaseConnection;
-import fr.groom.server.Server;
 import org.bson.Document;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
 
@@ -44,7 +39,7 @@ public class Main {
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 		String deviceName = "Nexus_5X_API_27";
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
-		EmulatorPool pool = EmulatorPool.create(avdInfo, 2);
+		EmulatorPool pool = EmulatorPool.create(avdInfo, 1);
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();
