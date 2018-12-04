@@ -16,12 +16,17 @@ import org.bson.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 
 public class Main {
-
-	public static void main(String[] args) throws AndroidLocation.AndroidLocationException {
+	private static String CONFIG = "config.properties";
+	public static void main(String[] args) throws AndroidLocation.AndroidLocationException, IOException {
+		Properties prop = new Properties();
+		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);
+		prop.load(input);
 
 		Database database = new Database(
 				"localhost",
@@ -36,12 +41,12 @@ public class Main {
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
 		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
 
-		File sdkRoot = new File(System.getenv("ANDROID_SDK_HOME"));
+		File sdkRoot = new File(prop.getProperty("android_sdk_home"));
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
-		String deviceName = "Nexus_5X_API_27";
+		String deviceName = prop.getProperty("device_name");
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
-		EmulatorPool pool = EmulatorPool.create(avdInfo, 1);
+		EmulatorPool pool = EmulatorPool.create(avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();

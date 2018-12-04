@@ -8,8 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.main.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/database/fr.groom.database.test.iml" filepath="$PROJECT_DIR$/.idea/modules/database/fr.groom.database.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.test.iml" filepath="$PROJECT_DIR$/.idea/modules/emulator_manager/fr.groom.emulator_manager.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fr.groom.groom.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fr.groom.groom.test.iml" />

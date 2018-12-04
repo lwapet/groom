@@ -10,71 +10,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e40e1b5-713c-451a-b2eb-09ed2d936ecc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/Groom.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_annotations_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_build_builder_model_3_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_build_builder_test_api_3_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_common_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_ddms_ddmlib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_dvlib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_layoutlib_layoutlib_api_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_repository_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_sdk_common_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_tools_sdklib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_google_code_gson_gson_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__commons_codec_commons_codec_1_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_apache_httpcomponents_httpmime_4_5_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_bouncycastle_bcpkix_jdk15on_1_56.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_56.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_reflect_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/Callable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/Main2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/AVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/AVD_pristine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/AndroidAVDException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/AndroidEmulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/AndroidEmulatorContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/AAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/AVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/AVDControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/AVDManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/ControlChannel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/Emulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/EmulatorFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/IAVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/IAVDControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/IAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/IAVDManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/IEmulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/avd_manager/LogAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/constants/AndroidKeyEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/AndroidSdk.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/DefaultToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/EmulatorToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/PlatformToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/SdkToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/Tool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/ToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/AdbShellCommand00To03.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/AdbShellCommand04To22.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/AdbShellCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/AdbShellCommandsCurrentBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkCliCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkCliCommandFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkToolsCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkToolsCommands00To16.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkToolsCommands17To25_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/sdk/cli/SdkToolsCommandsCurrentBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/utils/ConfigFileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/android_emulator/utils/StdoutReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/core/ArgumentListBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/core/Platform.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/core/QuotedStringTokenizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/core/VariableResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pristine/utils/VersionNumber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/TestServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/groom/android_emulator/Messages.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/groom/android_emulator/apks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../static/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -177,8 +142,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="431">
+              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="148" selection-start-line="148" selection-end-line="148" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1237#1238#0" expanded="true" />
+                <element signature="e#1282#1283#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1408#1409#0" expanded="true" />
+                <element signature="e#1438#1439#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,19 +184,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+            <state relative-caret-position="485">
+              <caret line="155" column="20" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3013#3014#0" expanded="true" />
-                <element signature="e#5766#5767#0" expanded="true" />
-                <element signature="e#5876#5877#0" expanded="true" />
-                <element signature="e#5921#5922#0" expanded="true" />
-                <element signature="e#5972#5973#0" expanded="true" />
-                <element signature="e#6015#6016#0" expanded="true" />
-                <element signature="e#6084#6085#0" expanded="true" />
-                <element signature="e#6160#6161#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -217,7 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>IShe</find>
       <find>ISh</find>
       <find>DeviceMonitor</find>
       <find>pid</find>
@@ -247,6 +245,7 @@
       <find>shell</find>
       <find>kill</find>
       <find>sdk</find>
+      <find>setNew</find>
     </findStrings>
     <replaceStrings>
       <replace>fr.groom.Util</replace>
@@ -260,7 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/NewTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/Worker.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/Recv.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/Send.java" />
@@ -302,14 +300,15 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/server/EmulatorPoolHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/server/EmulatorPoolHandlers/GetDevicesHandler.java" />
         <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysis.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/models/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main2.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" />
       </list>
     </option>
@@ -381,7 +380,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543934685676" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543939162107" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -435,7 +434,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AVD_Manager [build]">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -642,15 +641,16 @@
       <workItem from="1543915899723" duration="4185000" />
       <workItem from="1543928442673" duration="538000" />
       <workItem from="1543929155625" duration="4064000" />
-      <workItem from="1543934421780" duration="264000" />
+      <workItem from="1543934421780" duration="1827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151371000" />
+    <option name="totallyTimeSpent" value="152934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6449935" visible="true" weight="0.17155035" />
       <window_info id="Structure" order="1" sideWeight="0.35500652" side_tool="true" weight="0.26091588" />
@@ -661,7 +661,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32971996" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3604336" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35140017" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41463414" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -911,22 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1237#1238#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#1326#1327#0" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -967,16 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,13 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1043,20 +1010,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+        <state relative-caret-position="34">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3013#3014#0" expanded="true" />
-            <element signature="e#5766#5767#0" expanded="true" />
-            <element signature="e#5876#5877#0" expanded="true" />
-            <element signature="e#5921#5922#0" expanded="true" />
-            <element signature="e#5972#5973#0" expanded="true" />
-            <element signature="e#6015#6016#0" expanded="true" />
-            <element signature="e#6084#6085#0" expanded="true" />
-            <element signature="e#6160#6161#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1408#1409#0" expanded="true" />
+            <element signature="e#1438#1439#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="155" column="20" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

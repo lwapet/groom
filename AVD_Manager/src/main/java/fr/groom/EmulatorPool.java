@@ -139,7 +139,7 @@ public class EmulatorPool extends EmulatorEventListener {
 
 	public ArrayList<Emulator> getIdleEmulators() {
 		return emulators.stream()
-				.filter(e -> e.getDevice().isOnline() && e.isIdle())
+				.filter(e -> e.getDevice() !=null && e.getDevice().isOnline() && e.isIdle())
 				.collect(Collectors.toCollection(ArrayList::new));
 	}
 

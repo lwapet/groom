@@ -2,71 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72101b7d-7eda-4b00-b340-d7b9443a4afa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Groom.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_annotations_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_build_builder_model_3_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_build_builder_test_api_3_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_common_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_ddms_ddmlib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_dvlib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_layoutlib_layoutlib_api_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_repository_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_sdk_common_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_tools_sdklib_26_4_0_alpha06.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpmime_4_5_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcpkix_jdk15on_1_56.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_56.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_reflect_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_3_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/Callable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/Main2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/AVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/AVD_pristine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/AndroidAVDException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/AndroidEmulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/AndroidEmulatorContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/AAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/AVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/AVDControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/AVDManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/ControlChannel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/Emulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/EmulatorFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/IAVD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/IAVDControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/IAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/IAVDManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/IEmulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/avd_manager/LogAVDEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/constants/AndroidKeyEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/AndroidSdk.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/DefaultToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/EmulatorToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/PlatformToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/SdkToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/Tool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/ToolLocator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommand00To03.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommand04To22.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/AdbShellCommandsCurrentBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkCliCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkCliCommandFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands00To16.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommands17To25_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/sdk/cli/SdkToolsCommandsCurrentBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/utils/ConfigFileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/android_emulator/utils/StdoutReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/core/ArgumentListBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/core/Platform.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/core/QuotedStringTokenizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/core/VariableResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/pristine/utils/VersionNumber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/TestServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Emulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/EmulatorPool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/resources/groom/android_emulator/Messages.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AVD_Manager/src/main/resources/groom/android_emulator/apks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/static/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/tcp_server/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/../../personal/Noidd/node_modules/" />
     <ignored path="$PROJECT_DIR$/../../personal/balusk.com/node_modules/" />
@@ -138,24 +103,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="groom" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="groom" type="f1a62948:ProjectNode" />
-                <item name=":emulator_manager" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="groom" type="f1a62948:ProjectNode" />
-                <item name=":emulator_manager" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="groom" type="f1a62948:ProjectNode" />
-                <item name=":emulator_manager" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -199,7 +146,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1177" />
@@ -254,7 +201,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543934685652" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543939158797" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
@@ -446,15 +393,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1543933321460</updated>
-      <workItem from="1543933322903" duration="1349000" />
+      <workItem from="1543933322903" duration="1549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1349000" />
+    <option name="totallyTimeSpent" value="1549000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1177" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" />
       <window_info id="Image Layers" />
