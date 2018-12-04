@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class EmulatorPool extends EmulatorEventListener {
 
-	private String pathToAdb;
 	private AndroidDebugBridge adb;
 	private int size;
 	private AvdInfo avd;
@@ -27,18 +26,17 @@ public class EmulatorPool extends EmulatorEventListener {
 		AndroidDebugBridge.initIfNeeded(false);
 		AndroidDebugBridge.addDeviceChangeListener(new DeviceChangeListener(this));
 		AndroidDebugBridge.addDebugBridgeChangeListener(new AndroidDebugBridgeListener(this));
-		adb = AndroidDebugBridge.createBridge(pathToAdb, true);
+		adb = AndroidDebugBridge.createBridge(Configuration.adbPath, true);
 	}
 
-	public EmulatorPool(String pathToAdb, AvdInfo avdInfo, int size) {
-		this.pathToAdb = pathToAdb;
+	public EmulatorPool(AvdInfo avdInfo, int size) {
 		this.avd = avdInfo;
 		this.size = size;
 		this.listeners = new HashSet<>();
 	}
 
-	public static EmulatorPool create(String pathToAdb, AvdInfo avdInfo, int size) {
-		return new EmulatorPool(pathToAdb, avdInfo, size);
+	public static EmulatorPool create(AvdInfo avdInfo, int size) {
+		return new EmulatorPool(avdInfo, size);
 	}
 
 	public void startPool() {

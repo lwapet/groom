@@ -17,7 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Emulator {
-	private static String PATH_TO_EMULATOR_BINARY = "/Users/lgitzing/Library/Android/sdk/emulator/emulator";
 	private Set<IEmulatorEventListener> listeners;
 	private AvdInfo avd;
 	private IDevice device;
@@ -127,7 +126,7 @@ public class Emulator {
 		Emulator current = this;
 		Runnable startAvd = () -> {
 			ArrayList<String> command = new ArrayList<>();
-			command.add(PATH_TO_EMULATOR_BINARY);
+			command.add(Configuration.emulatorPath);
 			command.add("-avd");
 			command.add(avd.getName());
 			command.add("-no-boot-anim");

@@ -27,26 +27,27 @@ public class Main {
 		Properties prop = new Properties();
 		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);
 		prop.load(input);
+		Configuration.setConfig(prop);
 
 		Database database = new Database(
-				prop.getProperty("database_url"),
-				Integer.valueOf(prop.getProperty("port")),
-				prop.getProperty("database_name"),
-				Boolean.valueOf(prop.getProperty("perform_auth")),
-				prop.getProperty("username"),
-				prop.getProperty("password"),
-				prop.getProperty("auth_source_database_name")
+				Configuration.databaseUrl,
+				Configuration.databasePort,
+				Configuration.databaseName,
+				Configuration.performAuth,
+				Configuration.username,
+				Configuration.password,
+				Configuration.authSourceDatabaseName
 		);
 
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
 		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
 
-		File sdkRoot = new File(prop.getProperty("android_sdk_home"));
+		File sdkRoot = new File(Configuration.androidSdkHome);
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 		String deviceName = prop.getProperty("device_name");
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
-		EmulatorPool pool = EmulatorPool.create(prop.getProperty("adb_path"), avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
+		EmulatorPool pool = EmulatorPool.create(avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();

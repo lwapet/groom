@@ -1,10 +1,12 @@
 package fr.groom.models;
 
+import fr.groom.Configuration;
+
 import java.io.File;
 import java.nio.file.Paths;
 
 public class App {
-	private static String pathToRepo = "/Users/lgitzing/Development/work/Groom/instrumented_apks";
+	private static String pathToRepo = Configuration.pathToInstrumentedApkDirectory;
 	private String fileName;
 	private File apk;
 	private String packageName;
