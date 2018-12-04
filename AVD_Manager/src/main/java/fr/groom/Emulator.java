@@ -126,7 +126,7 @@ public class Emulator {
 		Emulator current = this;
 		Runnable startAvd = () -> {
 			ArrayList<String> command = new ArrayList<>();
-			command.add(Configuration.emulatorPath);
+			command.add(AVDConfiguration.emulatorPath);
 			command.add("-avd");
 			command.add(avd.getName());
 			command.add("-no-boot-anim");

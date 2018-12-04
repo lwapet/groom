@@ -2,7 +2,7 @@ package fr.groom;
 
 import java.util.Properties;
 
-public class Configuration {
+public class AVDConfiguration {
 	public static String androidSdkHome;
 	public static String adbPath;
 	public static String emulatorPath;

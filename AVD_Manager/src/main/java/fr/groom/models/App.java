@@ -1,12 +1,12 @@
 package fr.groom.models;
 
-import fr.groom.Configuration;
+import fr.groom.AVDConfiguration;
 
 import java.io.File;
 import java.nio.file.Paths;
 
 public class App {
-	private static String pathToRepo = Configuration.pathToInstrumentedApkDirectory;
+	private static String pathToRepo = AVDConfiguration.pathToInstrumentedApkDirectory;
 	private String fileName;
 	private File apk;
 	private String packageName;

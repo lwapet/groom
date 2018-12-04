@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Configuration {
-	private static Configuration INSTANCE;
+public class UtilsConfiguration {
+	private static UtilsConfiguration INSTANCE;
 	public String adbPath;
 
-	private Configuration() {
+	private UtilsConfiguration() {
 		Properties prop = new Properties();
-		InputStream input = Configuration.class.getClassLoader().getResourceAsStream("config.properties");
+		InputStream input = UtilsConfiguration.class.getClassLoader().getResourceAsStream("config.properties");
 		try {
 			prop.load(input);
 		} catch (IOException e) {
@@ -19,9 +19,9 @@ public class Configuration {
 		adbPath = prop.getProperty("adb_path");
 	}
 
-	public static Configuration v() {
+	public static UtilsConfiguration v() {
 		if(INSTANCE == null) {
-			INSTANCE = new Configuration();
+			INSTANCE = new UtilsConfiguration();
 		}
 		return INSTANCE;
 	}

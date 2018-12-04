@@ -5,10 +5,7 @@ import com.android.sdklib.internal.avd.AvdInfo;
 import com.android.sdklib.internal.avd.AvdManager;
 import com.android.sdklib.repository.AndroidSdkHandler;
 import com.android.utils.StdLogger;
-import com.mongodb.DBCursor;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 import fr.groom.mongo.Database;
@@ -17,7 +14,6 @@ import org.bson.Document;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -27,22 +23,22 @@ public class Main {
 		Properties prop = new Properties();
 		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);
 		prop.load(input);
-		Configuration.setConfig(prop);
+		AVDConfiguration.setConfig(prop);
 
 		Database database = new Database(
-				Configuration.databaseUrl,
-				Configuration.databasePort,
-				Configuration.databaseName,
-				Configuration.performAuth,
-				Configuration.username,
-				Configuration.password,
-				Configuration.authSourceDatabaseName
+				AVDConfiguration.databaseUrl,
+				AVDConfiguration.databasePort,
+				AVDConfiguration.databaseName,
+				AVDConfiguration.performAuth,
+				AVDConfiguration.username,
+				AVDConfiguration.password,
+				AVDConfiguration.authSourceDatabaseName
 		);
 
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
 		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
 
-		File sdkRoot = new File(Configuration.androidSdkHome);
+		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 		String deviceName = prop.getProperty("device_name");

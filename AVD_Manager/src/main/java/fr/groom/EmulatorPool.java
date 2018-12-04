@@ -6,7 +6,6 @@ import com.android.ddmlib.IDevice;
 import com.android.sdklib.internal.avd.AvdInfo;
 import fr.groom.server.EmulatorStatus;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +25,7 @@ public class EmulatorPool extends EmulatorEventListener {
 		AndroidDebugBridge.initIfNeeded(false);
 		AndroidDebugBridge.addDeviceChangeListener(new DeviceChangeListener(this));
 		AndroidDebugBridge.addDebugBridgeChangeListener(new AndroidDebugBridgeListener(this));
-		adb = AndroidDebugBridge.createBridge(Configuration.adbPath, true);
+		adb = AndroidDebugBridge.createBridge(AVDConfiguration.adbPath, true);
 	}
 
 	public EmulatorPool(AvdInfo avdInfo, int size) {

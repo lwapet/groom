@@ -1,10 +1,10 @@
 package fr.groom.commandline_handler;
-import fr.groom.Configuration;
+import fr.groom.UtilsConfiguration;
 
 import java.util.ArrayList;
 
 public class ADB {
-	public static String pathToAdbBinary = Configuration.v().adbPath;
+	public static String pathToAdbBinary = UtilsConfiguration.v().adbPath;
 
 	private static ArrayList<String> prepareCommand() {
 		ArrayList<String> command = new ArrayList<>();
