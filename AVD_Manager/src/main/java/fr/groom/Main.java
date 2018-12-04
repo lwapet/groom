@@ -46,7 +46,7 @@ public class Main {
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 		String deviceName = prop.getProperty("device_name");
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
-		EmulatorPool pool = EmulatorPool.create(avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
+		EmulatorPool pool = EmulatorPool.create(prop.getProperty("adb_path"), avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();

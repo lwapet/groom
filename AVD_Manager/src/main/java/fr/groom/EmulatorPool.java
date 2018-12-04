@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 public class EmulatorPool extends EmulatorEventListener {
 
+	private String pathToAdb;
 	private AndroidDebugBridge adb;
 	private int size;
 	private AvdInfo avd;
@@ -23,21 +24,21 @@ public class EmulatorPool extends EmulatorEventListener {
 	private Set<IEmulatorPoolEventListener> listeners;
 
 	private void initAdb() {
-		File sdkRoot = new File(System.getenv("ANDROID_SDK_HOME"));
 		AndroidDebugBridge.initIfNeeded(false);
 		AndroidDebugBridge.addDeviceChangeListener(new DeviceChangeListener(this));
 		AndroidDebugBridge.addDebugBridgeChangeListener(new AndroidDebugBridgeListener(this));
-		adb = AndroidDebugBridge.createBridge("/Users/lgitzing/Library/Android/sdk/platform-tools/adb", true);
+		adb = AndroidDebugBridge.createBridge(pathToAdb, true);
 	}
 
-	public EmulatorPool(AvdInfo avdInfo, int size) {
+	public EmulatorPool(String pathToAdb, AvdInfo avdInfo, int size) {
+		this.pathToAdb = pathToAdb;
 		this.avd = avdInfo;
 		this.size = size;
 		this.listeners = new HashSet<>();
 	}
 
-	public static EmulatorPool create(AvdInfo avdInfo, int size) {
-		return new EmulatorPool(avdInfo, size);
+	public static EmulatorPool create(String pathToAdb, AvdInfo avdInfo, int size) {
+		return new EmulatorPool(pathToAdb, avdInfo, size);
 	}
 
 	public void startPool() {
@@ -139,7 +140,7 @@ public class EmulatorPool extends EmulatorEventListener {
 
 	public ArrayList<Emulator> getIdleEmulators() {
 		return emulators.stream()
-				.filter(e -> e.getDevice() !=null && e.getDevice().isOnline() && e.isIdle())
+				.filter(e -> e.getDevice() != null && e.getDevice().isOnline() && e.isIdle())
 				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
