@@ -4,10 +4,8 @@
     <list default="true" id="8e82ccb9-a2ad-4018-8aa1-0de8430d1893" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/AVDConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/AVDConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/avd-config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../tcp_server/src/main/java/fr/groom/LogStorer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -279,6 +277,13 @@
               <item name="fr" type="462c0819:PsiDirectoryNode" />
               <item name="groom" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="static" type="b2602c69:ProjectViewProjectNode" />
+              <item name="static" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -452,12 +457,12 @@
       <workItem from="1543916102820" duration="5411000" />
       <workItem from="1543928444259" duration="536000" />
       <workItem from="1543929157012" duration="1828000" />
-      <workItem from="1543941207919" duration="1774000" />
+      <workItem from="1543941207919" duration="2025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52557000" />
+    <option name="totallyTimeSpent" value="52808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
