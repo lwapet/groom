@@ -28,3 +28,15 @@ dependencies {
     compile project(':utils')
     compile project(':database')
 }
+
+jar {
+    baseName = 'avd_manager'
+    version = '0.1.0'
+    manifest {
+        attributes "Main-Class": "fr.groom.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
