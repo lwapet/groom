@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class Main {
-	private static String CONFIG = "config.properties";
+	private static String CONFIG = "avd-config.properties";
 	public static void main(String[] args) throws AndroidLocation.AndroidLocationException, IOException {
 		Properties prop = new Properties();
 		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);

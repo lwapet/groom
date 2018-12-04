@@ -4,8 +4,10 @@
     <list default="true" id="8e82ccb9-a2ad-4018-8aa1-0de8430d1893" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/AVDConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/AVDConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../AVD_Manager/src/main/resources/avd-config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />

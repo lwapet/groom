@@ -11,9 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3e40e1b5-713c-451a-b2eb-09ed2d936ecc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/AVDConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/AVDConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/avd-config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../static/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../static/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -98,10 +100,22 @@
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="317">
+                  <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+                <state relative-caret-position="68">
+                  <caret line="4" selection-start-line="4" selection-end-line="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -113,7 +127,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/App.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="561">
-                  <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+                  <caret line="33" selection-start-line="33" selection-end-line="33" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#547#548#0" expanded="true" />
@@ -128,10 +142,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java">
+            <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/UtilsConfiguration.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+                <state relative-caret-position="459">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -158,40 +172,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1130#1131#0" expanded="true" />
-                    <element signature="e#1186#1187#0" expanded="true" />
-                    <element signature="e#1310#1311#0" expanded="true" />
-                    <element signature="e#1326#1327#0" expanded="true" />
-                    <element signature="e#1408#1409#0" expanded="true" />
-                    <element signature="e#1438#1439#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DynamicAnalysisManager.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="24" selection-start-line="24" selection-end-line="24" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
+                <state relative-caret-position="259">
+                  <caret line="129" column="26" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -200,18 +184,27 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Configuration.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/AVDConfiguration.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="391">
-                  <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+                  <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+            <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DeviceHandler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
+                <state relative-caret-position="68">
+                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/avd-config.properties">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
                   <caret line="6" selection-start-line="6" selection-end-line="6" />
                 </state>
               </provider>
@@ -222,10 +215,10 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/avd-config.properties">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
+                <state relative-caret-position="68">
+                  <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -246,7 +239,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DeviceMonitor</find>
       <find>pid</find>
       <find>IShel</find>
       <find>mRemoteDevice</find>
@@ -276,6 +268,7 @@
       <find>sdk</find>
       <find>setNew</find>
       <find>lgitzing</find>
+      <find>AVDCO</find>
     </findStrings>
     <replaceStrings>
       <replace>fr.groom.Util</replace>
@@ -289,8 +282,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/RPCClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/groom/android_emulator/Main.java" />
@@ -331,15 +322,17 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main2.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/main/Main.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java" />
         <option value="$PROJECT_DIR$/../utils/src/main/resources/config.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/groom/models/App.java" />
-        <option value="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" />
         <option value="$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Configuration.java" />
+        <option value="$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java" />
+        <option value="$PROJECT_DIR$/../utils/src/main/java/fr/groom/UtilsConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/groom/AVDConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/groom/Main.java" />
       </list>
     </option>
   </component>
@@ -400,6 +393,13 @@
             </path>
             <path>
               <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AVD_Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AVD_Manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -457,7 +457,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543943906808" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543945413866" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -718,12 +718,12 @@
       <workItem from="1543915899723" duration="4185000" />
       <workItem from="1543928442673" duration="538000" />
       <workItem from="1543929155625" duration="4064000" />
-      <workItem from="1543934421780" duration="4763000" />
+      <workItem from="1543934421780" duration="5724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155870000" />
+    <option name="totallyTimeSpent" value="156831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -738,7 +738,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32971996" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35140017" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35049683" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41463414" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -877,13 +877,6 @@
             <element signature="e#252#253#0" expanded="true" />
             <element signature="e#275#276#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DeviceHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1081,7 +1074,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/EmulatorPool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1130#1131#0" expanded="true" />
@@ -1090,16 +1083,6 @@
             <element signature="e#1326#1327#0" expanded="true" />
             <element signature="e#1408#1409#0" expanded="true" />
             <element signature="e#1438#1439#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1118,34 +1101,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/models/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#547#548#0" expanded="true" />
@@ -1158,20 +1117,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/Configuration.java">
+    <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/commandline_handler/ADB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/DeviceHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Emulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="129" column="26" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../utils/src/main/java/fr/groom/UtilsConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/avd-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/AVDConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/groom/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

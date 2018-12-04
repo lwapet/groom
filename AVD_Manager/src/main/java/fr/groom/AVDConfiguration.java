@@ -23,12 +23,12 @@ public class AVDConfiguration {
 		adbPath = prop.getProperty("adb_path");
 		emulatorPath = prop.getProperty("path_to_emulator");
 		pathToInstrumentedApkDirectory = prop.getProperty("path_to_instrumented_apk_directory");
-		poolCount = Integer.valueOf(prop.getProperty("pool_count"));
+		poolCount = Integer.parseInt(prop.getProperty("pool_count"));
 		deviceName = prop.getProperty("device_name");
 		databaseUrl = prop.getProperty("database_url");
-		databasePort = Integer.valueOf(prop.getProperty("port"));
+		databasePort = Integer.parseInt(prop.getProperty("port"));
 		databaseName = prop.getProperty("database_name");
-		performAuth = Boolean.valueOf(prop.getProperty("perform_auth"));
+		performAuth = Boolean.parseBoolean(prop.getProperty("perform_auth"));
 		username = prop.getProperty("username");
 		password = prop.getProperty("password");
 		authSourceDatabaseName = prop.getProperty("auth_source_database_name");
