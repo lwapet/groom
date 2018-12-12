@@ -19,6 +19,7 @@ import java.util.Properties;
 
 public class Main {
 	private static String CONFIG = "avd-config.properties";
+
 	public static void main(String[] args) throws AndroidLocation.AndroidLocationException, IOException {
 		Properties prop = new Properties();
 		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);
@@ -43,7 +44,7 @@ public class Main {
 		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 		String deviceName = prop.getProperty("device_name");
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
-		EmulatorPool pool = EmulatorPool.create(avdInfo,Integer.valueOf(prop.getProperty("pool_count")));
+		EmulatorPool pool = EmulatorPool.create(avdInfo, Integer.valueOf(prop.getProperty("pool_count")));
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();
@@ -52,12 +53,14 @@ public class Main {
 
 
 		for (Document appData : applicationCollection.find().limit(5)) {
-			App app = new App(
-					appData.getString("file_name"),
-					appData.getString("package_name"),
-					appData.getString("main_activity")
-			);
-			dam.addApp(app);
+			if (appData.getString("file_name") != null) {
+				App app = new App(
+						appData.getString("file_name"),
+						appData.getString("package_name"),
+						appData.getString("main_activity")
+				);
+				dam.addApp(app);
+			}
 		}
 	}
 }
