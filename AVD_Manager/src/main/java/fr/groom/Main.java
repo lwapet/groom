@@ -14,6 +14,7 @@ import org.bson.Document;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -38,6 +39,7 @@ public class Main {
 
 		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
 		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
+		MongoCollection<Document> dynamicAnalysis = mongoDatabase.getCollection("dynamic");
 
 		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
@@ -52,15 +54,23 @@ public class Main {
 //		server.start();
 
 
-		for (Document appData : applicationCollection.find().limit(5)) {
-			if (appData.getString("file_name") != null) {
-				App app = new App(
-						appData.getString("file_name"),
-						appData.getString("package_name"),
-						appData.getString("main_activity")
-				);
-				dam.addApp(app);
-			}
+		ArrayList<String> alreadyAnalyzedSha = new ArrayList<>();
+		for(String sha256 : dynamicAnalysis.distinct("sha256", String.class)){
+			alreadyAnalyzedSha.add(sha256);
+		}
+
+		Document filter = new Document("$nin", alreadyAnalyzedSha);
+		Document query = new Document("sha256", filter);
+		for (Document appData : applicationCollection.find(query).limit(5)) {
+			System.out.println(appData.get("sha256"));
+//			if (appData.getString("file_name") != null) {
+//				App app = new App(
+//						appData.getString("file_name"),
+//						appData.getString("package_name"),
+//						appData.getString("main_activity")
+//				);
+//				dam.addApp(app);
+//			}
 		}
 	}
 }
