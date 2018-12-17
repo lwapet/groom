@@ -48,21 +48,18 @@ public class Main {
 		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
 		EmulatorPool pool = EmulatorPool.create(avdInfo, Integer.valueOf(prop.getProperty("pool_count")));
 		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
-		pool.addEmulatorPoolEventListener(dam);
-		pool.startPool();
 //		Server server = new Server(pool);
 //		server.start();
 
 
 		ArrayList<String> alreadyAnalyzedSha = new ArrayList<>();
-		for(String sha256 : dynamicAnalysis.distinct("sha256", String.class)){
+		for (String sha256 : dynamicAnalysis.distinct("sha256", String.class)) {
 			alreadyAnalyzedSha.add(sha256);
 		}
 
 		Document filter = new Document("$nin", alreadyAnalyzedSha);
 		Document query = new Document("sha256", filter);
 		for (Document appData : applicationCollection.find(query).limit(5)) {
-			System.out.println(appData.get("sha256"));
 			if (appData.getString("file_name") != null) {
 				App app = new App(
 						appData.getString("file_name"),
@@ -72,5 +69,8 @@ public class Main {
 				dam.addApp(app);
 			}
 		}
+
+		pool.addEmulatorPoolEventListener(dam);
+		pool.startPool();
 	}
 }

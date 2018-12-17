@@ -18,8 +18,9 @@ public class DynamicAnalysisManager extends EmulatorPoolEventListener {
 
 	@Override
 	public void onNewIdleEmulator(Emulator emulator) {
-		System.out.println(emulator.getDevice().getName());
+//		System.out.println(emulator.getDevice().getName());
 		App app = apps.poll();
+		System.out.println(apps.size());
 		if (app != null) {
 			DynamicAnalysis analysis = new DynamicAnalysis(emulator, app);
 			analysis.run();
