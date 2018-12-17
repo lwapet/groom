@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: ca.mcgill.sable:soot:3.1.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/15b46aac8072bd45ec724cb4fd6414be7daafdf1/soot-3.1.0-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/7fd7505e8295c4ec9a3197dd30c189fda60accf4/soot-3.1.0-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -17,6 +17,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/fb42268a539a282588e9d5f2c91705707ff81a12/soot-3.1.0-SNAPSHOT-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/780b2a0f12aabd9c9d8f07c6ea6a47d1de721780/soot-3.1.0-SNAPSHOT-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/f01071802b344026fa731d9bdb2f9955db66ae3f/soot-3.1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.mcgill.sable/soot/3.1.0-SNAPSHOT/863a4462fd307d62223c6a8d0165e3acebb75e5d/soot-3.1.0-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
