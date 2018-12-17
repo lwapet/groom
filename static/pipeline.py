@@ -15,6 +15,7 @@ _PATH_TO_APK_DIRECTORY = '/Users/lgitzing/Development/work/ransomwares'
 _DATABASE_URL = 'localhost'
 _DATABASE_PORT = 27017
 _DATABASE_NAME = 'dynamic'
+_STATIC_COLLECTION_NAME = 'static'
 _DYNAMIC_COLLECTION_NAME = 'dynamic'
 _APPLICATION_COLLECTION_NAME = 'application'
 # _URI = 'mongodb://lgitzing:tout_petit_poney@localhost:27017/analyzer?authSource=admin'
@@ -64,7 +65,7 @@ def start_pool(apks):
 def main():
     client = MongoClient(_URI)
     database = client[_DATABASE_NAME]
-    analyzed_apps_sha = database[_APPLICATION_COLLECTION_NAME].distinct("sha256")
+    analyzed_apps_sha = database[_STATIC_COLLECTION_NAME].distinct("sha256")
     files = os.listdir(_PATH_TO_APK_DIRECTORY)
     chosen_files = []
     while len(chosen_files) < _QUANTITY:
