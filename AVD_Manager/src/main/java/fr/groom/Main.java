@@ -37,7 +37,7 @@ public class Main {
 				AVDConfiguration.authSourceDatabaseName
 		);
 
-		MongoDatabase mongoDatabase = database.getDatabaseConnection().getDatabase();
+		MongoDatabase mongoDatabase = database.getDatabase();
 		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
 		MongoCollection<Document> dynamicAnalysis = mongoDatabase.getCollection("dynamic");
 
