@@ -61,6 +61,7 @@ public class Emulator {
 	public void installApk(File apk, boolean forceInstall) throws InstallException {
 		setNewStatus(EmulatorStatus.BUSY);
 		InstallReceiver installReceiver = new InstallReceiver();
+		System.out.println("Trying to install apk with the following path:" + apk.getAbsolutePath());
 		device.installPackage(apk.getAbsolutePath(), forceInstall, installReceiver);
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		if (!installReceiver.isSuccessfullyCompleted()) {

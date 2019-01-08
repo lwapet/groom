@@ -59,7 +59,7 @@ public class Main {
 
 		Document filter = new Document("$nin", alreadyAnalyzedSha);
 		Document query = new Document("sha256", filter);
-		for (Document appData : applicationCollection.find(query).limit(5)) {
+		for (Document appData : applicationCollection.find(query).limit(AVDConfiguration.apk_quantity)) {
 			if (appData.getString("file_name") != null) {
 				App app = new App(
 						appData.getString("file_name"),
