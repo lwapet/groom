@@ -21,13 +21,23 @@ public class Database implements Storage {
 
 	public Database(String url, int port, String databaseName, boolean auth, String username, String password, String authSource) {
 		MongoCredential mongoCredential = MongoCredential.createCredential(username, authSource, password.toCharArray());
+		ServerAddress serverAddress = new ServerAddress(url, port);
 
-		this.mongoClient = MongoClients.create(
-				MongoClientSettings.builder()
-						.applyToClusterSettings(builder ->
-								builder.hosts(Arrays.asList(new ServerAddress(url, port))))
-						.credential(mongoCredential)
-						.build());
+		if (auth) {
+			this.mongoClient = MongoClients.create(
+					MongoClientSettings.builder()
+							.applyToClusterSettings(builder -> builder.hosts(Arrays.asList(serverAddress)))
+							.credential(mongoCredential)
+							.build()
+			);
+		} else {
+			this.mongoClient = MongoClients.create(
+					MongoClientSettings.builder()
+							.applyToClusterSettings(builder -> builder.hosts(Arrays.asList(serverAddress)))
+							.build()
+			);
+		}
+
 
 		this.mongoDatabase = this.mongoClient.getDatabase(databaseName);
 		System.out.println("Connected to database: " + this.mongoDatabase.getName());
