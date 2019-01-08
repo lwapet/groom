@@ -70,8 +70,8 @@ public class Emulator {
 		}
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		if (!installReceiver.isSuccessfullyCompleted()) {
-			clone.forEach(l -> l.onInstallApkFailed(this, installReceiver.getErrorMessage()));
 			setNewStatus(EmulatorStatus.IDLE);
+			clone.forEach(l -> l.onInstallApkFailed(this, installReceiver.getErrorMessage()));
 		} else {
 			clone.forEach(l -> l.onInstallApk(this));
 		}
