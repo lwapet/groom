@@ -1,6 +1,9 @@
 package fr.groom.mongo;
 
-import com.mongodb.MongoException;
+import com.mongodb.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import fr.groom.Storage;
@@ -8,25 +11,33 @@ import org.bson.Document;
 import org.json.JSONObject;
 
 import java.io.DataOutputStream;
+import java.util.Arrays;
 
 public class Database implements Storage {
-	DatabaseConnection databaseConnection = new DatabaseConnection();
+	MongoClient mongoClient;
+	MongoDatabase mongoDatabase;
 	public static int MONGO_DOCUMENT_SIZE_LIMIT = 16793600;
 
 
 	public Database(String url, int port, String databaseName, boolean auth, String username, String password, String authSource) {
-		databaseConnection.configure(
-				url,
-				port,
-				databaseName,
-				auth ? username : null,
-				auth ? password : null,
-				auth ? authSource : null
-		);
-		databaseConnection.connection();
+		MongoCredential mongoCredential = MongoCredential.createCredential(username, authSource, password.toCharArray());
+
+		this.mongoClient = MongoClients.create(
+				MongoClientSettings.builder()
+						.applyToClusterSettings(builder ->
+								builder.hosts(Arrays.asList(new ServerAddress(url, port))))
+						.credential(mongoCredential)
+						.build());
+
+		this.mongoDatabase = this.mongoClient.getDatabase(databaseName);
+		System.out.println("Connected to database: " + this.mongoDatabase.getName());
 	}
 
-//	public Database(DatabaseConfiguration fr.groom.configuration) {
+	public MongoDatabase getDatabase() {
+		return mongoDatabase;
+	}
+
+	//	public Database(DatabaseConfiguration fr.groom.configuration) {
 //		super();
 //		boolean auth = fr.groom.configuration.getAuthenticationConfiguration().isPerformAuthentication();
 //		databaseConnection.configure(
@@ -40,17 +51,13 @@ public class Database implements Storage {
 //		databaseConnection.connection();
 //	}
 
-	public DatabaseConnection getDatabaseConnection() {
-		return databaseConnection;
-	}
-
 	public void close() {
-		databaseConnection.close();
+		this.mongoClient.close();
 	}
 
 	@Override
 	public void insertData(JSONObject analysisData, String collectionName) {
-		this.getDatabaseConnection().getDatabase().getCollection(collectionName).insertOne(Document.parse(analysisData.toString()));
+		this.mongoDatabase.getCollection(collectionName).insertOne(Document.parse(analysisData.toString()));
 	}
 
 
@@ -59,7 +66,7 @@ public class Database implements Storage {
 		try {
 			FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
 			options.upsert(true);
-			databaseConnection.getDatabase().getCollection(collectionName).findOneAndUpdate(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
+			this.mongoDatabase.getCollection(collectionName).findOneAndUpdate(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
 		} catch (MongoException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +77,7 @@ public class Database implements Storage {
 		try {
 			FindOneAndReplaceOptions options = new FindOneAndReplaceOptions();
 			options.upsert(true);
-			databaseConnection.getDatabase().getCollection(collectionName).findOneAndReplace(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
+			this.mongoDatabase.getCollection(collectionName).findOneAndReplace(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
 		} catch (MongoException e) {
 			e.printStackTrace();
 		}
