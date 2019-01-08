@@ -65,11 +65,13 @@ public class Emulator {
 		try {
 			device.installPackage(apk.getAbsolutePath(), forceInstall, installReceiver);
 		} catch (InstallException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			System.out.println("failed install for apk: " + apk.getAbsolutePath());
 		}
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		if (!installReceiver.isSuccessfullyCompleted()) {
+			System.out.println("Installation error: " + installReceiver.getErrorMessage());
+			setNewStatus(EmulatorStatus.IDLE);
 			clone.forEach(l -> l.onInstallApkFailed(this, installReceiver.getErrorMessage()));
 		} else {
 			clone.forEach(l -> l.onInstallApk(this));
