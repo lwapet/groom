@@ -5,6 +5,7 @@ import com.android.sdklib.internal.avd.AvdInfo;
 import com.android.sdklib.internal.avd.AvdManager;
 import com.android.sdklib.repository.AndroidSdkHandler;
 import com.android.utils.StdLogger;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
@@ -56,10 +57,14 @@ public class Main {
 		for (String sha256 : dynamicAnalysis.distinct("sha256", String.class)) {
 			alreadyAnalyzedSha.add(sha256);
 		}
+		System.out.println(alreadyAnalyzedSha.size() + " have already been analyzed dynamically.");
 
 		Document filter = new Document("$nin", alreadyAnalyzedSha);
 		Document query = new Document("sha256", filter);
-		for (Document appData : applicationCollection.find(query).limit(AVDConfiguration.apk_quantity)) {
+		long count = applicationCollection.count(query);
+		System.out.println(count + " applications are stored and not analyzed dynamically yet.");
+		FindIterable<Document> iterable = applicationCollection.find(query).limit(AVDConfiguration.apk_quantity);
+		for (Document appData : iterable) {
 			if (appData.getString("file_name") != null) {
 				App app = new App(
 						appData.getString("file_name"),

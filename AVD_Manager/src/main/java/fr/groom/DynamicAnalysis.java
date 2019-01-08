@@ -21,11 +21,7 @@ public class DynamicAnalysis extends EmulatorEventListener {
 	}
 
 	public void run() {
-		try {
 			emulator.installApk(app.getApk(), true);
-		} catch (InstallException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
