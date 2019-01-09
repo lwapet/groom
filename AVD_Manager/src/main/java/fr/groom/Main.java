@@ -39,8 +39,8 @@ public class Main {
 		);
 
 		MongoDatabase mongoDatabase = database.getDatabase();
-		MongoCollection<Document> applicationCollection = mongoDatabase.getCollection("application");
-		MongoCollection<Document> dynamicAnalysis = mongoDatabase.getCollection("dynamic");
+		ApkSelector apkSelector = new DatabaseApkSelector(mongoDatabase);
+		ArrayList<App> apps = apkSelector.selectApplications();
 
 		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
@@ -52,28 +52,10 @@ public class Main {
 //		Server server = new Server(pool);
 //		server.start();
 
-
-		ArrayList<String> alreadyAnalyzedSha = new ArrayList<>();
-		for (String sha256 : dynamicAnalysis.distinct("sha256", String.class)) {
-			alreadyAnalyzedSha.add(sha256);
+		for(App app : apps) {
+			dam.addApp(app);
 		}
-		System.out.println(alreadyAnalyzedSha.size() + " have already been analyzed dynamically.");
 
-		Document filter = new Document("$nin", alreadyAnalyzedSha);
-		Document query = new Document("sha256", filter);
-		long count = applicationCollection.count(query);
-		System.out.println(count + " applications are stored and not analyzed dynamically yet.");
-		FindIterable<Document> iterable = applicationCollection.find(query).limit(AVDConfiguration.apk_quantity);
-		for (Document appData : iterable) {
-			if (appData.getString("file_name") != null) {
-				App app = new App(
-						appData.getString("file_name"),
-						appData.getString("package_name"),
-						appData.getString("main_activity")
-				);
-				dam.addApp(app);
-			}
-		}
 
 		pool.addEmulatorPoolEventListener(dam);
 		pool.startPool();
