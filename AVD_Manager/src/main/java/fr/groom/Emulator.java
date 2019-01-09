@@ -105,7 +105,7 @@ public class Emulator {
 		stringBuilder.append("-n ");
 		stringBuilder.append(app.getPackageName());
 		stringBuilder.append("/");
-		stringBuilder.append(app.getMainActivity());
+		stringBuilder.append(app.getMainActivity().replace("$", "\\$"));
 		stringBuilder.append(" -a ");
 		stringBuilder.append("android.intent.action.MAIN ");
 		stringBuilder.append("-c ");
