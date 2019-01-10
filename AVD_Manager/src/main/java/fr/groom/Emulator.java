@@ -61,19 +61,20 @@ public class Emulator {
 	public void installApk(File apk, boolean forceInstall)  {
 		setNewStatus(EmulatorStatus.BUSY);
 		InstallReceiver installReceiver = new InstallReceiver();
-		System.out.println("Trying to install apk with the following path:" + apk.getAbsolutePath());
+		System.out.println("[install apk output]: Trying to install apk with the following path:" + apk.getAbsolutePath());
 		try {
 			device.installPackage(apk.getAbsolutePath(), forceInstall, installReceiver);
 		} catch (InstallException e) {
 //			e.printStackTrace();
-			System.out.println("failed install for apk: " + apk.getAbsolutePath());
+			System.err.println("[install apk output]: install failed for apk: " + apk.getAbsolutePath());
 		}
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		if (!installReceiver.isSuccessfullyCompleted()) {
-			System.out.println("Installation error: " + installReceiver.getErrorMessage());
+			System.err.println("[install apk output]: Installation error: " + installReceiver.getErrorMessage());
 			setNewStatus(EmulatorStatus.IDLE);
 			clone.forEach(l -> l.onInstallApkFailed(this, installReceiver.getErrorMessage()));
 		} else {
+			System.out.println("[install apk output]: install succeeded for apk: " + apk.getAbsolutePath());
 			clone.forEach(l -> l.onInstallApk(this));
 		}
 	}
@@ -115,7 +116,7 @@ public class Emulator {
 				@Override
 				public void processNewLines(String[] strings) {
 					for (String string : strings) {
-						System.out.println(string);
+						System.out.println("[startApp output]: " +string);
 					}
 				}
 
