@@ -54,6 +54,7 @@ public class Log implements ILog {
 			this.applicationPackageName = m.group(1);
 		}
 		this.data = (JsonObject) parser.parse(this.rawData);
+		System.out.println(this.data.toString());
 		/*
 		for (JsonElement argO : this.logData.getAsJsonArray("arguments")) {
 			JsonObject argument = argO.getAsJsonObject();
