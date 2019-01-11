@@ -88,6 +88,10 @@ public class Groom {
 				if (out == null) {
 					try {
 						out = futurPrinter.get();
+						JSONObject jsonObject = new JSONObject();
+						jsonObject.put("type", "dynamic_analysis_start");
+						jsonObject.put("timestamp", System.currentTimeMillis());
+						sendData(jsonObject);
 						return null;
 					} catch (ExecutionException | InterruptedException e) {
 						e.printStackTrace();
@@ -184,6 +188,7 @@ public class Groom {
 		try {
 			data.put("type", "standard_log");
 			data.put("method_signature", methodSignature);
+			data.put("timestamp", System.currentTimeMillis());
 			JSONArray argumentDataArray = new JSONArray();
 			for (Object arg : args) {
 				JSONObject argumentData = new JSONObject();
@@ -257,6 +262,7 @@ public class Groom {
 		try {
 			data.put("type", "reflection_call");
 			data.put("method_name", method.getName());
+			data.put("timestamp", System.currentTimeMillis());
 			if (invokingClass != null) {
 				data.put("class_name", invokingClass.getClass().getCanonicalName());
 			} else {
