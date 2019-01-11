@@ -56,9 +56,9 @@ public class DatabaseApkSelector implements ApkSelector {
 	@Override
 	public ArrayList<App> selectApplications() {
 		ArrayList apps = new ArrayList();
-		apps.add(queryBySha("99A6F10977132C65F3BCCF946444663960C652AF1B3D47E9158ECE277320AEDE"));
+//		apps.add(queryBySha("99A6F10977132C65F3BCCF946444663960C652AF1B3D47E9158ECE277320AEDE"));
 //		apps.add(queryBySha("D429E31F30BC4F13DB80B4EC0F9195F623FD7303A9BA52B4537B92D75D80C63B"));
-		return apps;
-//		return queryUnanalyzedApplications();
+//		return apps;
+		return queryUnanalyzedApplications();
 	}
 }

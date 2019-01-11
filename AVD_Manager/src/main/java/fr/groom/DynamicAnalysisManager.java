@@ -16,6 +16,7 @@ public class DynamicAnalysisManager extends EmulatorPoolEventListener {
 	}
 
 
+
 	@Override
 	public void onNewIdleEmulator(Emulator emulator) {
 //		System.out.println(emulator.getDevice().getName());
