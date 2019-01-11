@@ -42,10 +42,10 @@ public class Hooker {
 
 		SootMethod groomStaticInitializer = GROOM.getMethodByName(SootMethod.staticInitializerName);
 		SootClass klass = Scene.v().getSootClass("java.lang.Class");
-		SootMethod forName = klass.getMethod("forName",Collections.singletonList(STRING_TYPE));
+		SootMethod forName = klass.getMethod("forName", Collections.singletonList(STRING_TYPE));
 		ArrayList<Value> args = new ArrayList<>();
 		args.add(StringConstant.v(groomStaticInitializer.getName()));
-		StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(forName.makeRef(),args);
+		StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(forName.makeRef(), args);
 		InvokeStmt injectedStmt = Jimple.v().newInvokeStmt(staticInvokeExpr);
 
 
@@ -286,7 +286,7 @@ public class Hooker {
 					localToPush = localGenerator.generateLocal(primType.boxedType());
 					SootClass boxedClass = Scene.v().getSootClass(primType.boxedType().getClassName());
 					SootMethod boxedInit = boxedClass.getMethod("valueOf", Collections.singletonList(primType));
-					StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(boxedInit.makeRef(),Collections.singletonList(local));
+					StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(boxedInit.makeRef(), Collections.singletonList(local));
 					AssignStmt assignStmt = Jimple.v().newAssignStmt(localToPush, staticInvokeExpr);
 					unitsToInject.add(assignStmt);
 				}
@@ -396,7 +396,7 @@ public class Hooker {
 				localToPush = localGenerator.generateLocal(primType.boxedType());
 				SootClass boxedClass = Scene.v().getSootClass(primType.boxedType().getClassName());
 				SootMethod boxedInit = boxedClass.getMethod("valueOf", Collections.singletonList(primType));
-				StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(boxedInit.makeRef(),Collections.singletonList(arg));
+				StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(boxedInit.makeRef(), Collections.singletonList(arg));
 				AssignStmt assignStmt = Jimple.v().newAssignStmt(localToPush, staticInvokeExpr);
 				unitsToInject.add(assignStmt);
 			}
@@ -410,10 +410,10 @@ public class Hooker {
 		Value thisValue;
 		if (!sootMethod.isStatic()) {
 			thisValue = body.getThisLocal();
-			if(invokeExpr.getMethod().isConstructor() && invokeExpr instanceof InstanceInvokeExpr) {
+			if (invokeExpr.getMethod().isConstructor() && invokeExpr instanceof InstanceInvokeExpr) {
 				InstanceInvokeExpr instanceInvokeExpr = (InstanceInvokeExpr) invokeExpr;
 				Value base = instanceInvokeExpr.getBase();
-				if(instanceInvokeExpr.getMethod().isConstructor() && base.equals(thisValue)) {
+				if (instanceInvokeExpr.getMethod().isConstructor() && base.equals(thisValue)) {
 					thisValue = NullConstant.v();
 				}
 			}

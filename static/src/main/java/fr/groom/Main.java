@@ -26,10 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static fr.groom.FileUtils.TEMP_DIRECTORY;
 import static fr.groom.FileUtils.deleteDir;
@@ -187,8 +184,6 @@ public class Main {
 					}
 				}
 			}
-
-
 			// Add Soot transformer instrumenter
 			PackManager.v().getPack("wjtp").add(new Transform("wjtp.mainTransformer", new SootInstrumenter(app, staticAnalysis)));
 		}
@@ -223,6 +218,7 @@ public class Main {
 				List<AXmlNode> nodeList2 = aXmlHandler2.getNodesWithTag("manifest");
 			}
 		}
+
 
 
 		System.out.println("Running soot packs");

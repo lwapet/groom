@@ -29,8 +29,12 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 		Stmt stmt = (Stmt) unit;
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
-			SootMethod invokedMethod = invokeExpr.getMethod();
-			this.resultHandler(invokedMethod);
+			try {
+				SootMethod invokedMethod = invokeExpr.getMethod();
+				this.resultHandler(invokedMethod);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 
