@@ -10,6 +10,7 @@ import soot.jimple.infoflow.data.SootMethodAndClass;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
 import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
+import soot.jimple.internal.AbstractInvokeExpr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +30,8 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 		Stmt stmt = (Stmt) unit;
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
-			try {
-				SootMethod invokedMethod = invokeExpr.getMethod();
-				this.resultHandler(invokedMethod);
-			} catch (Exception e){
-				e.printStackTrace();
-			}
+			SootMethod invokedMethod = invokeExpr.getMethod();
+			this.resultHandler(invokedMethod);
 		}
 	}
 
@@ -45,7 +42,6 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 
 	@Override
 	public void saveResults() {
-
 
 
 	}

@@ -13,6 +13,8 @@ public class SootSetup {
 
 	public static void initSootInstance(File apk, String outputDirectory, String androidPlatforms) {
 		System.out.println("Init soot instance with apk located at: " + apk.getAbsolutePath());
+		Options.v().set_ignore_resolution_errors(true);
+		Options.v().set_wrong_staticness(Options.wrong_staticness_ignore);
 		Options.v().set_allow_phantom_refs(true);
 		Options.v().set_validate(true);
 		Options.v().set_src_prec(Options.src_prec_apk);
