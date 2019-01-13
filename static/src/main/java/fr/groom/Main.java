@@ -247,10 +247,9 @@ public class Main {
 			app.setFinalApk(signed);
 		}
 
+		FileUtils.copyFileToDynamicRepository(app.getFinalApk());
 
 		deleteDir(TEMP_DIRECTORY);
-
-		FileUtils.copyFileToDynamicRepository(app.getFinalApk());
 
 		JSONObject updateFilter = new JSONObject();
 		updateFilter.put("sha256", app.getSha256());
