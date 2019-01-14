@@ -38,9 +38,7 @@ public class Database implements Storage {
 			);
 		}
 
-
 		this.mongoDatabase = this.mongoClient.getDatabase(databaseName);
-		System.out.println("Connected to database: " + this.mongoDatabase.getName());
 	}
 
 	public MongoDatabase getDatabase() {
