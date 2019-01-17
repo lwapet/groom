@@ -65,7 +65,7 @@ public class DatabaseApkSelector implements ApkSelector {
 		ArrayList<App> apps = new ArrayList<>();
 		String filePath = "";
 		App app = new App(
-				new File("/Users/lgitzing/Development/work/webview_unit_tests/webview_getcontacts/app/build/outputs/apk/debug/app-debug.apk"),
+				new File("/Users/lgitzing/Development/work/Groom/static/instrumented/app-debug-soot-aligned-signed.apk"),
 		"com.asap.inria.webview_getcontacts",
 		".MainActivity",
 		""

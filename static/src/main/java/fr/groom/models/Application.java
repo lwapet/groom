@@ -3,6 +3,7 @@ package fr.groom.models;
 import fr.groom.Configuration;
 import fr.groom.ResourceFileParser;
 import fr.groom.utils.FileUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 import soot.Scene;
@@ -31,6 +32,7 @@ public class Application {
 	private int minAPILevel;
 	private int targetSdkVersion;
 	private HashMap<String, byte[]> assets;
+	private HashSet<String> abis;
 	private Set<String> permissions;
 	private String packageName;
 	private SootClass mainActivity;
@@ -64,6 +66,7 @@ public class Application {
 		this.versionName = manifest.getVersionName();
 		this.size = new File(manifest.getApk().getAbsolutePath()).length();
 		this.iconBytes = extractApplicationIcon(manifest);
+		this.abis = getAbis(apk);
 		this.isWebview = false;
 		this.minAPILevel = manifest.getMinSdkVersion();
 		this.targetSdkVersion = manifest.targetSdkVersion();
@@ -372,6 +375,11 @@ public class Application {
 		return null;
 	}
 
+	private static HashSet<String> getAbis(File apk) {
+		ResourceFileParser resourceFileParser = new ResourceFileParser();
+		return resourceFileParser.getAbis(apk.getAbsolutePath());
+	}
+
 	private static HashMap<String, byte[]> extractAssets(String targetApkPath) {
 		String string = "assets/";
 		ResourceFileParser resourceFileParser = new ResourceFileParser();
@@ -400,6 +408,8 @@ public class Application {
 		jo.put("version_name", versionName);
 		jo.put("size", size);
 		jo.put("icon", iconBytes);
+		JSONArray abis = new JSONArray(this.abis);
+		jo.put("abis", abis);
 		jo.put("is_webview", isWebview);
 		jo.put("is_malicious", isMalicious);
 		jo.put("min_api_level", minAPILevel);

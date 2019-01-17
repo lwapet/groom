@@ -5,10 +5,7 @@ import soot.jimple.infoflow.android.resources.IResourceHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ResourceFileParser extends AbstractResourceParser {
 	public byte[] getAppIcon(final String fileName, Set<String> filters) {
@@ -54,5 +51,27 @@ public class ResourceFileParser extends AbstractResourceParser {
 			}
 		});
 		return assets;
+	}
+
+	public HashSet<String> getAbis(final String fileName) {
+		HashSet<String> abis = new HashSet<>();
+		HashSet<String> filters = new HashSet<>();
+		filters.add("lib/armeabi-v7a");
+		filters.add("x86");
+		filters.add("arm64-v8a");
+		filters.add("armeabi");
+		filters.add("arm64");
+		filters.add("x86_64");
+		handleAndroidResourceFiles(fileName, filters, new IResourceHandler() {
+			@Override
+			public void handleResourceFile(String fileName, Set<String> fileNameFilter, InputStream stream) {
+				for(String filter: fileNameFilter) {
+					if (fileName.contains(filter)) {
+						abis.add(filter.replace("/lib", ""));
+					}
+				}
+			}
+		});
+		return abis;
 	}
 }

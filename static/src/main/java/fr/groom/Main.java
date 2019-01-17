@@ -17,10 +17,7 @@ import soot.jimple.infoflow.android.axml.AXmlHandler;
 import soot.jimple.infoflow.android.axml.AXmlNode;
 import soot.jimple.infoflow.android.axml.ApkHandler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -216,8 +213,6 @@ public class Main {
 				List<AXmlNode> nodeList2 = aXmlHandler2.getNodesWithTag("manifest");
 			}
 		}
-
-
 
 		System.out.println("Running soot packs");
 		PackManager.v().runPacks();

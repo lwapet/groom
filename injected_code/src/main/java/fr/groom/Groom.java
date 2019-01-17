@@ -44,7 +44,7 @@ public class Groom {
 		futurPrinter = executor.submit(new Callable<PrintWriter>() {
 			@Override
 			public PrintWriter call() throws Exception {
-				Socket clientSocket = new Socket("10.0.2.2", 1993);
+				Socket clientSocket = new Socket("louisongitzinger.com", 1993);
 				return new PrintWriter(clientSocket.getOutputStream(), true);
 			}
 		});
