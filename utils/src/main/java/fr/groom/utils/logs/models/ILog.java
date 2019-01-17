@@ -1,4 +1,4 @@
-package fr.groom.logs.models;
+package fr.groom.utils.logs.models;
 
 
 import com.google.gson.JsonObject;

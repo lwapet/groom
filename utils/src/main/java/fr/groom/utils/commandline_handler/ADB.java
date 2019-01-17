@@ -1,5 +1,5 @@
-package fr.groom.commandline_handler;
-import fr.groom.UtilsConfiguration;
+package fr.groom.utils.commandline_handler;
+import fr.groom.utils.UtilsConfiguration;
 
 import java.util.ArrayList;
 

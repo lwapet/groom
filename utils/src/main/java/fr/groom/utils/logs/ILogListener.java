@@ -1,6 +1,6 @@
-package fr.groom.logs;
+package fr.groom.utils.logs;
 
-import fr.groom.logs.models.ILog;
+import fr.groom.utils.logs.models.ILog;
 
 public interface ILogListener {
 	public void onNewLog(ILog log);

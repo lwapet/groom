@@ -1,4 +1,4 @@
-package fr.groom.logs;
+package fr.groom.utils.logs;
 
 public enum HookConstant {
 	MAIN_PATTERN("HOOK#"),

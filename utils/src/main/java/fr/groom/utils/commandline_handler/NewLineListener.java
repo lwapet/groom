@@ -1,4 +1,4 @@
-package fr.groom.commandline_handler;
+package fr.groom.utils.commandline_handler;
 
 public interface NewLineListener {
 	public void handleInputLine(String line);

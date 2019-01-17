@@ -1,4 +1,4 @@
-package fr.groom.logs.models;
+package fr.groom.utils.logs.models;
 
 public enum LayoutParamsFlags {
 	FLAG_ALLOW_LOCK_WHILE_SCREEN_ON("0x00000001"),

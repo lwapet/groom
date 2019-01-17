@@ -1,4 +1,4 @@
-package fr.groom.commandline_handler;
+package fr.groom.utils.commandline_handler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

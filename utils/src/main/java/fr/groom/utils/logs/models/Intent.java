@@ -1,9 +1,8 @@
-package fr.groom.logs.models;
+package fr.groom.utils.logs.models;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import javafx.util.Pair;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -15,14 +14,14 @@ public class Intent {
 	private static final String CATEGORY_KEY = "cat";
 	private static final String FLAG_KEY = "flg";
 	private static final String BOUNDS_KEY = "bnds";
-	private static List<Pair<String, Pattern>> REGEX_PATTERNS = new ArrayList<>();
+	private static HashMap<String, Pattern> REGEX_PATTERNS = new HashMap<>();
 
 	static {
-		REGEX_PATTERNS.add(new Pair<>(ACTION_KEY, Pattern.compile(ACTION_KEY + "=(.*?) ")));
-		REGEX_PATTERNS.add(new Pair<>(COMPONENT_KEY, Pattern.compile(COMPONENT_KEY + "=(.*?) ")));
-		REGEX_PATTERNS.add(new Pair<>(CATEGORY_KEY, Pattern.compile(CATEGORY_KEY + "=(.*?) ")));
-		REGEX_PATTERNS.add(new Pair<>(FLAG_KEY, Pattern.compile(FLAG_KEY + "=(.*?) ")));
-		REGEX_PATTERNS.add(new Pair<>(BOUNDS_KEY, Pattern.compile(BOUNDS_KEY + "=(.*?) ")));
+		REGEX_PATTERNS.put(ACTION_KEY, Pattern.compile(ACTION_KEY + "=(.*?) "));
+		REGEX_PATTERNS.put(COMPONENT_KEY, Pattern.compile(COMPONENT_KEY + "=(.*?) "));
+		REGEX_PATTERNS.put(CATEGORY_KEY, Pattern.compile(CATEGORY_KEY + "=(.*?) "));
+		REGEX_PATTERNS.put(FLAG_KEY, Pattern.compile(FLAG_KEY + "=(.*?) "));
+		REGEX_PATTERNS.put(BOUNDS_KEY, Pattern.compile(BOUNDS_KEY + "=(.*?) "));
 	}
 
 	private String action;
@@ -81,14 +80,14 @@ public class Intent {
 		}
 	}
 
-	Intent(String intentString) {
-		REGEX_PATTERNS.forEach(pattern -> {
-			Matcher matcher = pattern.getValue().matcher(intentString);
-			if (matcher.find()) {
-				storeValue(pattern.getKey(), matcher.group(1));
-			}
-		});
-	}
+//	Intent(String intentString) {
+//		REGEX_PATTERNS.forEach(pattern -> {
+//			Matcher matcher = pattern.getValue().matcher(intentString);
+//			if (matcher.find()) {
+//				storeValue(pattern.getKey(), matcher.group(1));
+//			}
+//		});
+//	}
 
 	private void storeValue(String key, String value) {
 		switch (key) {

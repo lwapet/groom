@@ -1,4 +1,4 @@
-package fr.groom.logs.models;
+package fr.groom.utils.logs.models;
 
 public enum IntentFlags {
 	FLAG_GRANT_READ_URI_PERMISSION("0x00000001"),

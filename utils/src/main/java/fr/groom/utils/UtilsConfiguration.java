@@ -1,4 +1,4 @@
-package fr.groom;
+package fr.groom.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

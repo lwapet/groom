@@ -1,20 +1,16 @@
-package fr.groom.logs.models;
+package fr.groom.utils.logs.models;
 
 import com.google.gson.*;
-import fr.groom.logs.HookConstant;
-import models.Switch;
-import models.Switchable;
+import fr.groom.utils.logs.HookConstant;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.UUID;
 import java.util.regex.Matcher;
