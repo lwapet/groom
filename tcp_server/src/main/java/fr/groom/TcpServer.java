@@ -1,7 +1,7 @@
 package fr.groom;
 
-import fr.groom.commandline_handler.NewLineListener;
-import fr.groom.commandline_handler.SimplePrintLineListener;
+
+import fr.groom.utils.commandline_handler.NewLineListener;
 
 import java.io.IOException;
 import java.net.ServerSocket;

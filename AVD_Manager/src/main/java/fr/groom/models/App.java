@@ -7,16 +7,16 @@ import java.nio.file.Paths;
 
 public class App {
 	private static String pathToRepo = AVDConfiguration.pathToInstrumentedApkDirectory;
-	private String fileName;
 	private File apk;
 	private String packageName;
 	private String mainActivity;
+	private String sha256;
 
-	public App(String fileName, String packageName, String mainActivity) {
-		this.fileName = fileName;
-		this.apk = Paths.get(pathToRepo, fileName).toFile();
+	public App(File apk, String packageName, String mainActivity, String sha256) {
+		this.apk = apk;
 		this.packageName = packageName;
 		this.mainActivity = mainActivity;
+		this.sha256 = sha256;
 	}
 
 	public File getApk() {
@@ -29,5 +29,9 @@ public class App {
 
 	public String getMainActivity() {
 		return mainActivity;
+	}
+
+	public String getSha256() {
+		return sha256;
 	}
 }

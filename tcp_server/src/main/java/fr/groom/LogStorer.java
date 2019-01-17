@@ -1,9 +1,9 @@
 package fr.groom;
 
 import com.google.gson.JsonObject;
-import fr.groom.logs.ILogListener;
-import fr.groom.logs.models.ILog;
 import fr.groom.mongo.Database;
+import fr.groom.utils.logs.ILogListener;
+import fr.groom.utils.logs.models.ILog;
 import org.json.JSONObject;
 
 public class LogStorer implements ILogListener {

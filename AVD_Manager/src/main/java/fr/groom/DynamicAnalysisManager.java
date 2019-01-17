@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class DynamicAnalysisManager extends EmulatorPoolEventListener {
+public class DynamicAnalysisManager {
 	EmulatorPool pool;
 	Queue<App> apps;
 
@@ -15,23 +15,21 @@ public class DynamicAnalysisManager extends EmulatorPoolEventListener {
 		this.apps = new LinkedBlockingQueue<>();
 	}
 
-
-
-	@Override
-	public void onNewIdleEmulator(Emulator emulator) {
+//	@Override
+//	public void onNewIdleEmulator(Emulator emulator) {
 //		System.out.println(emulator.getDevice().getName());
-		App app = apps.poll();
-		if (app != null) {
-			DynamicAnalysis analysis = new DynamicAnalysis(emulator, app);
-			analysis.run();
-		}
-	}
+//		App app = apps.poll();
+//		if (app != null) {
+//			DynamicAnalysis analysis = new DynamicAnalysis(, app);
+//			analysis.run();
+//		}
+//	}
 
-	public void addApp(App app) {
-		apps.add(app);
-		ArrayList<Emulator> idleEmulators = pool.getIdleEmulators();
-		if(idleEmulators != null && idleEmulators.size() != 0) {
-			new DynamicAnalysis(idleEmulators.get(0), apps.poll()).run();
-		}
-	}
+//	public void addApp(App app) {
+//		apps.add(app);
+//		ArrayList<Emulator> idleEmulators = pool.getIdleEmulators();
+//		if(idleEmulators != null && idleEmulators.size() != 0) {
+//			new DynamicAnalysis(idleEmulators.get(0), apps.poll()).run();
+//		}
+//	}
 }

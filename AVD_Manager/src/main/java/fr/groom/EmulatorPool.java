@@ -3,6 +3,7 @@ package fr.groom;
 import com.android.ddmlib.AndroidDebugBridge;
 import com.android.ddmlib.EmulatorConsole;
 import com.android.ddmlib.IDevice;
+import com.android.sdklib.devices.Device;
 import com.android.sdklib.internal.avd.AvdInfo;
 import fr.groom.server.EmulatorStatus;
 

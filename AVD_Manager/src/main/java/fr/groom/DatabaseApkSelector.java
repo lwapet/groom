@@ -6,6 +6,8 @@ import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 import org.bson.Document;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DatabaseApkSelector implements ApkSelector {
@@ -20,12 +22,16 @@ public class DatabaseApkSelector implements ApkSelector {
 	private App queryBySha(String sha256) {
 		Document filter = new Document("sha256", sha256);
 		Document app = applicationCollection.find(filter).first();
+		File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, app.getString("file_name")).toFile();
 		return new App(
-				app.getString("file_name"),
+				apk,
 				app.getString("package_name"),
-				app.getString("main_activity")
+				app.getString("main_activity"),
+				app.getString("sha256")
 		);
 	}
+
+//	private ArrayList<App>
 
 	private ArrayList<App> queryUnanalyzedApplications() {
 		ArrayList<String> alreadyAnalyzedSha = new ArrayList<>();
@@ -42,10 +48,12 @@ public class DatabaseApkSelector implements ApkSelector {
 		ArrayList<App> apps = new ArrayList<>();
 		for (Document appData : iterable) {
 			if (appData.getString("file_name") != null) {
+				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("file_name")).toFile();
 				App app = new App(
-						appData.getString("file_name"),
+						apk,
 						appData.getString("package_name"),
-						appData.getString("main_activity")
+						appData.getString("main_activity"),
+						appData.getString("sha256")
 				);
 				apps.add(app);
 			}
@@ -53,11 +61,25 @@ public class DatabaseApkSelector implements ApkSelector {
 		return apps;
 	}
 
+	private ArrayList<App> queryAppFile() {
+		ArrayList<App> apps = new ArrayList<>();
+		String filePath = "";
+		App app = new App(
+				new File("/Users/lgitzing/Development/work/webview_unit_tests/webview_getcontacts/app/build/outputs/apk/debug/app-debug.apk"),
+		"com.asap.inria.webview_getcontacts",
+		".MainActivity",
+		""
+		);
+		apps.add(app);
+		return apps;
+	}
+
 	@Override
 	public ArrayList<App> selectApplications() {
 		ArrayList apps = new ArrayList();
 //		apps.add(queryBySha("99A6F10977132C65F3BCCF946444663960C652AF1B3D47E9158ECE277320AEDE"));
-//		apps.add(queryBySha("D429E31F30BC4F13DB80B4EC0F9195F623FD7303A9BA52B4537B92D75D80C63B"));
+//		apps.add(queryBySha("2AE2156C2CD91A43243C367F473D835B4EBD598040BA1E05EB9B2862F61DFE74"));
+//		apps.addAll(queryAppFile());
 //		return apps;
 		return queryUnanalyzedApplications();
 	}

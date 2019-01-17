@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from multiprocessing import Pool, cpu_count
 from subprocess import run, PIPE
 
+
 _QUANTITY = 5
 _TOTAL_COUNT = 0
 _PATH_TO_JAR = './build/libs/static-0.2.0.jar'

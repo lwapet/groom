@@ -5,10 +5,10 @@ import com.android.ddmlib.logcat.LogCatReceiverTask;
 //import com.android.instantapp.utils.LogcatService;
 //import com.android.sdklib.devices.Device;
 import com.android.sdklib.internal.avd.AvdInfo;
-import fr.groom.commandline_handler.CommandHandler;
-import fr.groom.commandline_handler.NewLineListener;
 import fr.groom.models.App;
 import fr.groom.server.EmulatorStatus;
+import fr.groom.utils.commandline_handler.CommandHandler;
+import fr.groom.utils.commandline_handler.NewLineListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,8 +71,8 @@ public class Emulator {
 		HashSet<IEmulatorEventListener> clone = new HashSet<>(listeners);
 		if (!installReceiver.isSuccessfullyCompleted()) {
 			System.err.println("[install apk output]: Installation error: " + installReceiver.getErrorMessage());
-			setNewStatus(EmulatorStatus.IDLE);
 			clone.forEach(l -> l.onInstallApkFailed(this, installReceiver.getErrorMessage()));
+			setNewStatus(EmulatorStatus.IDLE);
 		} else {
 			System.out.println("[install apk output]: install succeeded for apk: " + apk.getAbsolutePath());
 			clone.forEach(l -> l.onInstallApk(this));
@@ -116,7 +116,7 @@ public class Emulator {
 				@Override
 				public void processNewLines(String[] strings) {
 					for (String string : strings) {
-						System.out.println("[startApp output]: " +string);
+						System.out.println("[startApp output]["+ app.getSha256() + "]: " + string);
 					}
 				}
 

@@ -1,57 +1,62 @@
 package fr.groom;
 
 import com.android.ddmlib.*;
-import fr.groom.Emulator;
-import fr.groom.EmulatorPool;
 import fr.groom.models.App;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
-public class DynamicAnalysis extends EmulatorEventListener {
+public class DynamicAnalysis extends WorkerEventListener {
 	App app;
-	Emulator emulator;
+	IWorker worker;
 	private static int EXECUTION_DURATION = 10 * 1000;
 
-	public DynamicAnalysis(Emulator emulator, App app) {
-		this.emulator = emulator;
-		emulator.addEmulatorEventListener(this);
+	public DynamicAnalysis(IWorker worker, App app) {
+		this.worker = worker;
+		worker.setDynamicAnalysis(this);
 		this.app = app;
 	}
 
 	public void run() {
-			emulator.installApk(app.getApk(), true);
+		worker.installApk(app.getApk(), true);
 	}
 
 	@Override
-	public void onInstallApk(Emulator emulator) {
+	public void onInstallApk(IWorker worker) {
+		worker.startApp(app);
+	}
+
+	@Override
+	public void onStartApk(IWorker worker) {
 		try {
-			emulator.startApp(app);
 			Thread.sleep(EXECUTION_DURATION);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		emulator.uninstallApk(app.getPackageName());
+		worker.uninstallApk(app.getPackageName());
 	}
 
-	@Override
-	public void onUninstallApk(Emulator emulator) {
-		emulator.removeEmulatorEventListener(this);
-	}
+	//	@Override
+//	public void onInstallApkFailed(IWorker worker, String error) {
+//		worker.removeEmulatorEventListener(this);
+//	}
+
+//	@Override
+//	public void onUninstallApk(IWorker worker) {
+//		worker.removeEmulatorEventListener(this);
+//	}
 
 	@Override
-	public void onUninstallApkError(Emulator emulator, String error) {
+	public void onUninstallApkError(IWorker worker, String error) {
 		if (error.equals("DELETE_FAILED_DEVICE_POLICY_MANAGER")) {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("pm ");
 			stringBuilder.append("disable-user ");
 			stringBuilder.append(app.getPackageName());
 			try {
-				emulator.getDevice().executeShellCommand(stringBuilder.toString(), new MultiLineReceiver() {
+				worker.getDevice().executeShellCommand(stringBuilder.toString(), new MultiLineReceiver() {
 					@Override
 					public void processNewLines(String[] lines) {
-						emulator.uninstallApk(app.getPackageName());
+						worker.uninstallApk(app.getPackageName());
 					}
 
 					@Override

@@ -1,8 +1,5 @@
 package fr.groom;
 
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
-import com.mongodb.util.JSON;
-import com.sun.scenario.Settings;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
@@ -30,6 +27,7 @@ import java.util.*;
 
 import static fr.groom.FileUtils.TEMP_DIRECTORY;
 import static fr.groom.FileUtils.deleteDir;
+
 
 public class Main {
 	private static final String HELP_CATCH_PHRASE = "ApkInstrumenter [OPTIONS]";

@@ -1,8 +1,8 @@
 package fr.groom.models;
 
 import fr.groom.Configuration;
-import fr.groom.FileUtils;
 import fr.groom.ResourceFileParser;
+import fr.groom.utils.FileUtils;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 import soot.Scene;

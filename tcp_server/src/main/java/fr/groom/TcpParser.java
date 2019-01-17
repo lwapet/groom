@@ -1,9 +1,10 @@
 package fr.groom;
 
-import fr.groom.commandline_handler.NewLineListener;
-import fr.groom.logs.HookConstant;
-import fr.groom.logs.ILogListener;
-import fr.groom.logs.models.Log;
+
+import fr.groom.utils.commandline_handler.NewLineListener;
+import fr.groom.utils.logs.HookConstant;
+import fr.groom.utils.logs.ILogListener;
+import fr.groom.utils.logs.models.Log;
 
 import java.util.ArrayList;
 

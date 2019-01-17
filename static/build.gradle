@@ -28,23 +28,24 @@ repositories {
         name "soot-snapshot"
         url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot"
     }
-    flatDir {
-        dirs 'libs'
-    }
-
     maven {
         name "soot-release"
         url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release"
     }
     maven { url 'https://jitpack.io' }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
-    compile group: 'ca.mcgill.sable', name: 'soot', version: '3.0.0-SNAPSHOT'
     compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+//    compile group: 'ca.mcgill.sable', name: 'soot', version: '3.2.0'
     compile group: 'org.json', name: 'json', version: '20180813'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta2'
+    compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta2'
     compile project(':database')
     compile project(':utils')
     testCompile group: 'junit', name: 'junit', version: '4.12'

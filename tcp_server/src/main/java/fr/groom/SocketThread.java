@@ -1,6 +1,7 @@
 package fr.groom;
 
-import fr.groom.commandline_handler.NewLineListener;
+
+import fr.groom.utils.commandline_handler.NewLineListener;
 
 import java.io.*;
 import java.net.Socket;
