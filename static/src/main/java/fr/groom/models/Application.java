@@ -414,6 +414,8 @@ public class Application {
 		jo.put("is_malicious", isMalicious);
 		jo.put("min_api_level", minAPILevel);
 		jo.put("target_sdk_version", targetSdkVersion);
+		JSONArray assets = new JSONArray(this.assets.keySet());
+		jo.put("assets", assets);
 //		this.assets.forEach((fileName, fileBytes) -> {
 //			JSONObject fileData = new JSONObject();
 //			fileData.put("file_name", fileName);

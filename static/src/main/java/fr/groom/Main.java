@@ -161,6 +161,7 @@ public class Main {
 			FridaInstrumenter fridaInstrumenter = new FridaInstrumenter();
 			fridaInstrumenter.injectFridaStatements(app);
 		}
+		SootInstrumenter sootInstrumenter = null;
 		if (Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			// Prepare constants for instrumentation with Groom
 			HookConstant.PACKAGE_NAME.setValue(app.getPackageName());
@@ -180,7 +181,8 @@ public class Main {
 				}
 			}
 			// Add Soot transformer instrumenter
-			PackManager.v().getPack("wjtp").add(new Transform("wjtp.mainTransformer", new SootInstrumenter(app, staticAnalysis)));
+			sootInstrumenter = new SootInstrumenter(app, staticAnalysis);
+			PackManager.v().getPack("wjtp").add(new Transform("wjtp.mainTransformer", sootInstrumenter));
 		}
 
 		String attr_ns = "http://schemas.android.com/apk/res/android";
@@ -204,7 +206,7 @@ public class Main {
 					apkH.addFilesToApk(Collections.singletonList(newManifest));
 				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException("error when writing new manifest: "+ e);
+					throw new RuntimeException("error when writing new manifest: " + e);
 				}
 				newManifest.delete();
 				app.setManifest(Application.getManifest(app.getLastEditedApk().getAbsolutePath()));
@@ -216,6 +218,19 @@ public class Main {
 
 		System.out.println("Running soot packs");
 		PackManager.v().runPacks();
+
+		if (sootInstrumenter != null) {
+			JSONObject set = new JSONObject();
+			JSONObject instrumentationData = new JSONObject();
+			instrumentationData.put("statement_hooked_count", sootInstrumenter.getStatementHookedCount());
+			instrumentationData.put("method_hooked_count", sootInstrumenter.getMethodHookedCount());
+			instrumentationData.put("unit_seen_count", sootInstrumenter.getUnitSeenCount());
+			set.put("$set", instrumentationData);
+			filter.put("sha256", app.getSha256());
+//		storage.insertData(app.toJson(), "application");
+			storage.update(filter, set, "application");
+		}
+
 
 		if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
 			File modifiedApk = FridaInstrumenter.addSoFiles(app.getLastEditedApk());

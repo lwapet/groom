@@ -1,6 +1,5 @@
 package fr.groom;
 
-import com.google.gson.JsonObject;
 import fr.groom.mongo.Database;
 import fr.groom.utils.logs.ILogListener;
 import fr.groom.utils.logs.models.ILog;

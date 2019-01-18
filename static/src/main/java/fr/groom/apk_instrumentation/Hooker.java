@@ -11,6 +11,7 @@ import java.util.*;
 
 public class Hooker {
 	private Application app;
+	private SootInstrumenter sootInstrumenter;
 	private ArrayList<Unit> hookedUnits;
 	private ArrayList<SootMethod> hookedMethods;
 	static String INTENT_CLASS_NAME = "android.content.Intent";
@@ -34,8 +35,9 @@ public class Hooker {
 	//	private static String STATEMENT_LOG_GROOM_METHOD = "logStatement";
 	private static String GROOM_LOG_METHOD = "log";
 
-	public Hooker(Application app) {
+	public Hooker(Application app, SootInstrumenter sootInstrumenter) {
 		this.app = app;
+		this.sootInstrumenter = sootInstrumenter;
 		this.ACTIVITY_CALLBACKS = new HashSet<>();
 
 		this.app.getComponents().forEach(IComponent::addCallbacks);
@@ -306,6 +308,7 @@ public class Hooker {
 			injectStatements(callback.getSootMethod(), unitsToInject, null);
 			callback.getSootMethod().getActiveBody().validate();
 			System.out.println("Method hooked: " + callback.getSootMethod().getSignature());
+			this.sootInstrumenter.methodHookedCount += 1;
 		});
 	}
 
@@ -430,6 +433,7 @@ public class Hooker {
 		sootMethod.getActiveBody().validate();
 
 		System.out.println("Statement hooked: " + unit.toString());
+		this.sootInstrumenter.statementHookedCount += 1;
 	}
 
 //	void hookMethod(SootMethod sootMethod) {

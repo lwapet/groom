@@ -1,7 +1,6 @@
 package fr.groom;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class TcpServerConfiguration {
@@ -16,7 +15,13 @@ public class TcpServerConfiguration {
 
 	private TcpServerConfiguration() {
 		Properties prop = new Properties();
-		InputStream input = TcpServerConfiguration.class.getClassLoader().getResourceAsStream("tcp-config.properties");
+
+		InputStream input = null;
+		try {
+			input = new FileInputStream(new File("config.properties"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		try {
 			prop.load(input);
 		} catch (IOException e) {

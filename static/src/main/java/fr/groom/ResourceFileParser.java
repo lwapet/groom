@@ -1,8 +1,15 @@
 package fr.groom;
 
+import org.apache.commons.io.IOUtils;
 import soot.jimple.infoflow.android.resources.AbstractResourceParser;
 import soot.jimple.infoflow.android.resources.IResourceHandler;
+import sun.nio.ch.IOUtil;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -16,7 +23,8 @@ public class ResourceFileParser extends AbstractResourceParser {
 			public void handleResourceFile(final String fileName, Set<String> fileNameFilter, InputStream stream) {
 				if (fileNameFilter.contains(fileName)) {
 					try {
-						icons.add(new byte[stream.available()]);
+						byte[] bytes = IOUtils.toByteArray(stream);
+						icons.add(bytes);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -56,7 +64,7 @@ public class ResourceFileParser extends AbstractResourceParser {
 	public HashSet<String> getAbis(final String fileName) {
 		HashSet<String> abis = new HashSet<>();
 		HashSet<String> filters = new HashSet<>();
-		filters.add("lib/armeabi-v7a");
+		filters.add("armeabi-v7a");
 		filters.add("x86");
 		filters.add("arm64-v8a");
 		filters.add("armeabi");
@@ -66,8 +74,9 @@ public class ResourceFileParser extends AbstractResourceParser {
 			@Override
 			public void handleResourceFile(String fileName, Set<String> fileNameFilter, InputStream stream) {
 				for(String filter: fileNameFilter) {
-					if (fileName.contains(filter)) {
-						abis.add(filter.replace("/lib", ""));
+					String path = "lib/" + filter;
+					if (fileName.contains(path)) {
+						abis.add(filter);
 					}
 				}
 			}

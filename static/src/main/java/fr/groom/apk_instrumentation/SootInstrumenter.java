@@ -1,5 +1,7 @@
 package fr.groom.apk_instrumentation;
 
+import fr.groom.Storage;
+import fr.groom.mongo.Database;
 import fr.groom.static_analysis.StaticAnalysis;
 import fr.groom.models.Application;
 import soot.*;
@@ -21,9 +23,12 @@ public class SootInstrumenter extends SceneTransformer {
 			"<android.content.Context: android.content.Intent registerReceiver(android.content.BroadcastReceiver,android.content.IntentFilter)>",
 	};
 	private List<String> methodInvokesToHook = new ArrayList<>();
+	int statementHookedCount;
+	int methodHookedCount;
+	int unitSeenCount;
 
 	public SootInstrumenter(Application app, StaticAnalysis staticAnalysis) {
-		this.hooker = new Hooker(app);
+		this.hooker = new Hooker(app, this);
 		this.staticAnalysis = staticAnalysis;
 	}
 
@@ -101,11 +106,24 @@ public class SootInstrumenter extends SceneTransformer {
 						 uIterator.hasNext(); ) {
 						Unit unit = uIterator.next();
 						handleUnit(sootClass, sootMethod, unit);
+						unitSeenCount += 1;
 					}
 					handleMethod(sootClass, sootMethod);
 				}
 			}
 		}
 		onFinish();
+	}
+
+	public int getStatementHookedCount() {
+		return statementHookedCount;
+	}
+
+	public int getMethodHookedCount() {
+		return methodHookedCount;
+	}
+
+	public int getUnitSeenCount() {
+		return unitSeenCount;
 	}
 }
