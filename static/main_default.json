@@ -1,0 +1,58 @@
+{
+  "targetApk": "",
+  "isMalicious": null,
+  "zipalignPath": "",
+  "apksignerPath": "",
+  "pathToKeystore": "",
+  "keyPassword": "",
+  "categorizedSourcesFile": "required_files/categorized_sources.txt",
+  "categorizedSinksFile": "required_files/categorized_sinks.txt",
+  "performStaticAnalysis": null,
+  "repackageApk": null,
+  "dynamicAnalysisRepository": "",
+  "sootInstrumentationConfiguration": {
+    "instrumentApkWithSoot": null,
+    "groomPath": "required_files/Groom.dex"
+  },
+  "fridaInstrumenterConfiguration": {
+    "instrumentApkWithFrida": null,
+    "fridaLibZipFile": "required_files/lib.zip",
+    "hookActivities": null,
+    "hookReceivers": null,
+    "fridaSoFilesName": "frida-gadget"
+  },
+  "staticAnalysisConfiguration": {
+    "runFlowDroid": null,
+    "flowDroidConfiguration": {
+      "contextSensitive": null,
+      "flowSensitive": null,
+      "ignoreFlowsInSystemPackages": null,
+      "flowDroidInputFiles": {
+        "androidCallbacks": "required_files/AndroidCallbacks.txt",
+        "taintWrapperSource": "required_files/EasyTaintWrapperSource.txt",
+        "sourcesAndSinksFiles": {
+          "categorizedSourcesAndSinks": null,
+          "sourceAndSinksTxtFile": "required_files/SourcesAndSinks.txt",
+          "categorizedSourcesFile": "required_files/catSources_Short.txt",
+          "categorizedSinksFile": "required_files/catSinks_Short.txt"
+        }
+      }
+    }
+  },
+  "sootConfiguration": {
+    "androidPlatforms": "",
+    "outputDirectory": "./sootOutput"
+  },
+  "databaseConfiguration": {
+    "connectToDatabase": null,
+    "name": "",
+    "url": "",
+    "port": 27017,
+    "authenticationConfiguration": {
+      "performAuthentication": null,
+      "authSourceDatabaseName": "",
+      "username": "",
+      "password": ""
+    }
+  }
+}

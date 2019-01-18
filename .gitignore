@@ -47,7 +47,6 @@ gradle-app.setting
 .DS_Store
 *-venv/
 
-static/main.json
 static/sootOutput
 
 /**/.idea/
