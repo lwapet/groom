@@ -3,13 +3,6 @@ package fr.groom;
 import org.apache.commons.io.IOUtils;
 import soot.jimple.infoflow.android.resources.AbstractResourceParser;
 import soot.jimple.infoflow.android.resources.IResourceHandler;
-import sun.nio.ch.IOUtil;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
