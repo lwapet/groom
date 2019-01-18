@@ -25,6 +25,7 @@ import fr.groom.mongo.Database;
 import org.bson.Document;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Main {
 
 	public static void main(String[] args) throws AndroidLocation.AndroidLocationException, IOException {
 		Properties prop = new Properties();
-		InputStream input = Main.class.getClassLoader().getResourceAsStream(CONFIG);
+		InputStream input = new FileInputStream(new File("config.properties"));
 		prop.load(input);
 		AVDConfiguration.setConfig(prop);
 
