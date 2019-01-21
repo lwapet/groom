@@ -116,6 +116,8 @@ public class Main {
 			}
 		}
 
+		Configuration.v().getSootConfiguration().setOutputDirectory(Configuration.v().getSootConfiguration().getOutputDirectory() + "-" + UUID.randomUUID().toString());
+
 
 		loadTargetApk(cmd.getOptionValue(OPTION_APK_FILE)); // Load target apk path from program arguments or config file
 		File tempApk = FileUtils.copyFileToTempDirectory(new File(Configuration.v().getTargetApk())); // copy file to a temp directory
@@ -255,9 +257,10 @@ public class Main {
 			app.setFinalApk(signed);
 		}
 
-		FileUtils.copyFileToDynamicRepository(app.getFinalApk());
+		File instrumentedApkInDynamicDir = FileUtils.copyFileToDynamicRepository(app.getFinalApk());
 
 		deleteDir(TEMP_DIRECTORY);
+		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
 		JSONObject updateFilter = new JSONObject();
 		updateFilter.put("sha256", app.getSha256());
@@ -267,7 +270,7 @@ public class Main {
 		set.put("$set", data);
 		data.put("file_name", app.getFinalApk().getName());
 		storage.update(updateFilter, set, "application");
-		System.out.println("apk_path : " + app.getFinalApk().getAbsolutePath());
+		System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		System.out.println("Intrumentation finished !");
 		if (storage instanceof Database) {
 			Database s = (Database) storage;
