@@ -42,7 +42,9 @@ public abstract class Component implements IComponent, Switchable {
 		if (componentClass.isPhantom()) {
 			return;
 		}
+		List<SootClass> encounteredSuperClasses = new ArrayList<>();
 		SootClass superClass = this.getSootClass().getSuperclass();
+		encounteredSuperClasses.add(superClass);
 		if (superClass.getName().equals("java.lang.Object")) {
 			return;
 		}
@@ -56,6 +58,10 @@ public abstract class Component implements IComponent, Switchable {
 				return;
 			}
 			superClass = superClass.getSuperclass();
+			encounteredSuperClasses.add(superClass);
+		}
+		if(!encounteredSuperClasses.contains(this.superClass)) {
+			return;
 		}
 
 		SootMethod originalCallbackMethod = originalCallback.getSootMethod();
