@@ -49,11 +49,13 @@ public class Application {
 	private boolean isMalicious;
 	private String origin;
 	private String description;
+	private String legacyFilename;
 
 
 	public Application(File apk) {
 		System.out.println("Init Application instance with apk located at:" + apk.getAbsolutePath());
 		this.apk = apk;
+		this.legacyFilename = apk.getName();
 		this.manifest = Application.getManifest(apk.getAbsolutePath());
 		if (!this.apk.exists() || this.manifest == null) {
 			System.err.println("Invalid apk path or no manifest");
@@ -406,6 +408,7 @@ public class Application {
 
 	public JSONObject toJson() {
 		JSONObject jo = new JSONObject();
+		jo.put("legacy_filename", this.legacyFilename);
 		jo.put("sha256", sha256);
 		jo.put("sha1", sha1);
 		jo.put("md5", md5);
