@@ -47,6 +47,8 @@ public class Application {
 	private HashSet<IComponent> components;
 	private boolean isRunning;
 	private boolean isMalicious;
+	private String origin;
+	private String description;
 
 
 	public Application(File apk) {
@@ -60,6 +62,8 @@ public class Application {
 		setLastEditedApk(apk);
 		this.isRunning = false;
 		this.isMalicious = Configuration.v().isIsMalicious();
+		this.origin = Configuration.v().getOrigin();
+		this.description = Configuration.v().getDescription();
 		this.sha256 = FileUtils.createSha256(apk);
 		this.sha1 = FileUtils.createSha1(apk);
 		this.md5 = FileUtils.createMd5(apk);
@@ -412,6 +416,8 @@ public class Application {
 		jo.put("abis", abis);
 		jo.put("is_webview", isWebview);
 		jo.put("is_malicious", isMalicious);
+		jo.put("origin", this.origin);
+		jo.put("description", this.description);
 		jo.put("min_api_level", minAPILevel);
 		jo.put("target_sdk_version", targetSdkVersion);
 		JSONArray assets = new JSONArray(this.assets.keySet());

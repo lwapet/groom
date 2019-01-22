@@ -268,7 +268,8 @@ public class Main {
 		JSONObject data = new JSONObject();
 		JSONObject set = new JSONObject();
 		set.put("$set", data);
-		data.put("file_name", app.getFinalApk().getName());
+		data.put("instrumented_filename", app.getFinalApk().getName());
+		data.put("legacy_filename", new File(Configuration.v().getTargetApk()).getName());
 		storage.update(updateFilter, set, "application");
 		System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		System.out.println("Intrumentation finished !");
