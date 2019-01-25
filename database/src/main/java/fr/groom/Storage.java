@@ -7,5 +7,5 @@ public interface Storage {
 
 	public void update(JSONObject conditions, JSONObject update, String collectionName);
 
-	public void replace(JSONObject conditions, JSONObject update, String collectionName);
+//	public void replace(JSONObject conditions, JSONObject update, String collectionName);
 }

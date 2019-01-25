@@ -6,6 +6,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.UpdateOptions;
 import fr.groom.Storage;
 import org.bson.Document;
 import org.json.JSONObject;
@@ -72,22 +73,26 @@ public class Database implements Storage {
 	@Override
 	public void update(JSONObject conditions, JSONObject update, String collectionName) {
 		try {
-			FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
+			UpdateOptions options = new UpdateOptions();
 			options.upsert(true);
-			this.mongoDatabase.getCollection(collectionName).findOneAndUpdate(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
+//			JSONObject set = new JSONObject();
+//			set.put("$set", update);
+			BasicDBObject set = new BasicDBObject();
+			set.append("$set", BasicDBObject.parse(update.toString()));
+			this.mongoDatabase.getCollection(collectionName).updateOne(Document.parse(conditions.toString()), set, options);
 		} catch (MongoException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public void replace(JSONObject conditions, JSONObject update, String collectionName) {
-		try {
-			FindOneAndReplaceOptions options = new FindOneAndReplaceOptions();
-			options.upsert(true);
-			this.mongoDatabase.getCollection(collectionName).findOneAndReplace(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
-		} catch (MongoException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void replace(JSONObject conditions, JSONObject update, String collectionName) {
+//		try {
+//			FindOneAndReplaceOptions options = new FindOneAndReplaceOptions();
+//			options.upsert(true);
+//			this.mongoDatabase.getCollection(collectionName).findOneAndReplace(Document.parse(conditions.toString()), Document.parse(update.toString()), options);
+//		} catch (MongoException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

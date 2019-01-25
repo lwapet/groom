@@ -35,12 +35,10 @@ public class DumpClassModule extends Module<List<String>> implements IModule {
 	public void saveResults() {
 //		this.dataHandler.updateAnalysis(this.getFinalDocument());
 		JSONObject field = new JSONObject();
-		JSONObject dataUpdate = new JSONObject();
 		field.put(this.storageField, this.data);
-		dataUpdate.put("$set", field);
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
-		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
+		this.storage.update(condition, field, Main.STATIC_COLLECTION);
 	}
 
 	@Override

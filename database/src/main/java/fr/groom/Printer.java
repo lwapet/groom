@@ -18,11 +18,11 @@ public class Printer implements Storage {
 		System.out.println("==== " + collectionName + " update end ====");
 	}
 
-	@Override
-	public void replace(JSONObject update, JSONObject conditions, String collectionName) {
-		System.out.println("==== " + collectionName + " replace start ====");
-		System.out.println(conditions.toString(4));
-		System.out.println(update.toString(4));
-		System.out.println("==== " + collectionName + " replace end ====");
-	}
+//	@Override
+//	public void replace(JSONObject update, JSONObject conditions, String collectionName) {
+//		System.out.println("==== " + collectionName + " replace start ====");
+//		System.out.println(conditions.toString(4));
+//		System.out.println(update.toString(4));
+//		System.out.println("==== " + collectionName + " replace end ====");
+//	}
 }

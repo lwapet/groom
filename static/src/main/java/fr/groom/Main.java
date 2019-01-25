@@ -1,5 +1,6 @@
 package fr.groom;
 
+import com.mongodb.client.model.UpdateOptions;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
@@ -149,7 +150,7 @@ public class Main {
 		JSONObject filter = new JSONObject();
 		filter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
-		storage.replace(filter, app.toJson(), "application");
+		storage.update(filter, app.toJson(), "application");
 
 
 		StaticAnalysis staticAnalysis = null;
@@ -262,15 +263,15 @@ public class Main {
 		deleteDir(TEMP_DIRECTORY);
 		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
-		JSONObject updateFilter = new JSONObject();
-		updateFilter.put("sha256", app.getSha256());
+		if(Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
+			JSONObject updateFilter = new JSONObject();
+			updateFilter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
-		JSONObject data = new JSONObject();
-		JSONObject set = new JSONObject();
-		set.put("$set", data);
-		data.put("instrumented_filename", app.getFinalApk().getName());
-		storage.update(updateFilter, set, "application");
-		System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
+			JSONObject data = new JSONObject();
+			data.put("instrumented_filename", app.getFinalApk().getName());
+			storage.update(updateFilter, data, "application");
+			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
+		}
 		System.out.println("Intrumentation finished !");
 		if (storage instanceof Database) {
 			Database s = (Database) storage;
