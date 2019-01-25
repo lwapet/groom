@@ -38,9 +38,20 @@ public class WorkerPool extends WorkerEventListener implements AndroidDebugBridg
 	@Override
 	public void onIdle(IWorker worker) {
 		App app = apps.poll();
-		if (app == null)
+		if (app == null) {
+			System.out.println("Nor more apks to launch !");
 			return;
-		new DynamicAnalysis(worker, app).run();
+		}
+		if (worker.getDevice().isEmulator()) {
+			while (app != null && !app.isEmulatorCompatible()) {
+				apps.add(app);
+				app = apps.poll();
+			}
+		}
+
+		App finalApp = app;
+		Runnable runnable = () -> new DynamicAnalysis(worker, finalApp).run();
+		new Thread(runnable).start();
 	}
 
 	@Override

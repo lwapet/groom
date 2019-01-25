@@ -4,6 +4,7 @@ import fr.groom.Main;
 import fr.groom.postgres.JDBCDatabase;
 import fr.groom.static_analysis.StaticAnalysis;
 import org.bson.Document;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.*;
 import soot.jimple.InvokeExpr;
@@ -17,11 +18,10 @@ import java.util.*;
  */
 public class DumpProtectedMethods extends Module<List<String>> implements IModule {
 	private String storageField = "protected_methods";
-//	DatabaseConnection databaseConnection;
+	//	DatabaseConnection databaseConnection;
 	int minApiLevel;
 	Set<String> applicationPermissions;
 	Set<String> targetMethods = new HashSet<>();
-	private ArrayList<Document> data = new ArrayList<>();
 	private String[] protectedMethodPatterns = {"com.ti.", "android.", "com.android."};
 	Connection databaseConnection;
 
@@ -50,7 +50,7 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 				"SELECT method.method_name, method.method_arguments, method.method_class, method.return_type FROM method " +
 						"INNER JOIN method_found_in_api ON method.id = method_found_in_api.method_id " +
 						"INNER JOIN api on method_found_in_api.api_id = api.id " +
-						"WHERE api.api_level >= "+ app.getMinAPILevel() + ";";
+						"WHERE api.api_level >= " + app.getMinAPILevel() + ";";
 		try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
 //			preparedStatement.setString(1, sensorType);
 			try (ResultSet rs = preparedStatement.executeQuery()) {
@@ -61,10 +61,10 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 					String returnType = rs.getString("return_type");
 					SootClass sootClass = Scene.v().getSootClass(methodClass);
 					ResultSet argumentSet = methodArguments.getResultSet();
-					String[] nullable = (String[])methodArguments.getArray();
+					String[] nullable = (String[]) methodArguments.getArray();
 					//<android.location.LocationManager: void setTestProviderLocation(java.lang.String,android.location.Location)> (LOCATION_INFORMATION)
 
-					String signature = "<" + methodClass+": " + returnType + " " + methodName + "("+ String.join(",", nullable)+ ")>";
+					String signature = "<" + methodClass + ": " + returnType + " " + methodName + "(" + String.join(",", nullable) + ")>";
 					targetMethods.add(signature);
 //					try {
 //
@@ -83,14 +83,14 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 		}
 	}
 
-		@Override
+	@Override
 	public void executeModule(SootClass sootClass, SootMethod sootMethod, Unit unit) {
 		Stmt stmt = (Stmt) unit;
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
 			SootMethod invokedMethod = invokeExpr.getMethod();
 			if (Arrays.stream(protectedMethodPatterns).anyMatch(p -> invokedMethod.getDeclaringClass().getName().startsWith(p))) {
-				this.resultHandler(sootMethod.getSignature());
+				this.resultHandler(invokedMethod.getSignature());
 			}
 		}
 	}
@@ -102,17 +102,24 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 
 	@Override
 	public void saveResults() {
-
+		JSONObject field = new JSONObject();
+		JSONObject dataUpdate = new JSONObject();
+		JSONArray protectedMethods = new JSONArray(this.data);
+		field.put(this.storageField, protectedMethods);
+		dataUpdate.put("$set", field);
+		JSONObject condition = new JSONObject();
+		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
+		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
 	}
 
 	@Override
 	public void resultHandler(Object result) {
 		String signature = (String) result;
-		if(targetMethods.contains(signature)) {
-			System.out.println("cii");
+		if (targetMethods.contains(signature)) {
+			this.data.add(signature);
 		}
 	}
-
+//
 	//	@Override
 //	public void resultHandler(Object result) {
 //		for (int i = minApiLevel; i <= Application.MAX_API_LEVEL; i++) {
@@ -154,14 +161,8 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 
 	@Override
 	public void onFinish() {
-		JSONObject field = new JSONObject();
-		JSONObject dataUpdate = new JSONObject();
-		field.put(this.storageField, this.data);
-		dataUpdate.put("$set", field);
-		JSONObject condition = new JSONObject();
-		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
-		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
-//		databaseConnection.close();
+		saveResults();
+//
 	}
 
 }

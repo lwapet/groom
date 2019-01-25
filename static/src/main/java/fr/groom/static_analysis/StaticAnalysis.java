@@ -44,6 +44,9 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		setProvider();
 //		IModule module = new DumpProtectedMethods(this);
 //		this.moduleManager.addModule(module);
+		this.moduleManager.addModule(new DumpClassModule(this));
+		this.moduleManager.addModule(new DumpMethodModule(this));
+//		this.moduleManager.addModule(module);
 		if(Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
 			flowDroidResults = flowDroid.run();

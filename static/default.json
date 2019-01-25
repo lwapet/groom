@@ -1,0 +1,60 @@
+{
+  "targetApk": "",
+  "isMalicious": null,
+  "origin": "",
+  "description": "",
+  "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
+  "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
+  "pathToKeystore": "/Users/lgitzing/.android/keystore",
+  "keyPassword": "",
+  "categorizedSourcesFile": "required_files/categorized_sources.txt",
+  "categorizedSinksFile": "required_files/categorized_sinks.txt",
+  "performStaticAnalysis": true,
+  "repackageApk": true,
+  "dynamicAnalysisRepository": "../instrumented_apks",
+  "sootInstrumentationConfiguration": {
+    "instrumentApkWithSoot": false,
+    "groomPath": "required_files/Groom.dex"
+  },
+  "fridaInstrumenterConfiguration": {
+    "instrumentApkWithFrida": true,
+    "fridaLibZipFile": "required_files/lib.zip",
+    "hookActivities": true,
+    "hookReceivers": true,
+    "fridaSoFilesName": "frida-gadget"
+  },
+  "staticAnalysisConfiguration": {
+    "runFlowDroid": false,
+    "flowDroidConfiguration": {
+      "contextSensitive": false,
+      "flowSensitive": true,
+      "ignoreFlowsInSystemPackages": false,
+      "flowDroidInputFiles": {
+        "androidCallbacks": "required_files/AndroidCallbacks.txt",
+        "taintWrapperSource": "required_files/EasyTaintWrapperSource.txt",
+        "sourcesAndSinksFiles": {
+          "categorizedSourcesAndSinks": true,
+          "sourceAndSinksTxtFile": "required_files/SourcesAndSinks.txt",
+          "categorizedSourcesFile": "required_files/catSources_Short.txt",
+          "categorizedSinksFile": "required_files/catSinks_Short.txt"
+        }
+      }
+    }
+  },
+  "sootConfiguration": {
+    "androidPlatforms": "/Users/lgitzing/Development/work/android-platforms",
+    "outputDirectory": "./sootOutput"
+  },
+  "databaseConfiguration": {
+    "connectToDatabase": false,
+    "name": "dynamic",
+    "url": "localhost",
+    "port": 27017,
+    "authenticationConfiguration": {
+      "performAuthentication": false,
+      "authSourceDatabaseName": "admin",
+      "username": "lgitzing",
+      "password": "tout_petit_poney"
+    }
+  }
+}

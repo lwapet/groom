@@ -24,7 +24,7 @@ public class AVDConfiguration {
 		adbPath = prop.getProperty("adb_path");
 		emulatorPath = prop.getProperty("path_to_emulator");
 		pathToInstrumentedApkDirectory = prop.getProperty("path_to_instrumented_apk_directory");
-		poolCount = Integer.parseInt(prop.getProperty("pool_count"));
+//		poolCount = Integer.parseInt(prop.getProperty("pool_count"));
 		apk_quantity = Integer.parseInt(prop.getProperty("apk_quantity"));
 		deviceName = prop.getProperty("device_name");
 		databaseUrl = prop.getProperty("database_url");

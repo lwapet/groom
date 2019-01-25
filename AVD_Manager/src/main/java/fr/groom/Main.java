@@ -1,11 +1,10 @@
 package fr.groom;
 
-import com.android.ddmlib.AndroidDebugBridge;
-import com.android.ddmlib.Client;
-import com.android.ddmlib.DdmPreferences;
-import com.android.ddmlib.IDevice;
+import com.android.ddmlib.*;
 import com.android.prefs.AndroidLocation;
+import com.android.repository.api.LocalPackage;
 import com.android.sdklib.build.ApkBuilder;
+import com.android.sdklib.build.ApkBuilderMain;
 import com.android.sdklib.devices.Abi;
 import com.android.sdklib.devices.Device;
 import com.android.sdklib.devices.DeviceManager;
@@ -57,8 +56,7 @@ public class Main {
 
 		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
 		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
-		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
-
+//		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 
 //		String deviceName = prop.getProperty("device_name");
 //		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
