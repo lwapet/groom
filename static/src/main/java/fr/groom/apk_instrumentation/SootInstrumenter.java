@@ -52,7 +52,6 @@ public class SootInstrumenter extends SceneTransformer {
 	}
 
 	private void onStart() {
-		this.staticAnalysis.updateStatus("code injection started");
 		HashMap<String, String> v1 = new HashMap<>();
 		v1.put(typeKey, "overlay_method");
 		methodsToHook.put("<android.view.ViewManager: void addView(android.view.View,android.view.ViewGroup$LayoutParams)>", v1);
@@ -90,7 +89,6 @@ public class SootInstrumenter extends SceneTransformer {
 
 	private void onFinish() {
 		System.out.println("Finished iteration through all units");
-		this.staticAnalysis.updateStatus("code injection finished");
 		hooker.hookCallbacks();
 	}
 

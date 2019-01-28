@@ -36,6 +36,8 @@ public class Main {
 	public static final String DYNAMIC_COLLECTION = "dynamic";
 	public static final String STATUS_KEY = "status";
 	private final Options options = new Options();
+	private Storage storage;
+	private Application app;
 
 
 	public Main() {
@@ -50,7 +52,13 @@ public class Main {
 		options.addOption(OPTION_APK_FILE, "apkfile", true, "Use the given apk file (overrides config file option 'targetApk')");
 	}
 
-
+	public void updateStatus(String status) {
+		JSONObject filter = new JSONObject();
+		filter.put("sha256", this.app.getSha256());
+		JSONObject data = new JSONObject();
+		data.put(Main.STATUS_KEY, status);
+		this.storage.update(filter, data, Main.STATIC_COLLECTION);
+	}
 
 	private File recompileApk(File apk) {
 		System.out.println("Recompiling apk.");
@@ -132,10 +140,9 @@ public class Main {
 				Configuration.v().getSootConfiguration().getAndroidPlatforms()
 		);
 
-		Storage storage;
 		if (Configuration.v().getDatabaseConfiguration().isConnectToDatabase()) {
 			DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
-			storage = new Database(
+			this.storage = new Database(
 					dbConfig.getUrl(),
 					dbConfig.getPort(),
 					dbConfig.getName(),
@@ -145,15 +152,16 @@ public class Main {
 					dbConfig.getAuthenticationConfiguration().getAuthSourceDatabaseName()
 			);
 		} else {
-			storage = new Printer();
+			this.storage = new Printer();
 		}
 
-		Application app = new Application(tempApk); // init Application object
+
+		this.app = new Application(tempApk); // init Application object
 		JSONObject filter = new JSONObject();
 		filter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
-		storage.update(filter, app.toJson(), "application");
-
+		storage.update(filter, app.toJson(), Main.APPLICATION_COLLECTION);
+		this.updateStatus("started");
 
 
 		StaticAnalysis staticAnalysis = null;
@@ -246,22 +254,22 @@ public class Main {
 			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
 			app.setFinalApk(finalApk);
 		} else {
-			staticAnalysis.updateStatus("repackaging");
+			this.updateStatus("repackaging");
 			File recompiledApk = recompileApk(app.getLastEditedApk());
-			staticAnalysis.updateStatus("repackaged");
+			this.updateStatus("repackaged");
 			app.setSootInstrumentedApk(recompiledApk);
-			staticAnalysis.updateStatus("aligning");
+			this.updateStatus("aligning");
 			File aligned = InstrumenterUtils.alignApk(app.getLastEditedApk(), Configuration.v().getZipalignPath());
-			staticAnalysis.updateStatus("aligned");
+			this.updateStatus("aligned");
 			app.setAlignedApk(aligned);
-			staticAnalysis.updateStatus("signing");
+			this.updateStatus("signing");
 			File signed = InstrumenterUtils.signApk(
 					app.getLastEditedApk(),
 					Configuration.v().getApksignerPath(),
 					Configuration.v().getPathToKeystore(),
 					Configuration.v().getKeyPassword()
 			);
-			staticAnalysis.updateStatus("signed");
+			this.updateStatus("signed");
 			app.setAlignedApk(aligned);
 			app.setSignedApk(signed);
 			app.setFinalApk(signed);
@@ -272,7 +280,7 @@ public class Main {
 		deleteDir(TEMP_DIRECTORY);
 		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
-		if(Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
+		if (Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			JSONObject updateFilter = new JSONObject();
 			updateFilter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
@@ -281,7 +289,7 @@ public class Main {
 			storage.update(updateFilter, data, "application");
 			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		}
-		staticAnalysis.updateStatus("ok");
+		this.updateStatus("ok");
 		System.out.println("Intrumentation finished !");
 		if (storage instanceof Database) {
 			Database s = (Database) storage;
