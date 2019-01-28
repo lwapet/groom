@@ -1,13 +1,10 @@
 package fr.groom.apk_instrumentation;
 
-import fr.groom.Storage;
-import fr.groom.mongo.Database;
-import fr.groom.static_analysis.StaticAnalysis;
 import fr.groom.models.Application;
+import fr.groom.static_analysis.StaticAnalysis;
 import soot.*;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;
-import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
 import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 
@@ -55,6 +52,7 @@ public class SootInstrumenter extends SceneTransformer {
 	}
 
 	private void onStart() {
+		this.staticAnalysis.updateStatus("code injection started");
 		HashMap<String, String> v1 = new HashMap<>();
 		v1.put(typeKey, "overlay_method");
 		methodsToHook.put("<android.view.ViewManager: void addView(android.view.View,android.view.ViewGroup$LayoutParams)>", v1);
@@ -92,6 +90,7 @@ public class SootInstrumenter extends SceneTransformer {
 
 	private void onFinish() {
 		System.out.println("Finished iteration through all units");
+		this.staticAnalysis.updateStatus("code injection finished");
 		hooker.hookCallbacks();
 	}
 

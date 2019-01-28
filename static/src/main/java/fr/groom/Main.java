@@ -50,6 +50,7 @@ public class Main {
 	}
 
 
+
 	private File recompileApk(File apk) {
 		System.out.println("Recompiling apk.");
 		PackManager.v().writeOutput();
@@ -243,16 +244,23 @@ public class Main {
 			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
 			app.setFinalApk(finalApk);
 		} else {
+			staticAnalysis.updateStatus("repackaging");
 			File recompiledApk = recompileApk(app.getLastEditedApk());
+			staticAnalysis.updateStatus("repackaged");
 			app.setSootInstrumentedApk(recompiledApk);
+			staticAnalysis.updateStatus("aligning");
 			File aligned = InstrumenterUtils.alignApk(app.getLastEditedApk(), Configuration.v().getZipalignPath());
+			staticAnalysis.updateStatus("aligned");
 			app.setAlignedApk(aligned);
+			staticAnalysis.updateStatus("signing");
 			File signed = InstrumenterUtils.signApk(
 					app.getLastEditedApk(),
 					Configuration.v().getApksignerPath(),
 					Configuration.v().getPathToKeystore(),
 					Configuration.v().getKeyPassword()
 			);
+			staticAnalysis.updateStatus("signed");
+			app.setAlignedApk(aligned);
 			app.setSignedApk(signed);
 			app.setFinalApk(signed);
 		}
@@ -271,6 +279,7 @@ public class Main {
 			storage.update(updateFilter, data, "application");
 			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		}
+		staticAnalysis.updateStatus("ok");
 		System.out.println("Intrumentation finished !");
 		if (storage instanceof Database) {
 			Database s = (Database) storage;

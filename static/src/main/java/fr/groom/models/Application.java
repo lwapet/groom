@@ -1,6 +1,7 @@
 package fr.groom.models;
 
 import fr.groom.Configuration;
+import fr.groom.Main;
 import fr.groom.ResourceFileParser;
 import fr.groom.utils.FileUtils;
 import org.json.JSONArray;
@@ -425,6 +426,8 @@ public class Application {
 		this.components.forEach(c -> jo.accumulate("components", c.toJson()));
 		return jo;
 	}
+
+
 
 	public void setManifest(ProcessManifest manifest) {
 		this.manifest = manifest;

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
-public class StaticAnalysis extends SceneTransformer implements IAnalysis{
+public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 	private Application app;
 	private Storage storage;
 	private ModuleManager moduleManager;
@@ -31,15 +31,13 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 	private JSONArray flowDroidResults;
 
 
-
-
 	public StaticAnalysis(Application app, Storage storage) {
 		this.app = app;
 		this.storage = storage;
 		this.moduleManager = new ModuleManager();
 		this.sources = new HashSet<>();
 		this.sinks = new HashSet<>();
-		JSONObject data = new JSONObject();
+		this.updateStatus("ongoing");
 		this.executionStartTime = new Timestamp(System.currentTimeMillis());
 		setProvider();
 //		IModule module = new DumpProtectedMethods(this);
@@ -49,7 +47,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		this.moduleManager.addModule(new DumpMethodUnitModule(this));
 		this.moduleManager.addModule(new CheckWebviewModule(this));
 //		this.moduleManager.addModule(module);
-		if(Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
+		if (Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
 			flowDroidResults = flowDroid.run();
 		}
@@ -118,6 +116,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 	private void onFinish() {
 		this.executionEndTime = new Timestamp(System.currentTimeMillis());
 		System.out.println("Finished static analysis.");
+		this.updateStatus("sa_finished");
 		this.storeAnalysis();
 	}
 
@@ -148,6 +147,14 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		}
 		this.moduleManager.getModules().forEach(IModule::onFinish);
 		this.onFinish();
+	}
+
+	public void updateStatus(String status) {
+		JSONObject filter = new JSONObject();
+		filter.put("sha256", this.app.getSha256());
+		JSONObject data = new JSONObject();
+		data.put("sa_status", status);
+		this.storage.update(filter, data, Main.APPLICATION_COLLECTION);
 	}
 
 	@Override
