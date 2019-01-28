@@ -423,6 +423,7 @@ public class Application {
 		jo.put("permissions", permissions);
 		jo.put("package_name", packageName);
 		jo.put("main_activity", this.mainActivity.getName());
+		jo.put(Main.STATUS_KEY, "started");
 		this.components.forEach(c -> jo.accumulate("components", c.toJson()));
 		return jo;
 	}

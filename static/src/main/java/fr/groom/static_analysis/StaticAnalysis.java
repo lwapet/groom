@@ -37,7 +37,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		this.moduleManager = new ModuleManager();
 		this.sources = new HashSet<>();
 		this.sinks = new HashSet<>();
-		this.updateStatus("ongoing");
+		this.updateStatus("ongoing static analysis");
 		this.executionStartTime = new Timestamp(System.currentTimeMillis());
 		setProvider();
 //		IModule module = new DumpProtectedMethods(this);
@@ -116,7 +116,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 	private void onFinish() {
 		this.executionEndTime = new Timestamp(System.currentTimeMillis());
 		System.out.println("Finished static analysis.");
-		this.updateStatus("sa_finished");
+		this.updateStatus("static analysis finished");
 		this.storeAnalysis();
 	}
 
@@ -153,7 +153,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		JSONObject filter = new JSONObject();
 		filter.put("sha256", this.app.getSha256());
 		JSONObject data = new JSONObject();
-		data.put("sa_status", status);
+		data.put(Main.STATUS_KEY, status);
 		this.storage.update(filter, data, Main.APPLICATION_COLLECTION);
 	}
 

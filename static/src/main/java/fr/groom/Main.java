@@ -34,6 +34,7 @@ public class Main {
 	public static final String APPLICATION_COLLECTION = "application";
 	public static final String STATIC_COLLECTION = "static";
 	public static final String DYNAMIC_COLLECTION = "dynamic";
+	public static final String STATUS_KEY = "status";
 	private final Options options = new Options();
 
 
@@ -152,6 +153,7 @@ public class Main {
 		filter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
 		storage.update(filter, app.toJson(), "application");
+
 
 
 		StaticAnalysis staticAnalysis = null;
