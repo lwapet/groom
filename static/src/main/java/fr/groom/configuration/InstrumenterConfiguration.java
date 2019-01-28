@@ -17,8 +17,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "targetApk",
-    "isMalicious",
-    "origin",
     "description",
     "zipalignPath",
     "apksignerPath",
@@ -45,20 +43,6 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("targetApk")
     @JsonPropertyDescription("path to the target apk")
     private String targetApk = "";
-    /**
-     * says if the apk is malicious or not (for training dataset)
-     * 
-     */
-    @JsonProperty("isMalicious")
-    @JsonPropertyDescription("says if the apk is malicious or not (for training dataset)")
-    private boolean isMalicious = false;
-    /**
-     * dataset origin of the apk
-     * 
-     */
-    @JsonProperty("origin")
-    @JsonPropertyDescription("dataset origin of the apk")
-    private String origin = "";
     /**
      * optional description for the apk
      * 
@@ -164,7 +148,7 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("databaseConfiguration")
     @JsonPropertyDescription("database configuration for mongodb instance")
     private DatabaseConfiguration databaseConfiguration;
-    private final static long serialVersionUID = 1160888983276059291L;
+    private final static long serialVersionUID = -3575848035045942338L;
 
     /**
      * No args constructor for use in serialization
@@ -178,8 +162,6 @@ public class InstrumenterConfiguration implements Serializable
      * @param categorizedSinksFile
      * @param zipalignPath
      * @param databaseConfiguration
-     * @param origin
-     * @param isMalicious
      * @param targetApk
      * @param description
      * @param performStaticAnalysis
@@ -194,11 +176,9 @@ public class InstrumenterConfiguration implements Serializable
      * @param dynamicAnalysisRepository
      * @param staticAnalysisConfiguration
      */
-    public InstrumenterConfiguration(String targetApk, boolean isMalicious, String origin, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String dynamicAnalysisRepository, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, DatabaseConfiguration databaseConfiguration) {
+    public InstrumenterConfiguration(String targetApk, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String dynamicAnalysisRepository, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, DatabaseConfiguration databaseConfiguration) {
         super();
         this.targetApk = targetApk;
-        this.isMalicious = isMalicious;
-        this.origin = origin;
         this.description = description;
         this.zipalignPath = zipalignPath;
         this.apksignerPath = apksignerPath;
@@ -232,42 +212,6 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("targetApk")
     public void setTargetApk(String targetApk) {
         this.targetApk = targetApk;
-    }
-
-    /**
-     * says if the apk is malicious or not (for training dataset)
-     * 
-     */
-    @JsonProperty("isMalicious")
-    public boolean isIsMalicious() {
-        return isMalicious;
-    }
-
-    /**
-     * says if the apk is malicious or not (for training dataset)
-     * 
-     */
-    @JsonProperty("isMalicious")
-    public void setIsMalicious(boolean isMalicious) {
-        this.isMalicious = isMalicious;
-    }
-
-    /**
-     * dataset origin of the apk
-     * 
-     */
-    @JsonProperty("origin")
-    public String getOrigin() {
-        return origin;
-    }
-
-    /**
-     * dataset origin of the apk
-     * 
-     */
-    @JsonProperty("origin")
-    public void setOrigin(String origin) {
-        this.origin = origin;
     }
 
     /**
@@ -548,14 +492,6 @@ public class InstrumenterConfiguration implements Serializable
         sb.append('=');
         sb.append(((this.targetApk == null)?"<null>":this.targetApk));
         sb.append(',');
-        sb.append("isMalicious");
-        sb.append('=');
-        sb.append(this.isMalicious);
-        sb.append(',');
-        sb.append("origin");
-        sb.append('=');
-        sb.append(((this.origin == null)?"<null>":this.origin));
-        sb.append(',');
         sb.append("description");
         sb.append('=');
         sb.append(((this.description == null)?"<null>":this.description));
@@ -630,8 +566,6 @@ public class InstrumenterConfiguration implements Serializable
         result = ((result* 31)+((this.categorizedSinksFile == null)? 0 :this.categorizedSinksFile.hashCode()));
         result = ((result* 31)+((this.zipalignPath == null)? 0 :this.zipalignPath.hashCode()));
         result = ((result* 31)+((this.databaseConfiguration == null)? 0 :this.databaseConfiguration.hashCode()));
-        result = ((result* 31)+((this.origin == null)? 0 :this.origin.hashCode()));
-        result = ((result* 31)+(this.isMalicious? 1 : 0));
         result = ((result* 31)+((this.targetApk == null)? 0 :this.targetApk.hashCode()));
         result = ((result* 31)+((this.description == null)? 0 :this.description.hashCode()));
         result = ((result* 31)+(this.performStaticAnalysis? 1 : 0));
@@ -657,7 +591,7 @@ public class InstrumenterConfiguration implements Serializable
             return false;
         }
         InstrumenterConfiguration rhs = ((InstrumenterConfiguration) other);
-        return (((((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.origin == rhs.origin)||((this.origin!= null)&&this.origin.equals(rhs.origin))))&&(this.isMalicious == rhs.isMalicious))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.dynamicAnalysisRepository == rhs.dynamicAnalysisRepository)||((this.dynamicAnalysisRepository!= null)&&this.dynamicAnalysisRepository.equals(rhs.dynamicAnalysisRepository))))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
+        return (((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.dynamicAnalysisRepository == rhs.dynamicAnalysisRepository)||((this.dynamicAnalysisRepository!= null)&&this.dynamicAnalysisRepository.equals(rhs.dynamicAnalysisRepository))))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
     }
 
 }

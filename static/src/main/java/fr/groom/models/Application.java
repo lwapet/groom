@@ -46,8 +46,6 @@ public class Application {
 	private ProcessManifest manifest;
 	private HashSet<IComponent> components;
 	private boolean isRunning;
-	private boolean isMalicious;
-	private String origin;
 	private String description;
 	private String legacyFilename;
 
@@ -63,8 +61,6 @@ public class Application {
 		}
 		setLastEditedApk(apk);
 		this.isRunning = false;
-		this.isMalicious = Configuration.v().isIsMalicious();
-		this.origin = Configuration.v().getOrigin();
 		this.description = Configuration.v().getDescription();
 		this.sha256 = FileUtils.createSha256(apk);
 		this.sha1 = FileUtils.createSha1(apk);
@@ -259,10 +255,6 @@ public class Application {
 		return null;
 	}
 
-	public boolean isMalicious() {
-		return isMalicious;
-	}
-
 	private IntentFilter createIntentFilter(AXmlNode intentFilterNode) {
 		IntentFilter intentFilter = new IntentFilter();
 		for (AXmlNode actionNode : intentFilterNode.getChildrenWithTag("action")) {
@@ -416,8 +408,6 @@ public class Application {
 		jo.put("icon", iconBytes);
 		JSONArray abis = new JSONArray(this.abis);
 		jo.put("abis", abis);
-		jo.put("is_malicious", isMalicious);
-		jo.put("origin", this.origin);
 		jo.put("description", this.description);
 		jo.put("min_api_level", minAPILevel);
 		jo.put("target_sdk_version", targetSdkVersion);

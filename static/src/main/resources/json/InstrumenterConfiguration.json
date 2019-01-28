@@ -9,16 +9,6 @@
       "description": "path to the target apk",
       "default": ""
     },
-    "isMalicious": {
-      "type": "boolean",
-      "description": "says if the apk is malicious or not (for training dataset)",
-      "default": null
-    },
-    "origin": {
-      "type": "string",
-      "description": "dataset origin of the apk",
-      "default": ""
-    },
     "description": {
       "type": "string",
       "description": "optional description for the apk",
