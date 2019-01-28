@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.*;
 import java.util.zip.GZIPOutputStream;
@@ -32,6 +33,9 @@ public class Groom {
 	private static String PACKAGE_NAME;
 	private static String SHA_256;
 	private static String DATA_MARKER;
+	private static String SIGNATURE_KEY = "signature";
+	private static String TYPE_KEY = "type";
+	private static String CATEGORY_KEY = "category";
 	private static Application app;
 	private static PrintWriter out;
 	private static Future<PrintWriter> futurPrinter;
@@ -98,7 +102,7 @@ public class Groom {
 					}
 				}
 				out.println(MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
-				Log.d("GROOM",MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
+				Log.d("GROOM", MAIN_PATTERN + PACKAGE_NAME + "#" + prepareStringForDispatch(data.toString()));
 				return null;
 			}
 		});
@@ -182,12 +186,15 @@ public class Groom {
 		return intentfilterData;
 	}
 
-
-	public static void log(String methodSignature, ArrayList<Object> args, Object object) {
+	public static void log(HashMap incomingData, ArrayList<Object> args, Object object) {
 		JSONObject data = new JSONObject();
 		try {
-			data.put("type", "standard_log");
-			data.put("method_signature", methodSignature);
+			if (incomingData.containsKey(SIGNATURE_KEY))
+				data.put("method_signature", incomingData.get(SIGNATURE_KEY));
+			if (incomingData.containsKey(TYPE_KEY))
+				data.put("type", incomingData.get(TYPE_KEY));
+			if (incomingData.containsKey(CATEGORY_KEY))
+				data.put("type", incomingData.get(CATEGORY_KEY));
 			data.put("timestamp", System.currentTimeMillis());
 			JSONArray argumentDataArray = new JSONArray();
 			for (Object arg : args) {
@@ -255,6 +262,80 @@ public class Groom {
 		}
 		sendData(data);
 	}
+
+//	public static void log(String methodSignature, String information, ArrayList<Object> args, Object object) {
+//		JSONObject data = new JSONObject();
+//		try {
+//			data.put("type", "standard_log");
+//			data.put("method_signature", methodSignature);
+//			data.put("information", information);
+//			data.put("timestamp", System.currentTimeMillis());
+//			JSONArray argumentDataArray = new JSONArray();
+//			for (Object arg : args) {
+//				JSONObject argumentData = new JSONObject();
+//				Object type;
+//				Object value;
+//				if (arg == null) {
+//					type = JSONObject.NULL;
+//				} else {
+//					type = arg.getClass().getCanonicalName();
+//				}
+//				if (arg == null) {
+//					value = JSONObject.NULL;
+//				} else if (arg instanceof WindowManager.LayoutParams) {
+//					value = parseLayoutParams((WindowManager.LayoutParams) arg);
+//				} else if (arg instanceof Intent) {
+//					JSONObject parsedIntent = null;
+//					Intent intent = (Intent) arg;
+//					if (intent.getStringExtra("UUID") == null) {
+//						intent.putExtra("UUID", UUID.randomUUID().toString());
+//					}
+//					try {
+//						parsedIntent = parseIntent(intent);
+//					} catch (JSONException e) {
+//						e.printStackTrace();
+//					}
+//					value = parsedIntent;
+//				} else if (arg instanceof BroadcastReceiver) {
+//					BroadcastReceiver broadcastReceiver = (BroadcastReceiver) arg;
+//					JSONObject broadcastReceiverData = new JSONObject();
+//					broadcastReceiverData.put("receiver_class", broadcastReceiver.getClass().getCanonicalName());
+//					value = broadcastReceiverData;
+//				} else if (arg instanceof IntentFilter) {
+//					IntentFilter intentFilter = (IntentFilter) arg;
+//					value = parseIntentFilter(intentFilter);
+////				} else if (arg instanceof View) {
+////					View view = (View) arg;
+////					WindowManager windowManager = (WindowManager) app.getApplicationContext().getSystemService("window");
+////
+////					DisplayMetrics displayMetrics = new DisplayMetrics();
+////					windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
+////					view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+////					Log.d("TEST OBS", String.valueOf(view.getMeasuredWidth()));
+////					Log.d("TEST OBS", String.valueOf(view.getMeasuredHeight()));
+////
+//				} else if (arg instanceof byte[]) {
+//					byte[] bytes = (byte[]) arg;
+//					value = new String(bytes);
+//				} else {
+//					value = arg.toString();
+//				}
+//				argumentData.put("type", type);
+//				argumentData.put("value", value);
+//				argumentDataArray.put(argumentData);
+//			}
+//			data.put("arguments", argumentDataArray);
+//			data.put("stack_trace", getStackTrace());
+//			if (object != null) {
+//				data.put("hash_code", object.hashCode());
+//			} else {
+//				data.put("hash_code", 0);
+//			}
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
+//		sendData(data);
+//	}
 
 
 	public static void logReflectionInvoke(Method method, Object invokingClass, Object[] args) {

@@ -6,6 +6,8 @@ import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
 import soot.toolkits.graph.CompleteUnitGraph;
 import soot.toolkits.scalar.SimpleLocalDefs;
+import soot.util.Chain;
+import soot.util.HashChain;
 
 import java.util.*;
 
@@ -54,7 +56,7 @@ public class Hooker {
 	}
 
 	public void hookCallbacks() {
-		this.app.getComponents().forEach(this::hook);
+		this.app.getComponents().forEach(this::hookComponentCallbacks);
 	}
 
 	void hook(SootMethod sootMethod, Unit unit, InvokeExpr invokeExpr) {
@@ -225,12 +227,12 @@ public class Hooker {
 		sootMethod.getActiveBody().getUnits().insertBefore(unitsToInsert, insertPosition);
 	}
 
-	void hook(IComponent component) {
+	void hookComponentCallbacks(IComponent component) {
 		component.getCallbacks().forEach(callback -> {
 			List<Unit> unitsToInject = new ArrayList<>();
 			List<Value> groomLogArguments = new ArrayList<>();
 			Body body = callback.getSootMethod().retrieveActiveBody();
-			groomLogArguments.add(StringConstant.v(callback.getSootMethod().getSignature()));
+//			groomLogArguments.add(StringConstant.v(callback.getSootMethod().getSignature()));
 			SootClass arrayListClass = Scene.v().getSootClass("java.util.ArrayList");
 			NewExpr newArrayListExpr = Jimple.v().newNewExpr(RefType.v(arrayListClass));
 			LocalGenerator localGenerator = new LocalGenerator(body);
@@ -297,7 +299,39 @@ public class Hooker {
 				unitsToInject.add(invokeStmt);
 			}
 
+//			groomLogArguments.add(arrayRefLocal);
+
+			SootClass hashMapClass = Scene.v().getSootClass("java.util.HashMap");
+			NewExpr newHashMapExpr = Jimple.v().newNewExpr(RefType.v(hashMapClass));
+			Local hashMapRefLocal = localGenerator.generateLocal(newHashMapExpr.getType());
+			AssignStmt newHashMapAssignStmt = Jimple.v().newAssignStmt(hashMapRefLocal, newHashMapExpr);
+			unitsToInject.add(newHashMapAssignStmt);
+
+			SootMethod hashMapInit = hashMapClass.getMethod(SootMethod.constructorName, Collections.EMPTY_LIST);
+			SpecialInvokeExpr hashMapInitExpr = Jimple.v().newSpecialInvokeExpr(hashMapRefLocal, hashMapInit.makeRef());
+			unitsToInject.add(Jimple.v().newInvokeStmt(hashMapInitExpr));
+
+			List<Type> hashMapAddArguments = new ArrayList<>();
+			hashMapAddArguments.add(OBJECT_TYPE);
+			hashMapAddArguments.add(OBJECT_TYPE);
+			SootMethod hashMapPut = hashMapClass.getMethod("put", hashMapAddArguments);
+
+			HashMap<String, String> data = new HashMap<>();
+			data.put("signature", callback.getSootMethod().getSignature());
+			data.put("type", "component_callback");
+			data.forEach((s, v) -> {
+				List<Value> hashMapArgs = new ArrayList<>();
+				hashMapArgs.add(StringConstant.v(s));
+				hashMapArgs.add(StringConstant.v(v));
+
+				VirtualInvokeExpr virtualInvokeExpr = Jimple.v().newVirtualInvokeExpr(hashMapRefLocal, hashMapPut.makeRef(), hashMapArgs);
+				InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(virtualInvokeExpr);
+				unitsToInject.add(invokeStmt);
+			});
+
+			groomLogArguments.add(hashMapRefLocal);
 			groomLogArguments.add(arrayRefLocal);
+
 			Local thisLocal = body.getThisLocal();
 			groomLogArguments.add(thisLocal);
 
@@ -307,8 +341,10 @@ public class Hooker {
 			unitsToInject.add(groomLogStmt);
 			injectStatements(callback.getSootMethod(), unitsToInject, null);
 			callback.getSootMethod().getActiveBody().validate();
-			System.out.println("Method hooked: " + callback.getSootMethod().getSignature());
-			this.sootInstrumenter.methodHookedCount += 1;
+			System.out.println("Component callback hooked: " + callback.getSootMethod().getSignature());
+			this.sootInstrumenter.injectedUnits.addAll(unitsToInject);
+			this.sootInstrumenter.injectedUnitsCount += unitsToInject.size();
+			this.sootInstrumenter.statementHookedCount += 1;
 		});
 	}
 
@@ -368,7 +404,7 @@ public class Hooker {
 //		System.out.println("method hooked" + invokeExpr.getMethod().getSignature());
 //	}
 
-	public void hookInvokeExpr(SootMethod sootMethod, Unit unit, InvokeExpr invokeExpr) {
+	public void hookInvokeExpr(SootMethod sootMethod, Unit unit, InvokeExpr invokeExpr, String information) {
 		if (!sootMethod.hasActiveBody()) {
 			sootMethod.retrieveActiveBody();
 		}
@@ -409,6 +445,7 @@ public class Hooker {
 			unitsToInject.add(invokeStmt);
 		}
 		groomLogArguments.add(StringConstant.v(invokeExpr.getMethod().getSignature()));
+		groomLogArguments.add(StringConstant.v(information));
 		groomLogArguments.add(arrayRefLocal);
 		Value thisValue;
 		if (!sootMethod.isStatic()) {
@@ -434,6 +471,111 @@ public class Hooker {
 
 		System.out.println("Statement hooked: " + unit.toString());
 		this.sootInstrumenter.statementHookedCount += 1;
+	}
+
+	public void hookExpression(SootMethod sootMethod, Unit unit, InvokeExpr invokeExpr, HashMap<String, String> data) {
+		if (!sootMethod.hasActiveBody()) {
+			sootMethod.retrieveActiveBody();
+		}
+		SootClass arrayListClass = Scene.v().getSootClass("java.util.ArrayList");
+		List<Unit> unitsToInject = new ArrayList<>();
+		List<Value> groomLogArguments = new ArrayList<>();
+		Body body = sootMethod.getActiveBody();
+
+
+		NewExpr newArrayListExpr = Jimple.v().newNewExpr(RefType.v(arrayListClass));
+		LocalGenerator localGenerator = new LocalGenerator(body);
+		Local arrayRefLocal = localGenerator.generateLocal(newArrayListExpr.getType());
+		AssignStmt newArrayAssignStmt = Jimple.v().newAssignStmt(arrayRefLocal, newArrayListExpr);
+		unitsToInject.add(newArrayAssignStmt);
+
+		SootMethod arrayListInit = arrayListClass.getMethod(SootMethod.constructorName, Collections.emptyList());
+		SpecialInvokeExpr initExpr = Jimple.v().newSpecialInvokeExpr(arrayRefLocal, arrayListInit.makeRef());
+		unitsToInject.add(Jimple.v().newInvokeStmt(initExpr));
+
+		List<Type> arrayListAddArguments = new ArrayList<>();
+		arrayListAddArguments.add(OBJECT_TYPE);
+		SootMethod arrayListAdd = arrayListClass.getMethod("add", arrayListAddArguments);
+		List<Value> methodArguments;
+		for (Value arg : invokeExpr.getArgs()) {
+//				CastExpr castExpr = Jimple.v().newCastExpr(local, OBJECT_TYPE);
+			Value localToPush = arg;
+			if (arg.getType() instanceof PrimType) {
+				PrimType primType = (PrimType) arg.getType();
+				localToPush = localGenerator.generateLocal(primType.boxedType());
+				SootClass boxedClass = Scene.v().getSootClass(primType.boxedType().getClassName());
+				SootMethod boxedInit = boxedClass.getMethod("valueOf", Collections.singletonList(primType));
+				StaticInvokeExpr staticInvokeExpr = Jimple.v().newStaticInvokeExpr(boxedInit.makeRef(), Collections.singletonList(arg));
+				AssignStmt assignStmt = Jimple.v().newAssignStmt(localToPush, staticInvokeExpr);
+				unitsToInject.add(assignStmt);
+			}
+
+			VirtualInvokeExpr virtualInvokeExpr = Jimple.v().newVirtualInvokeExpr(arrayRefLocal, arrayListAdd.makeRef(), Collections.singletonList(localToPush));
+			InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(virtualInvokeExpr);
+			unitsToInject.add(invokeStmt);
+		}
+
+		SootClass hashMapClass = Scene.v().getSootClass("java.util.HashMap");
+		NewExpr newHashMapExpr = Jimple.v().newNewExpr(RefType.v(hashMapClass));
+		Local hashMapRefLocal = localGenerator.generateLocal(newHashMapExpr.getType());
+		AssignStmt newHashMapAssignStmt = Jimple.v().newAssignStmt(hashMapRefLocal, newHashMapExpr);
+		unitsToInject.add(newHashMapAssignStmt);
+
+		SootMethod hashMapInit = hashMapClass.getMethod(SootMethod.constructorName, Collections.EMPTY_LIST);
+		SpecialInvokeExpr hashMapInitExpr = Jimple.v().newSpecialInvokeExpr(hashMapRefLocal, hashMapInit.makeRef());
+		unitsToInject.add(Jimple.v().newInvokeStmt(hashMapInitExpr));
+
+		List<Type> hashMapAddArguments = new ArrayList<>();
+		hashMapAddArguments.add(OBJECT_TYPE);
+		hashMapAddArguments.add(OBJECT_TYPE);
+		SootMethod hashMapPut = hashMapClass.getMethod("put", hashMapAddArguments);
+
+		data.forEach((s, v) -> {
+			List<Value> hashMapArgs = new ArrayList<>();
+			if (s != null) {
+				hashMapArgs.add(StringConstant.v(s));
+				if (v == null) {
+					hashMapArgs.add(NullConstant.v());
+				} else {
+					hashMapArgs.add(StringConstant.v(v));
+				}
+			}
+
+			VirtualInvokeExpr virtualInvokeExpr = Jimple.v().newVirtualInvokeExpr(hashMapRefLocal, hashMapPut.makeRef(), hashMapArgs);
+			InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(virtualInvokeExpr);
+			unitsToInject.add(invokeStmt);
+		});
+
+		groomLogArguments.add(hashMapRefLocal);
+		groomLogArguments.add(arrayRefLocal);
+
+		Value thisValue;
+		if (!sootMethod.isStatic()) {
+			thisValue = body.getThisLocal();
+			if (invokeExpr.getMethod().isConstructor() && invokeExpr instanceof InstanceInvokeExpr) {
+				InstanceInvokeExpr instanceInvokeExpr = (InstanceInvokeExpr) invokeExpr;
+				Value base = instanceInvokeExpr.getBase();
+				if (instanceInvokeExpr.getMethod().isConstructor() && base.equals(thisValue)) {
+					thisValue = NullConstant.v();
+				}
+			}
+		} else {
+			thisValue = NullConstant.v();
+		}
+		groomLogArguments.add(thisValue);
+
+		SootMethod groomLog = GROOM.getMethodByName(GROOM_LOG_METHOD);
+		InvokeExpr groomLogExpr = Jimple.v().newStaticInvokeExpr(groomLog.makeRef(), groomLogArguments);
+		InvokeStmt groomLogStmt = Jimple.v().newInvokeStmt(groomLogExpr);
+		unitsToInject.add(groomLogStmt);
+		injectStatements(sootMethod, unitsToInject, unit);
+		sootMethod.getActiveBody().validate();
+
+		this.sootInstrumenter.injectedUnits.addAll(unitsToInject);
+		System.out.println("Statement hooked: " + unit.toString());
+		this.sootInstrumenter.injectedUnitsCount += unitsToInject.size();
+		this.sootInstrumenter.statementHookedCount += 1;
+
 	}
 
 //	void hookMethod(SootMethod sootMethod) {

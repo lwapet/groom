@@ -226,12 +226,11 @@ public class Main {
 			JSONObject set = new JSONObject();
 			JSONObject instrumentationData = new JSONObject();
 			instrumentationData.put("statement_hooked_count", sootInstrumenter.getStatementHookedCount());
-			instrumentationData.put("method_hooked_count", sootInstrumenter.getMethodHookedCount());
+			instrumentationData.put("injected_units_count", sootInstrumenter.getInjectedUnitsCount());
 			instrumentationData.put("unit_seen_count", sootInstrumenter.getUnitSeenCount());
-			set.put("$set", instrumentationData);
 			filter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
-			storage.update(filter, set, "application");
+			storage.update(filter, instrumentationData, "application");
 		}
 
 

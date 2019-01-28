@@ -73,7 +73,6 @@ public class Application {
 		this.size = new File(manifest.getApk().getAbsolutePath()).length();
 		this.iconBytes = extractApplicationIcon(manifest);
 		this.abis = getAbis(apk);
-		this.isWebview = false;
 		this.minAPILevel = manifest.getMinSdkVersion();
 		this.targetSdkVersion = manifest.targetSdkVersion();
 		this.permissions = manifest.getPermissions();
@@ -417,7 +416,6 @@ public class Application {
 		jo.put("icon", iconBytes);
 		JSONArray abis = new JSONArray(this.abis);
 		jo.put("abis", abis);
-		jo.put("is_webview", isWebview);
 		jo.put("is_malicious", isMalicious);
 		jo.put("origin", this.origin);
 		jo.put("description", this.description);

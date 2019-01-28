@@ -12,17 +12,30 @@ import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 import soot.jimple.internal.AbstractInvokeExpr;
 
+import javax.crypto.Cipher;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>> implements IModule {
 	private ISourceSinkDefinitionProvider provider;
-	private List<String> sources = new ArrayList<>();
-	private List<String> sinks = new ArrayList<>();
+	private HashSet<String> sourceSignatures = new HashSet<>();
+	private HashSet<String> sinkSignatures = new HashSet<>();
 
 	public DumpSourcesAndSinksModule(StaticAnalysis staticAnalysis) {
 		super(new ArrayList<>(), ModuleType.UNITLEVEL, staticAnalysis);
 		this.provider = staticAnalysis.getProvider();
+		for (SourceSinkDefinition def : this.provider.getSources()) {
+			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
+			String signature = methodDef.getMethod().getSignature();
+			this.sourceSignatures.add(signature);
+		}
+		for (SourceSinkDefinition def : this.staticAnalysis.getProvider().getSinks()) {
+			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
+			String signature = methodDef.getMethod().getSignature();
+			this.sinkSignatures.add(signature);
+		}
 	}
 
 	@Override
@@ -49,23 +62,11 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 	@Override
 	public void resultHandler(Object result) {
 		SootMethod invokedMethod = (SootMethod) result;
-		for (SourceSinkDefinition sourceDef : provider.getSources()) {
-			if (sourceDef instanceof MethodSourceSinkDefinition) {
-				MethodSourceSinkDefinition msd = (MethodSourceSinkDefinition) sourceDef;
-				SootMethodAndClass smac = msd.getMethod();
-				if (invokedMethod.getSignature().equals(smac.getSignature())) {
-					this.staticAnalysis.addSource(invokedMethod.getSignature());
-				}
-			}
+		if(sourceSignatures.contains(invokedMethod.getSignature())) {
+			this.staticAnalysis.addSource(invokedMethod.getSignature());
 		}
-		for (SourceSinkDefinition sinkDef : provider.getSinks()) {
-			if (sinkDef instanceof MethodSourceSinkDefinition) {
-				MethodSourceSinkDefinition msd = (MethodSourceSinkDefinition) sinkDef;
-				SootMethodAndClass smac = msd.getMethod();
-				if (invokedMethod.getSignature().equals(smac.getSignature())) {
-					this.staticAnalysis.addSink(invokedMethod.getSignature());
-				}
-			}
+		if(sinkSignatures.contains(invokedMethod.getSignature())) {
+			this.staticAnalysis.addSink(invokedMethod.getSignature());
 		}
 	}
 

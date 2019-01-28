@@ -9,22 +9,22 @@ import fr.groom.models.CategorizedSourceSinkDefinitionProvider;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.*;
+import soot.jimple.InvokeExpr;
+import soot.jimple.Stmt;
 import soot.jimple.infoflow.android.data.parsers.PermissionMethodParser;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
 
+import javax.crypto.Cipher;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 	private Application app;
 	private Storage storage;
 	private ModuleManager moduleManager;
-	private List<String> sources;
-	private List<String> sinks;
+	private HashSet<String> sources;
+	private HashSet<String> sinks;
 	private Timestamp executionStartTime;
 	private Timestamp executionEndTime;
 	private ISourceSinkDefinitionProvider provider;
@@ -37,8 +37,8 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		this.app = app;
 		this.storage = storage;
 		this.moduleManager = new ModuleManager();
-		this.sources = new ArrayList<>();
-		this.sinks = new ArrayList<>();
+		this.sources = new HashSet<>();
+		this.sinks = new HashSet<>();
 		JSONObject data = new JSONObject();
 		this.executionStartTime = new Timestamp(System.currentTimeMillis());
 		setProvider();
@@ -47,6 +47,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		this.moduleManager.addModule(new DumpClassModule(this));
 		this.moduleManager.addModule(new DumpMethodModule(this));
 		this.moduleManager.addModule(new DumpMethodUnitModule(this));
+		this.moduleManager.addModule(new CheckWebviewModule(this));
 //		this.moduleManager.addModule(module);
 		if(Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
@@ -116,11 +117,13 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 
 	private void onFinish() {
 		this.executionEndTime = new Timestamp(System.currentTimeMillis());
+		System.out.println("Finished static analysis.");
 		this.storeAnalysis();
 	}
 
 	@Override
 	protected void internalTransform(String s, Map<String, String> map) {
+		System.out.println("Starting static analysis iteration");
 		Iterator<SootClass> sootClassIterator = Scene.v().getClasses().snapshotIterator();
 		while (sootClassIterator.hasNext()) {
 			final SootClass sootClass = sootClassIterator.next();
@@ -145,14 +148,6 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis{
 		}
 		this.moduleManager.getModules().forEach(IModule::onFinish);
 		this.onFinish();
-	}
-
-	public List<String> getSources() {
-		return sources;
-	}
-
-	public List<String> getSinks() {
-		return sinks;
 	}
 
 	@Override
