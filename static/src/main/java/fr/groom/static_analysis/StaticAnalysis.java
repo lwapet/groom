@@ -124,7 +124,9 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		System.out.println("Starting static analysis iteration");
 		Iterator<SootClass> sootClassIterator = Scene.v().getClasses().snapshotIterator();
 		while (sootClassIterator.hasNext()) {
-			final SootClass sootClass = sootClassIterator.next();
+			SootClass sootClass = sootClassIterator.next();
+			if (sootClass.getName().contains("Groom"))
+				sootClass = sootClassIterator.next();
 			handleClassLevel(sootClass);
 			List<SootMethod> clone = new ArrayList<>(sootClass.getMethods());
 			for (SootMethod sootMethod : clone) {
@@ -147,7 +149,6 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		this.moduleManager.getModules().forEach(IModule::onFinish);
 		this.onFinish();
 	}
-
 
 
 	@Override

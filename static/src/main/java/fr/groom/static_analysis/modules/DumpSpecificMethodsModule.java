@@ -39,6 +39,7 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 	};
 	private static HashSet<String> monitoredSignaturesSet = new HashSet<>();
 	String storageField = "monitored_methods";
+	HashSet<String> signatures = new HashSet<>();
 
 	public DumpSpecificMethodsModule(StaticAnalysis staticAnalysis) {
 		super(new ArrayList<>(), ModuleType.UNITLEVEL, staticAnalysis);
@@ -64,7 +65,7 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 	@Override
 	public void saveResults() {
 		JSONObject field = new JSONObject();
-		field.put(this.storageField, this.data);
+		field.put(this.storageField, this.signatures.toArray());
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
 		this.storage.update(condition, field, Main.STATIC_COLLECTION);
@@ -72,7 +73,7 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 
 	@Override
 	public void resultHandler(Object result) {
-			this.data.add((String) result);
+			this.signatures.add((String) result);
 	}
 
 	@Override
