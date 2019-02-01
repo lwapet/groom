@@ -12,6 +12,7 @@ import fr.groom.static_analysis.StaticAnalysis;
 import org.apache.commons.cli.*;
 import org.json.JSONObject;
 import soot.PackManager;
+import soot.Scene;
 import soot.Transform;
 import soot.jimple.infoflow.android.axml.AXmlAttribute;
 import soot.jimple.infoflow.android.axml.AXmlHandler;
@@ -244,7 +245,6 @@ public class Main {
 			storage.update(filter, instrumentationData, "application");
 		}
 
-
 		if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
 			File modifiedApk = FridaInstrumenter.addSoFiles(app.getLastEditedApk());
 			File copiedFile = FileUtils.copyFileToOutputDir(modifiedApk);
@@ -286,6 +286,7 @@ public class Main {
 //		storage.insertData(app.toJson(), "application");
 			JSONObject data = new JSONObject();
 			data.put("instrumented_filename", app.getFinalApk().getName());
+			data.put("recompile_sdk_version", Scene.v().getAndroidAPIVersion());
 			storage.update(updateFilter, data, "application");
 			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		}

@@ -31,6 +31,15 @@ public class SootSetup {
 		Options.v().set_output_dir(outputDirectory);
 		Options.v().set_output_format(Options.output_format_dex);
 		Options.v().set_force_overwrite(true);
+
+		// Triggers targetSdkVersion looking in AndroidManifest file to estimate compilation SDK
+		Scene.v().getAndroidJarPath(Options.v().android_jars(), apk.getAbsolutePath());
+		int choosenApiVersion = Scene.v().getAndroidAPIVersion();
+		if (choosenApiVersion > 23) {
+			Options.v().set_force_android_jar("/Users/lgitzing/Development/work/android-platforms/android-23/android.jar");
+		}
+
+
 //		Options.v().set_prepend_classpath(true);
 //		Options.v().set_soot_classpath("/Users/lgitzing/Development/work/InjectedLogger/out/production/classes/InjectedHelper.dex");
 //			Options.v().set_output_format(Options.output_format_jimple);

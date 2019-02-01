@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 
 public class WebviewEntryPoint {
-	private static final String[] ENTRYPOINT_SIGNATURES = {
+	public static final String[] ENTRYPOINT_SIGNATURES = {
 			"<android.webkit.WebView: void loadDataWithBaseURL(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>",
 			"<android.webkit.WebView: void loadUrl(java.lang.String,java.util.Map)>",
 			"<android.webkit.WebView: void loadUrl(java.lang.String)>",

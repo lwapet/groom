@@ -1,6 +1,7 @@
 package fr.groom.apk_instrumentation;
 
 import fr.groom.models.Application;
+import fr.groom.models.WebviewEntryPoint;
 import fr.groom.static_analysis.StaticAnalysis;
 import soot.*;
 import soot.jimple.InvokeExpr;
@@ -19,6 +20,19 @@ public class SootInstrumenter extends SceneTransformer {
 	private String[] excludedClasses = {"MethodLogger", InstrumenterUtils.groomClassName, "fakeActivity"};
 	private String[] reflectionInvokeMethods = {
 			"<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>"
+	};
+	private String[] subprocessMethods = {
+			"<java.lang.ProcessBuilder: java.lang.Process start()>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[])>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String)>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[])>",
+			"<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>",
+	};
+	private String[] nativeCodeLoadingMethods = {
+			"<java.lang.System: void loadLibrary(java.lang.String)>",
+			"<java.lang.System: void load(java.lang.String)>",
 	};
 	private String[] cryptoMethods = {
 			"<javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>",
@@ -60,10 +74,27 @@ public class SootInstrumenter extends SceneTransformer {
 		methodsToHook.put("<android.content.Context: android.content.Intent registerReceiver(android.content.BroadcastReceiver,android.content.IntentFilter)>", v2);
 		System.out.println("Loading sources and sinks.");
 
-		for (String cryptoSingature : cryptoMethods) {
+		for (String cryptoSignature : cryptoMethods) {
 			HashMap<String, String> v = new HashMap<>();
 			v.put(typeKey, "crypto_method");
-			methodsToHook.put(cryptoSingature, v);
+			methodsToHook.put(cryptoSignature, v);
+		}
+		for (String subprocessSignature : subprocessMethods) {
+			HashMap<String, String> v = new HashMap<>();
+			v.put(typeKey, "subprocess_method");
+			methodsToHook.put(subprocessSignature, v);
+		}
+
+		for (String nativeSignature : nativeCodeLoadingMethods) {
+			HashMap<String, String> v = new HashMap<>();
+			v.put(typeKey, "nativecodeloading_method");
+			methodsToHook.put(nativeSignature, v);
+		}
+
+		for(String webviewEntryPoint : WebviewEntryPoint.ENTRYPOINT_SIGNATURES) {
+			HashMap<String, String> v = new HashMap<>();
+			v.put(typeKey, "webview_entry_point_method");
+			methodsToHook.put(webviewEntryPoint, v);
 		}
 //		methodInvokesToHook.addAll(Arrays.asList(sensitiveMethod));
 		for (SourceSinkDefinition def : this.staticAnalysis.getProvider().getSources()) {
