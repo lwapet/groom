@@ -48,7 +48,7 @@ public abstract class Component implements IComponent, Switchable {
 		if (superClass.getName().equals("java.lang.Object")) {
 			return;
 		}
-		while (!superClass.getSuperclass().getName().equals("java.lang.Object") && superClass.getSuperclass() != null) {
+		while (superClass.getSuperclass() != null && !superClass.getSuperclass().getName().equals("java.lang.Object")) {
 			SootMethod superMethod = superClass.getMethodUnsafe(
 					originalCallback.getSootMethod().getName(),
 					originalCallback.getSootMethod().getParameterTypes(),
