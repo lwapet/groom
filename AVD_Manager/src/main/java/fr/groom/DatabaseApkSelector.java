@@ -44,7 +44,7 @@ public class DatabaseApkSelector implements ApkSelector {
 
 		Document filter = new Document("$nin", alreadyAnalyzedSha);
 		Document query = new Document("sha256", filter);
-		query.append("is_malicious", true);
+		query.append("is_malicious", false);
 		Document exists = new Document("$exists", true);
 		query.append("instrumented_filename", exists);
 		long count = applicationCollection.count(query);

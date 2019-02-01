@@ -36,7 +36,7 @@ public class SootSetup {
 		Scene.v().getAndroidJarPath(Options.v().android_jars(), apk.getAbsolutePath());
 		int choosenApiVersion = Scene.v().getAndroidAPIVersion();
 		if (choosenApiVersion > 23) {
-			Options.v().set_force_android_jar("/Users/lgitzing/Development/work/android-platforms/android-23/android.jar");
+			Options.v().set_force_android_jar(Configuration.v().getSootConfiguration().getAndroidPlatforms() + "/android-23/android.jar");
 		}
 
 

@@ -78,5 +78,4 @@ public class DumpWebviewEntryPointsModule extends Module<List<WebviewEntryPoint>
 		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
 //		this.dataHandler.updateAnalysis(update);
 	}
-
 }
