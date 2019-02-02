@@ -147,39 +147,53 @@ public class Groom {
 		JSONObject intentfilterData = new JSONObject();
 		try {
 
+			JSONArray actions = new JSONArray();
 			for (int i = 0; i < intentFilter.countActions(); i++) {
-				intentfilterData.accumulate("actions", intentFilter.getAction(i));
+				actions.put(intentFilter.getAction(i));
 			}
+			intentfilterData.put("actions", actions);
+			JSONArray categories = new JSONArray();
 			for (int i = 0; i < intentFilter.countCategories(); i++) {
-				intentfilterData.accumulate("categories", intentFilter.getCategory(i));
+				categories.put(intentFilter.getCategory(i));
 			}
+			intentfilterData.put("categories", categories);
+			JSONArray dataAuthorities = new JSONArray();
 			for (int i = 0; i < intentFilter.countDataAuthorities(); i++) {
 				IntentFilter.AuthorityEntry authorityEntry = intentFilter.getDataAuthority(i);
 				JSONObject authorityEntryData = new JSONObject();
 				authorityEntryData.put("host", authorityEntry.getHost());
 				authorityEntryData.put("port", authorityEntry.getPort());
-				intentfilterData.accumulate("authority_entries", authorityEntryData);
+				dataAuthorities.put(authorityEntryData);
 			}
+			intentfilterData.put("authority_entries", dataAuthorities);
+			JSONArray dataPaths = new JSONArray();
 			for (int i = 0; i < intentFilter.countDataPaths(); i++) {
 				PatternMatcher patternMatcher = intentFilter.getDataPath(i);
 				JSONObject dataPathData = new JSONObject();
 				dataPathData.put("path", patternMatcher.getPath());
 				dataPathData.put("type", patternMatcher.getType());
-				intentfilterData.accumulate("data_paths", dataPathData);
+				dataPaths.put(dataPathData);
 			}
+			intentfilterData.put("data_paths", dataPaths);
+			JSONArray dataSchemes = new JSONArray();
 			for (int i = 0; i < intentFilter.countDataSchemes(); i++) {
-				intentfilterData.accumulate("data_schemes", intentFilter.getDataScheme(i));
+				dataSchemes.put(intentFilter.getDataScheme(i));
 			}
+			intentfilterData.put("data_schemes", dataSchemes);
+			JSONArray dataSchemeSpecificParts = new JSONArray();
 			for (int i = 0; i < intentFilter.countDataSchemeSpecificParts(); i++) {
 				PatternMatcher patternMatcher = intentFilter.getDataPath(i);
 				JSONObject dataSchemeData = new JSONObject();
 				dataSchemeData.put("path", patternMatcher.getPath());
 				dataSchemeData.put("type", patternMatcher.getType());
-				intentfilterData.accumulate("data_scheme_specific_parts", dataSchemeData);
+				dataSchemeSpecificParts.put(dataSchemeData);
 			}
+			intentfilterData.put("data_scheme_specific_parts", dataSchemeSpecificParts);
+			JSONArray dataTypes = new JSONArray();
 			for (int i = 0; i < intentFilter.countDataTypes(); i++) {
-				intentfilterData.accumulate("data_types", intentFilter.getDataType(i));
+				dataTypes.put(intentFilter.getDataType(i));
 			}
+			intentfilterData.put("data_types", dataTypes);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

@@ -3,6 +3,7 @@ package fr.groom.static_analysis.modules;
 import fr.groom.Main;
 import fr.groom.static_analysis.StaticAnalysis;
 import fr.groom.models.WebviewEntryPoint;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.SootClass;
 import soot.SootMethod;
@@ -70,12 +71,12 @@ public class DumpWebviewEntryPointsModule extends Module<List<WebviewEntryPoint>
 
 	public void saveResult(WebviewEntryPoint entryPoint) {
 		JSONObject field = new JSONObject();
-		JSONObject dataUpdate = new JSONObject();
-		this.data.forEach(wep -> field.accumulate(storageField, wep.toJson()));
-		dataUpdate.put("$set", field);
+		JSONArray arr = new JSONArray();
+		this.data.forEach(wep -> arr.put(wep.toJson()));
+		field.put(storageField, arr);
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
-		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
+		this.storage.update(condition, field, Main.STATIC_COLLECTION);
 //		this.dataHandler.updateAnalysis(update);
 	}
 }

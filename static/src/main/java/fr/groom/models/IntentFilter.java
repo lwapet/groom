@@ -1,5 +1,6 @@
 package fr.groom.models;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -72,24 +73,16 @@ public class IntentFilter {
 		JSONObject jo = new JSONObject();
 		jo.put("mPriority", mPriority);
 		if (mActions != null) {
-			for (String m : mActions) {
-				jo.accumulate("mActions", m);
-			}
+			jo.put("mActions", new JSONArray(mActions));
 		}
 		if (mCategories != null) {
-			for (String m : mCategories) {
-				jo.accumulate("mCategories", m);
-			}
+			jo.put("mCategories", new JSONArray(mCategories));
 		}
 		if (mDataSchemes != null) {
-			for (String m : mDataSchemes) {
-				jo.accumulate("mDataSchemes", m);
-			}
+			jo.put("mDataSchemes", new JSONArray(mDataSchemes));
 		}
 		if (mDataTypes != null) {
-			for (String m : mDataTypes) {
-				jo.accumulate("mDataTypes", m);
-			}
+			jo.put("mDataTypes", new JSONArray(mDataTypes));
 		}
 		jo.put("mHasPartialTypes", mHasPartialTypes);
 		if (intentFilterData != null) {

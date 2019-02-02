@@ -1,6 +1,7 @@
 package fr.groom.models;
 
 import models.Switchable;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;
@@ -150,7 +151,9 @@ public abstract class Component implements IComponent, Switchable {
 		JSONObject jo = new JSONObject();
 		jo.put("class", sootClass.getName());
 		jo.put("super_class", superClass.getName());
-		intentFilters.forEach(i -> jo.accumulate("intent_filters", i.toJson()));
+		JSONArray jsonArray = new JSONArray();
+		intentFilters.forEach(i -> jsonArray.put(i.toJson()));
+		jo.put("intent_filters", jsonArray);
 		return jo;
 	}
 

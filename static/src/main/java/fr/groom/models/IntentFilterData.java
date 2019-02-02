@@ -1,5 +1,7 @@
 package fr.groom.models;
 
+import com.mongodb.util.JSON;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -68,39 +70,25 @@ public class IntentFilterData {
 	public JSONObject toJson() {
 		JSONObject jo = new JSONObject();
 		if (schemes != null) {
-			for (String s : schemes) {
-				jo.accumulate("schemes", s);
-			}
+			jo.put("schemes", new JSONArray(schemes));
 		}
 		if (hosts != null) {
-			for (String h : hosts) {
-				jo.accumulate("hosts", h);
-			}
+			jo.put("hosts", new JSONArray(hosts));
 		}
 		if (ports != null) {
-			for (String p : ports) {
-				jo.accumulate("ports", p);
-			}
+			jo.put("ports", new JSONArray(ports));
 		}
 		if (paths != null) {
-			for (String p : paths) {
-				jo.accumulate("paths", p);
-			}
+			jo.put("paths", new JSONArray(paths));
 		}
 		if (pathPatterns != null) {
-			for (String p : pathPatterns) {
-				jo.accumulate("pathPatterns", p);
-			}
+			jo.put("pathPatterns", new JSONArray(pathPatterns));
 		}
 		if (pathPrefixes != null) {
-			for (String p : pathPrefixes) {
-				jo.accumulate("pathPrefixes", p);
-			}
+			jo.put("pathPrefixes", new JSONArray(pathPrefixes));
 		}
 		if (mimeTypes != null) {
-			for (String m : mimeTypes) {
-				jo.accumulate("mimeTypes", m);
-			}
+			jo.put("mimeTypes", new JSONArray(mimeTypes));
 		}
 		return jo;
 	}

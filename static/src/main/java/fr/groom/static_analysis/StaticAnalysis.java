@@ -43,7 +43,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 //		this.moduleManager.addModule(module);
 		this.moduleManager.addModule(new DumpClassModule(this));
 		this.moduleManager.addModule(new DumpMethodModule(this));
-		this.moduleManager.addModule(new DumpMethodUnitModule(this));
+//		this.moduleManager.addModule(new DumpMethodUnitModule(this));
 		this.moduleManager.addModule(new CheckWebviewModule(this));
 		this.moduleManager.addModule(new DumpSpecificMethodsModule(this));
 //		this.moduleManager.addModule(module);

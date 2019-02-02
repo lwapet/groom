@@ -3,6 +3,7 @@ package fr.groom.static_analysis.modules;
 import fr.groom.Main;
 import fr.groom.static_analysis.StaticAnalysis;
 import fr.groom.models.JavascriptInterface;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.SootClass;
 import soot.SootMethod;
@@ -46,12 +47,12 @@ public class DumpJavaScriptInterfaceModule extends Module<List<JavascriptInterfa
 	@Override
 	public void saveResults() {
 		JSONObject field = new JSONObject();
-		JSONObject dataUpdate = new JSONObject();
-		this.data.forEach(jsi -> field.accumulate(storageField, jsi.toJson()));
-		dataUpdate.put("$set", field);
+		JSONArray arr = new JSONArray();
+		this.data.forEach(jsi -> arr.put(jsi.toJson()));
+		field.put(storageField, arr);
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
-		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
+		this.storage.update(condition, field, Main.STATIC_COLLECTION);
 	}
 
 	@Override

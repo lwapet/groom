@@ -423,7 +423,11 @@ public class Application {
 		jo.put("permissions", permissions);
 		jo.put("package_name", packageName);
 		jo.put("main_activity", this.mainActivity.getName());
-		this.components.forEach(c -> jo.accumulate("components", c.toJson()));
+		JSONArray components_array = new JSONArray();
+		for (IComponent component : this.components) {
+			components_array.put(component.toJson());
+		}
+		jo.put("components", components_array);
 		return jo;
 	}
 
