@@ -149,7 +149,7 @@ public class SootInstrumenter extends SceneTransformer {
 				HashMap<String, String> data = new HashMap<>();
 				data.put(signatureKey, invokeExpr.getMethod().getSignature());
 				data.put(typeKey, "intent_arg_method");
-//				hooker.hookExpression(sootMethod, unit, invokeExpr, "intent_arg_method");
+				hooker.hookExpression(sootMethod, unit, invokeExpr, data);
 				invokeExprs.add(invokeExpr);
 			}
 			if (methodsToHook.containsKey(invokeExpr.getMethod().getSignature()) && !invokeExprs.contains(invokeExpr) && !injectedUnits.contains(unit)) {
