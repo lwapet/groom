@@ -39,7 +39,7 @@ public class WorkerPool extends WorkerEventListener implements AndroidDebugBridg
 	public void onIdle(IWorker worker) {
 		App app = apps.poll();
 		if (app == null) {
-			System.out.println("Nor more apks to launch !");
+			System.out.println("No more apks to launch !");
 			return;
 		}
 		if (worker.getDevice().isEmulator()) {
