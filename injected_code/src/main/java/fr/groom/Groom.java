@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.*;
@@ -36,6 +37,7 @@ public class Groom {
 	private static String SIGNATURE_KEY = "signature";
 	private static String TYPE_KEY = "type";
 	private static String CATEGORY_KEY = "category";
+	private static String REFLECTION_TYPE = "reflection_call";
 	private static Application app;
 	private static PrintWriter out;
 	private static Future<PrintWriter> futurPrinter;
@@ -208,8 +210,30 @@ public class Groom {
 			if (incomingData.containsKey(TYPE_KEY))
 				data.put("type", incomingData.get(TYPE_KEY));
 			if (incomingData.containsKey(CATEGORY_KEY))
-				data.put("type", incomingData.get(CATEGORY_KEY));
+				data.put("category", incomingData.get(CATEGORY_KEY));
 			data.put("timestamp", System.currentTimeMillis());
+			String logType = (String) data.get("type");
+			if (logType.equals(REFLECTION_TYPE)) {
+				Log.d("LOUISON", "==========");
+				//
+				Object invokingClass =(Object) args.get(0);
+				Object[] reflectionArgs = (Object[]) args.get(1);
+				Method reflectionMethod = (Method) incomingData.get("virtualinvoke_base_ref");
+				if(reflectionArgs != null) {
+					args = new ArrayList<>();
+					for(Object refArg : reflectionArgs) {
+						args.add(refArg);
+					}
+				} else {
+					args = new ArrayList<Object>();
+				}
+				if (invokingClass != null) {
+					data.put("class_name", invokingClass.getClass().getCanonicalName());
+				} else {
+					data.put("class_name", reflectionMethod.getDeclaringClass().getCanonicalName());
+				}
+				data.put("method_name", reflectionMethod.getName());
+			}
 			JSONArray argumentDataArray = new JSONArray();
 			for (Object arg : args) {
 				JSONObject argumentData = new JSONObject();
@@ -355,7 +379,7 @@ public class Groom {
 	public static void logReflectionInvoke(Method method, Object invokingClass, Object[] args) {
 		JSONObject data = new JSONObject();
 		try {
-			data.put("type", "reflection_call");
+			data.put("type", "");
 			data.put("method_name", method.getName());
 			data.put("timestamp", System.currentTimeMillis());
 			if (invokingClass != null) {

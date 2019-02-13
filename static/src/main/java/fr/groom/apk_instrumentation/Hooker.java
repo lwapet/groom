@@ -540,11 +540,19 @@ public class Hooker {
 					hashMapArgs.add(StringConstant.v(v));
 				}
 			}
-
 			VirtualInvokeExpr virtualInvokeExpr = Jimple.v().newVirtualInvokeExpr(hashMapRefLocal, hashMapPut.makeRef(), hashMapArgs);
 			InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(virtualInvokeExpr);
 			unitsToInject.add(invokeStmt);
 		});
+		if (data.get("type").equals("reflection_call")) {
+			List<Value> hashMapReflectionArgs = new ArrayList<>();
+			hashMapReflectionArgs.add(StringConstant.v("virtualinvoke_base_ref"));
+			hashMapReflectionArgs.add(((VirtualInvokeExpr) invokeExpr).getBase());
+			VirtualInvokeExpr virtualInvokeExpr = Jimple.v().newVirtualInvokeExpr(hashMapRefLocal, hashMapPut.makeRef(), hashMapReflectionArgs);
+			InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(virtualInvokeExpr);
+			unitsToInject.add(invokeStmt);
+		}
+
 
 		groomLogArguments.add(hashMapRefLocal);
 		groomLogArguments.add(arrayRefLocal);
