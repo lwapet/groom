@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "categorizedSinksFile",
     "performStaticAnalysis",
     "repackageApk",
-    "dynamicAnalysisRepository",
+    "instrumentedApkDirectory",
     "sootInstrumentationConfiguration",
     "fridaInstrumenterConfiguration",
     "staticAnalysisConfiguration",
@@ -107,12 +107,12 @@ public class InstrumenterConfiguration implements Serializable
     @JsonPropertyDescription("Repackage apk with soot")
     private boolean repackageApk = true;
     /**
-     * repository handled by dynamic analysis
+     * repository to output instrumented apks
      * 
      */
-    @JsonProperty("dynamicAnalysisRepository")
-    @JsonPropertyDescription("repository handled by dynamic analysis")
-    private String dynamicAnalysisRepository = "../instrumented_apks";
+    @JsonProperty("instrumentedApkDirectory")
+    @JsonPropertyDescription("repository to output instrumented apks")
+    private String instrumentedApkDirectory = "instrumented";
     /**
      * soot instrumentation configuration
      * 
@@ -148,7 +148,7 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("databaseConfiguration")
     @JsonPropertyDescription("database configuration for mongodb instance")
     private DatabaseConfiguration databaseConfiguration;
-    private final static long serialVersionUID = -3575848035045942338L;
+    private final static long serialVersionUID = 1739061584179303344L;
 
     /**
      * No args constructor for use in serialization
@@ -164,6 +164,7 @@ public class InstrumenterConfiguration implements Serializable
      * @param databaseConfiguration
      * @param targetApk
      * @param description
+     * @param instrumentedApkDirectory
      * @param performStaticAnalysis
      * @param pathToKeystore
      * @param sootInstrumentationConfiguration
@@ -173,10 +174,9 @@ public class InstrumenterConfiguration implements Serializable
      * @param categorizedSourcesFile
      * @param apksignerPath
      * @param repackageApk
-     * @param dynamicAnalysisRepository
      * @param staticAnalysisConfiguration
      */
-    public InstrumenterConfiguration(String targetApk, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String dynamicAnalysisRepository, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, DatabaseConfiguration databaseConfiguration) {
+    public InstrumenterConfiguration(String targetApk, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String instrumentedApkDirectory, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, DatabaseConfiguration databaseConfiguration) {
         super();
         this.targetApk = targetApk;
         this.description = description;
@@ -188,7 +188,7 @@ public class InstrumenterConfiguration implements Serializable
         this.categorizedSinksFile = categorizedSinksFile;
         this.performStaticAnalysis = performStaticAnalysis;
         this.repackageApk = repackageApk;
-        this.dynamicAnalysisRepository = dynamicAnalysisRepository;
+        this.instrumentedApkDirectory = instrumentedApkDirectory;
         this.sootInstrumentationConfiguration = sootInstrumentationConfiguration;
         this.fridaInstrumenterConfiguration = fridaInstrumenterConfiguration;
         this.staticAnalysisConfiguration = staticAnalysisConfiguration;
@@ -377,21 +377,21 @@ public class InstrumenterConfiguration implements Serializable
     }
 
     /**
-     * repository handled by dynamic analysis
+     * repository to output instrumented apks
      * 
      */
-    @JsonProperty("dynamicAnalysisRepository")
-    public String getDynamicAnalysisRepository() {
-        return dynamicAnalysisRepository;
+    @JsonProperty("instrumentedApkDirectory")
+    public String getInstrumentedApkDirectory() {
+        return instrumentedApkDirectory;
     }
 
     /**
-     * repository handled by dynamic analysis
+     * repository to output instrumented apks
      * 
      */
-    @JsonProperty("dynamicAnalysisRepository")
-    public void setDynamicAnalysisRepository(String dynamicAnalysisRepository) {
-        this.dynamicAnalysisRepository = dynamicAnalysisRepository;
+    @JsonProperty("instrumentedApkDirectory")
+    public void setInstrumentedApkDirectory(String instrumentedApkDirectory) {
+        this.instrumentedApkDirectory = instrumentedApkDirectory;
     }
 
     /**
@@ -528,9 +528,9 @@ public class InstrumenterConfiguration implements Serializable
         sb.append('=');
         sb.append(this.repackageApk);
         sb.append(',');
-        sb.append("dynamicAnalysisRepository");
+        sb.append("instrumentedApkDirectory");
         sb.append('=');
-        sb.append(((this.dynamicAnalysisRepository == null)?"<null>":this.dynamicAnalysisRepository));
+        sb.append(((this.instrumentedApkDirectory == null)?"<null>":this.instrumentedApkDirectory));
         sb.append(',');
         sb.append("sootInstrumentationConfiguration");
         sb.append('=');
@@ -568,6 +568,7 @@ public class InstrumenterConfiguration implements Serializable
         result = ((result* 31)+((this.databaseConfiguration == null)? 0 :this.databaseConfiguration.hashCode()));
         result = ((result* 31)+((this.targetApk == null)? 0 :this.targetApk.hashCode()));
         result = ((result* 31)+((this.description == null)? 0 :this.description.hashCode()));
+        result = ((result* 31)+((this.instrumentedApkDirectory == null)? 0 :this.instrumentedApkDirectory.hashCode()));
         result = ((result* 31)+(this.performStaticAnalysis? 1 : 0));
         result = ((result* 31)+((this.pathToKeystore == null)? 0 :this.pathToKeystore.hashCode()));
         result = ((result* 31)+((this.sootInstrumentationConfiguration == null)? 0 :this.sootInstrumentationConfiguration.hashCode()));
@@ -577,7 +578,6 @@ public class InstrumenterConfiguration implements Serializable
         result = ((result* 31)+((this.categorizedSourcesFile == null)? 0 :this.categorizedSourcesFile.hashCode()));
         result = ((result* 31)+((this.apksignerPath == null)? 0 :this.apksignerPath.hashCode()));
         result = ((result* 31)+(this.repackageApk? 1 : 0));
-        result = ((result* 31)+((this.dynamicAnalysisRepository == null)? 0 :this.dynamicAnalysisRepository.hashCode()));
         result = ((result* 31)+((this.staticAnalysisConfiguration == null)? 0 :this.staticAnalysisConfiguration.hashCode()));
         return result;
     }
@@ -591,7 +591,7 @@ public class InstrumenterConfiguration implements Serializable
             return false;
         }
         InstrumenterConfiguration rhs = ((InstrumenterConfiguration) other);
-        return (((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.dynamicAnalysisRepository == rhs.dynamicAnalysisRepository)||((this.dynamicAnalysisRepository!= null)&&this.dynamicAnalysisRepository.equals(rhs.dynamicAnalysisRepository))))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
+        return (((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&((this.instrumentedApkDirectory == rhs.instrumentedApkDirectory)||((this.instrumentedApkDirectory!= null)&&this.instrumentedApkDirectory.equals(rhs.instrumentedApkDirectory))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
     }
 
 }

@@ -3,24 +3,24 @@ package fr.groom.apk_instrumentation;
 import soot.*;
 import soot.jimple.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class InstrumenterUtils {
 	public static String groomClassName = "fr.groom.Groom";
 
 	public static File alignApk(File apkToAlign, String pathToZipAlign) throws IOException {
-		System.out.println("Aligning apk.");
+		System.out.println("Aligning apk. = " + apkToAlign.getAbsolutePath());
+		System.out.println("EXISTS. = " + apkToAlign.exists());
 		File aligned = new File(apkToAlign.getAbsolutePath().replace(".apk", "") + "-aligned.apk");
 		Runtime rt = Runtime.getRuntime();
+		System.out.println("ZIP ALIGN PATH EXISTS :" + new File(pathToZipAlign).exists());
 		Process pr = rt.exec(pathToZipAlign + " " +
 				"-v -p 4 " +
 				apkToAlign + " " +
 				aligned
 		);
+		InputStream error = pr.getErrorStream();
 		InputStreamReader isr = new InputStreamReader(pr.getInputStream());
 		BufferedReader br = new BufferedReader(isr);
 		String line = null;
@@ -32,6 +32,7 @@ public class InstrumenterUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("EXISTS :" + aligned.exists());
 		return aligned;
 	}
 

@@ -95,8 +95,11 @@ public class Main {
 		} else if (!Configuration.v().getTargetApk().equals("")) {
 			targetApk = new File(Configuration.v().getTargetApk());
 		}
-		if (targetApk == null || !targetApk.exists()) {
-			System.err.println("Invalid apk path");
+		if (targetApk == null) {
+			System.err.println("No apk path given.");
+			System.exit(1);
+		} else if (!targetApk.exists()) {
+			System.err.println("Invalid apk path : " + targetApk.getAbsolutePath());
 			System.exit(1);
 		} else {
 			Configuration.v().setTargetApk(targetApk.getAbsolutePath());
@@ -127,9 +130,6 @@ public class Main {
 				System.out.println("Running ApkInstrumenter from default fr.groom.configuration ");
 			}
 		}
-
-		Configuration.v().getSootConfiguration().setOutputDirectory(Configuration.v().getSootConfiguration().getOutputDirectory() + "-" + UUID.randomUUID().toString());
-
 
 		loadTargetApk(cmd.getOptionValue(OPTION_APK_FILE)); // Load target apk path from program arguments or config file
 		File tempApk = FileUtils.copyFileToTempDirectory(new File(Configuration.v().getTargetApk())); // copy file to a temp directory
@@ -245,22 +245,26 @@ public class Main {
 			storage.update(filter, instrumentationData, "application");
 		}
 
-		if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
-			File modifiedApk = FridaInstrumenter.addSoFiles(app.getLastEditedApk());
-			File copiedFile = FileUtils.copyFileToOutputDir(modifiedApk);
-			app.setFridaInstrumentedApk(copiedFile);
-		}
 		if (!Configuration.v().isRepackageApk()) {
 			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
+			System.out.println("FINAL APK :" + finalApk.getAbsolutePath());
 			app.setFinalApk(finalApk);
 		} else {
 			this.updateStatus("repackaging");
 			File recompiledApk = recompileApk(app.getLastEditedApk());
 			this.updateStatus("repackaged");
 			app.setSootInstrumentedApk(recompiledApk);
+			System.out.println("RECOMPILED : " + recompiledApk.getAbsolutePath());
+			if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
+				this.updateStatus("adding .so files");
+				File modifiedApk = FridaInstrumenter.addSoFiles(app.getLastEditedApk());
+				File copiedFile = FileUtils.copyFileToOutputDir(modifiedApk);
+				app.setFridaInstrumentedApk(copiedFile);
+			}
 			this.updateStatus("aligning");
 			File aligned = InstrumenterUtils.alignApk(app.getLastEditedApk(), Configuration.v().getZipalignPath());
 			this.updateStatus("aligned");
+			System.out.println("ALIGNED: " + aligned.getAbsolutePath());
 			app.setAlignedApk(aligned);
 			this.updateStatus("signing");
 			File signed = InstrumenterUtils.signApk(
@@ -269,16 +273,17 @@ public class Main {
 					Configuration.v().getPathToKeystore(),
 					Configuration.v().getKeyPassword()
 			);
-			this.updateStatus("signed");
-			app.setAlignedApk(aligned);
+			System.out.println("SIGNED : " + signed.getAbsolutePath());
 			app.setSignedApk(signed);
 			app.setFinalApk(signed);
 		}
 
-		File instrumentedApkInDynamicDir = FileUtils.copyFileToDynamicRepository(app.getFinalApk());
+		System.out.println(app.getFinalApk().getAbsolutePath());
+		File instrumentedApkInDynamicDir = FileUtils.copyFileToInstrumentedApkDirectory(app.getFinalApk());
 
-		deleteDir(TEMP_DIRECTORY);
-		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
+
+//		deleteDir(TEMP_DIRECTORY);
+//		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
 		if (Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			JSONObject updateFilter = new JSONObject();
@@ -288,7 +293,7 @@ public class Main {
 			data.put("instrumented_filename", app.getFinalApk().getName());
 			data.put("recompile_sdk_version", Scene.v().getAndroidAPIVersion());
 			storage.update(updateFilter, data, "application");
-			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
+//			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		}
 		this.updateStatus("ok");
 		System.out.println("Intrumentation finished !");

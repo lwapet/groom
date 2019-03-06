@@ -54,10 +54,10 @@
       "description": "Repackage apk with soot",
       "default": true
     },
-    "dynamicAnalysisRepository": {
+    "instrumentedApkDirectory": {
       "type": "string",
-      "description": "repository handled by dynamic analysis",
-      "default": "../instrumented_apks"
+      "description": "repository to output instrumented apks",
+      "default": "instrumented"
     },
     "sootInstrumentationConfiguration": {
       "type": "object",

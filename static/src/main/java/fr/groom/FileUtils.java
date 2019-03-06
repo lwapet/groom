@@ -9,7 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 public class FileUtils {
-	public static final File TEMP_DIRECTORY = new File("temp" + UUID.randomUUID().toString());
+//	public static final File TEMP_DIRECTORY = new File("/tmp/temp" + UUID.randomUUID().toString());
+	public static final File TEMP_DIRECTORY = new File("/tmp/temp");
 
 
 	static void deleteDir(File file) {
@@ -46,8 +47,8 @@ public class FileUtils {
 		return newTempFile;
 	}
 
-		public static File copyFileToDynamicRepository(File file) {
-		File sootOutputDirectory = new File(Configuration.v().getDynamicAnalysisRepository());
+		public static File copyFileToInstrumentedApkDirectory(File file) {
+		File sootOutputDirectory = new File(Configuration.v().getInstrumentedApkDirectory());
 		if (!sootOutputDirectory.exists()) {
 			sootOutputDirectory.mkdir();
 		}
@@ -55,6 +56,7 @@ public class FileUtils {
 		String newFilePath = sootOutputDirectory.getAbsolutePath() + "/" + file.getName();
 		try {
 			Files.copy(file.toPath(), (new File(newFilePath)).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			System.out.println("File copied to:" + newFilePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Error while copying file to output directory");
