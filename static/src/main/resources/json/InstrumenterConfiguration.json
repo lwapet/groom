@@ -9,6 +9,11 @@
       "description": "path to the target apk",
       "default": ""
     },
+    "apkRemoteDirectory": {
+      "type": "string",
+      "description": "path the remote directory where the apk file can be found",
+      "default": "/home/lgitzing/apks/legacy"
+    },
     "description": {
       "type": "string",
       "description": "optional description for the apk",
@@ -196,6 +201,37 @@
         }
       }
     },
+    "sshConfiguration": {
+      "type": "object",
+      "description": "configuration used to scp apks between local and remote server",
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "ssh server address",
+          "default": "gossple4.irisa.fr"
+        },
+        "port": {
+          "type": "integer",
+          "description": "ssh port",
+          "default": 22
+        },
+        "user": {
+          "type": "string",
+          "description": "ssh username",
+          "default": "lgitzing"
+        },
+        "pkeyPath": {
+          "type": "string",
+          "description": "path to private key",
+          "default": "./ssh/id_rsa_apk_management"
+        },
+        "pkeyPassphrase": {
+          "type": "string",
+          "description": "private key passphrase",
+          "default": "louison"
+        }
+      }
+    },
     "databaseConfiguration": {
       "type": "object",
       "description": "database configuration for mongodb instance",
@@ -211,10 +247,20 @@
           "description": "connect to database or use printer",
           "default": false
         },
-        "name": {
+        "storeOutputToDatabase": {
+          "type": "boolean",
+          "description": "store results to database",
+          "default": false
+        },
+        "outputDatabaseName": {
           "type": "string",
-          "description": "name of the database",
-          "default": "dynamic"
+          "description": "name of the database where to output results",
+          "default": "groom2"
+        },
+        "fetchDatabaseName": {
+          "type": "string",
+          "description": "name of the database where to fetch apks",
+          "default": "TEST"
         },
         "url": {
           "type": "string",

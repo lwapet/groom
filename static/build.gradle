@@ -39,6 +39,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.jcraft', name: 'jsch', version: '0.1.55'
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
     compile group: 'ca.mcgill.sable', name: 'soot', version: '3.2.0'

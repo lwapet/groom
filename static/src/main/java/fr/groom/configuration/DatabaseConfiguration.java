@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "connectToDatabase",
-    "name",
+    "storeOutputToDatabase",
+    "outputDatabaseName",
+    "fetchDatabaseName",
     "url",
     "port",
     "authenticationConfiguration"
@@ -31,13 +33,26 @@ public class DatabaseConfiguration implements Serializable
     @JsonPropertyDescription("connect to database or use printer")
     private boolean connectToDatabase = false;
     /**
-     * name of the database
-     * (Required)
+     * store results to database
      * 
      */
-    @JsonProperty("name")
-    @JsonPropertyDescription("name of the database")
-    private String name = "dynamic";
+    @JsonProperty("storeOutputToDatabase")
+    @JsonPropertyDescription("store results to database")
+    private boolean storeOutputToDatabase = false;
+    /**
+     * name of the database where to output results
+     * 
+     */
+    @JsonProperty("outputDatabaseName")
+    @JsonPropertyDescription("name of the database where to output results")
+    private String outputDatabaseName = "groom2";
+    /**
+     * name of the database where to fetch apks
+     * 
+     */
+    @JsonProperty("fetchDatabaseName")
+    @JsonPropertyDescription("name of the database where to fetch apks")
+    private String fetchDatabaseName = "TEST";
     /**
      * url of the database, e.g localhost
      * (Required)
@@ -61,7 +76,7 @@ public class DatabaseConfiguration implements Serializable
     @JsonProperty("authenticationConfiguration")
     @JsonPropertyDescription("required authentication options")
     private AuthenticationConfiguration authenticationConfiguration;
-    private final static long serialVersionUID = -3678013662133954114L;
+    private final static long serialVersionUID = 7696783732254418773L;
 
     /**
      * No args constructor for use in serialization
@@ -73,15 +88,19 @@ public class DatabaseConfiguration implements Serializable
     /**
      * 
      * @param connectToDatabase
+     * @param outputDatabaseName
+     * @param fetchDatabaseName
      * @param port
-     * @param name
+     * @param storeOutputToDatabase
      * @param url
      * @param authenticationConfiguration
      */
-    public DatabaseConfiguration(boolean connectToDatabase, String name, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
+    public DatabaseConfiguration(boolean connectToDatabase, boolean storeOutputToDatabase, String outputDatabaseName, String fetchDatabaseName, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
         super();
         this.connectToDatabase = connectToDatabase;
-        this.name = name;
+        this.storeOutputToDatabase = storeOutputToDatabase;
+        this.outputDatabaseName = outputDatabaseName;
+        this.fetchDatabaseName = fetchDatabaseName;
         this.url = url;
         this.port = port;
         this.authenticationConfiguration = authenticationConfiguration;
@@ -106,23 +125,57 @@ public class DatabaseConfiguration implements Serializable
     }
 
     /**
-     * name of the database
-     * (Required)
+     * store results to database
      * 
      */
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("storeOutputToDatabase")
+    public boolean isStoreOutputToDatabase() {
+        return storeOutputToDatabase;
     }
 
     /**
-     * name of the database
-     * (Required)
+     * store results to database
      * 
      */
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("storeOutputToDatabase")
+    public void setStoreOutputToDatabase(boolean storeOutputToDatabase) {
+        this.storeOutputToDatabase = storeOutputToDatabase;
+    }
+
+    /**
+     * name of the database where to output results
+     * 
+     */
+    @JsonProperty("outputDatabaseName")
+    public String getOutputDatabaseName() {
+        return outputDatabaseName;
+    }
+
+    /**
+     * name of the database where to output results
+     * 
+     */
+    @JsonProperty("outputDatabaseName")
+    public void setOutputDatabaseName(String outputDatabaseName) {
+        this.outputDatabaseName = outputDatabaseName;
+    }
+
+    /**
+     * name of the database where to fetch apks
+     * 
+     */
+    @JsonProperty("fetchDatabaseName")
+    public String getFetchDatabaseName() {
+        return fetchDatabaseName;
+    }
+
+    /**
+     * name of the database where to fetch apks
+     * 
+     */
+    @JsonProperty("fetchDatabaseName")
+    public void setFetchDatabaseName(String fetchDatabaseName) {
+        this.fetchDatabaseName = fetchDatabaseName;
     }
 
     /**
@@ -191,9 +244,17 @@ public class DatabaseConfiguration implements Serializable
         sb.append('=');
         sb.append(this.connectToDatabase);
         sb.append(',');
-        sb.append("name");
+        sb.append("storeOutputToDatabase");
         sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
+        sb.append(this.storeOutputToDatabase);
+        sb.append(',');
+        sb.append("outputDatabaseName");
+        sb.append('=');
+        sb.append(((this.outputDatabaseName == null)?"<null>":this.outputDatabaseName));
+        sb.append(',');
+        sb.append("fetchDatabaseName");
+        sb.append('=');
+        sb.append(((this.fetchDatabaseName == null)?"<null>":this.fetchDatabaseName));
         sb.append(',');
         sb.append("url");
         sb.append('=');
@@ -218,9 +279,11 @@ public class DatabaseConfiguration implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
         result = ((result* 31)+(this.connectToDatabase? 1 : 0));
+        result = ((result* 31)+((this.outputDatabaseName == null)? 0 :this.outputDatabaseName.hashCode()));
+        result = ((result* 31)+((this.fetchDatabaseName == null)? 0 :this.fetchDatabaseName.hashCode()));
         result = ((result* 31)+ this.port);
+        result = ((result* 31)+(this.storeOutputToDatabase? 1 : 0));
         result = ((result* 31)+((this.url == null)? 0 :this.url.hashCode()));
         result = ((result* 31)+((this.authenticationConfiguration == null)? 0 :this.authenticationConfiguration.hashCode()));
         return result;
@@ -235,7 +298,7 @@ public class DatabaseConfiguration implements Serializable
             return false;
         }
         DatabaseConfiguration rhs = ((DatabaseConfiguration) other);
-        return ((((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&(this.connectToDatabase == rhs.connectToDatabase))&&(this.port == rhs.port))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
+        return (((((((this.connectToDatabase == rhs.connectToDatabase)&&((this.outputDatabaseName == rhs.outputDatabaseName)||((this.outputDatabaseName!= null)&&this.outputDatabaseName.equals(rhs.outputDatabaseName))))&&((this.fetchDatabaseName == rhs.fetchDatabaseName)||((this.fetchDatabaseName!= null)&&this.fetchDatabaseName.equals(rhs.fetchDatabaseName))))&&(this.port == rhs.port))&&(this.storeOutputToDatabase == rhs.storeOutputToDatabase))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
     }
 
 }

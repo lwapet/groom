@@ -290,11 +290,11 @@ public class Groom {
 			}
 			data.put("arguments", argumentDataArray);
 			data.put("stack_trace", getStackTrace());
-			if (object != null) {
-				data.put("hash_code", object.hashCode());
-			} else {
-				data.put("hash_code", 0);
-			}
+//			if (object != null) {
+//				data.put("hash_code", object.hashCode());
+//			} else {
+//				data.put("hash_code", 0);
+//			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

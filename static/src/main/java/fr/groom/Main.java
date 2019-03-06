@@ -1,15 +1,20 @@
 package fr.groom;
 
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import com.mongodb.client.model.UpdateOptions;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
 import fr.groom.apk_instrumentation.FridaInstrumenter;
 import fr.groom.apk_instrumentation.InstrumenterUtils;
+import fr.groom.configuration.SshConfiguration;
 import fr.groom.models.Application;
 import fr.groom.mongo.Database;
+import fr.groom.scp.Scp;
 import fr.groom.static_analysis.StaticAnalysis;
 import org.apache.commons.cli.*;
+import org.bson.Document;
 import org.json.JSONObject;
 import soot.PackManager;
 import soot.Scene;
@@ -32,6 +37,7 @@ public class Main {
 	private static final String HELP_CATCH_PHRASE = "ApkInstrumenter [OPTIONS]";
 	private static final String OPTION_CONFIG_FILE = "c";
 	private static final String OPTION_APK_FILE = "a";
+	private static final String OPTION_SHA256 = "s";
 	public static final String APPLICATION_COLLECTION = "application";
 	public static final String STATIC_COLLECTION = "static";
 	public static final String DYNAMIC_COLLECTION = "dynamic";
@@ -51,6 +57,8 @@ public class Main {
 		options.addOption(OPTION_CONFIG_FILE, "configfile", true, "Use the given fr.groom.configuration file");
 
 		options.addOption(OPTION_APK_FILE, "apkfile", true, "Use the given apk file (overrides config file option 'targetApk')");
+
+		options.addOption(OPTION_SHA256, "sha256", true, "Use sha256 to fetch from database");
 	}
 
 	public void updateStatus(String status) {
@@ -106,6 +114,50 @@ public class Main {
 		}
 	}
 
+	private void loadApkFromDatabase(String sha256) {
+		DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
+		Database db = new Database(
+				dbConfig.getUrl(),
+				dbConfig.getPort(),
+				dbConfig.getFetchDatabaseName(),
+				dbConfig.getAuthenticationConfiguration().isPerformAuthentication(),
+				dbConfig.getAuthenticationConfiguration().getUsername(),
+				dbConfig.getAuthenticationConfiguration().getPassword(),
+				dbConfig.getAuthenticationConfiguration().getAuthSourceDatabaseName()
+		);
+		Document filter = new Document("sha256", sha256);
+		Document matchingApk = db.getDatabase().getCollection(APPLICATION_COLLECTION).find(filter).first();
+		if(matchingApk == null) {
+			System.err.println("No apk metadata corresponding to the sha: " + sha256);
+			System.exit(400);
+		} else{
+			if(matchingApk.get("legacy_filename") == null) {
+				System.err.println("No apk file found for the sha: " + sha256);
+				System.exit(400);
+			} else {
+				String localDirectoryPath = "/tmp";
+				String fileName = matchingApk.getString("legacy_filename");
+				SshConfiguration sshConfig = Configuration.v().getSshConfiguration();
+				Session session = Scp.createSession(
+						sshConfig.getUser(),
+						sshConfig.getHost(),
+						sshConfig.getPort(),
+						sshConfig.getPkeyPath(),
+						sshConfig.getPkeyPassphrase()
+				);
+				try {
+					Scp.copyRemoteToLocal(session, Configuration.v().getApkRemoteDirectory(), localDirectoryPath, fileName);
+					Configuration.v().setTargetApk(Paths.get(localDirectoryPath, fileName).toFile().getAbsolutePath());
+				} catch (JSchException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+
 
 	private void run(String[] args) throws ParseException, IOException {
 		// We need proper parameters
@@ -131,22 +183,12 @@ public class Main {
 			}
 		}
 
-		loadTargetApk(cmd.getOptionValue(OPTION_APK_FILE)); // Load target apk path from program arguments or config file
-		File tempApk = FileUtils.copyFileToTempDirectory(new File(Configuration.v().getTargetApk())); // copy file to a temp directory
-
-
-		SootSetup.initSootInstance(
-				new File(tempApk.getAbsolutePath()),
-				Configuration.v().getSootConfiguration().getOutputDirectory(),
-				Configuration.v().getSootConfiguration().getAndroidPlatforms()
-		);
-
-		if (Configuration.v().getDatabaseConfiguration().isConnectToDatabase()) {
+		if (Configuration.v().getDatabaseConfiguration().isConnectToDatabase() && Configuration.v().getDatabaseConfiguration().isStoreOutputToDatabase()) {
 			DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
 			this.storage = new Database(
 					dbConfig.getUrl(),
 					dbConfig.getPort(),
-					dbConfig.getName(),
+					dbConfig.getOutputDatabaseName(),
 					dbConfig.getAuthenticationConfiguration().isPerformAuthentication(),
 					dbConfig.getAuthenticationConfiguration().getUsername(),
 					dbConfig.getAuthenticationConfiguration().getPassword(),
@@ -155,6 +197,30 @@ public class Main {
 		} else {
 			this.storage = new Printer();
 		}
+
+		if (cmd.getOptionValue(OPTION_SHA256) != null) {
+			if (!Configuration.v().getDatabaseConfiguration().isConnectToDatabase()) {
+				System.err.println("You must connect to the database to analyse apk from sha");
+				System.exit(400);
+			} else {
+				loadApkFromDatabase(cmd.getOptionValue(OPTION_SHA256));
+			}
+		} else {
+			loadTargetApk(cmd.getOptionValue(OPTION_APK_FILE)); // Load target apk path from program arguments or config file
+		}
+
+		File receivedApk = new File(Configuration.v().getTargetApk());
+		File tempApk = FileUtils.copyFileToTempDirectory(receivedApk); // copy file to a temp directory
+		if(cmd.getOptionValue(OPTION_SHA256) != null)
+			receivedApk.delete();
+
+
+
+		SootSetup.initSootInstance(
+				new File(tempApk.getAbsolutePath()),
+				Configuration.v().getSootConfiguration().getOutputDirectory(),
+				Configuration.v().getSootConfiguration().getAndroidPlatforms()
+		);
 
 
 		this.app = new Application(tempApk); // init Application object
@@ -282,8 +348,8 @@ public class Main {
 		File instrumentedApkInDynamicDir = FileUtils.copyFileToInstrumentedApkDirectory(app.getFinalApk());
 
 
-//		deleteDir(TEMP_DIRECTORY);
-//		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
+		deleteDir(TEMP_DIRECTORY);
+		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
 		if (Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			JSONObject updateFilter = new JSONObject();
@@ -293,7 +359,7 @@ public class Main {
 			data.put("instrumented_filename", app.getFinalApk().getName());
 			data.put("recompile_sdk_version", Scene.v().getAndroidAPIVersion());
 			storage.update(updateFilter, data, "application");
-//			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
+			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
 		}
 		this.updateStatus("ok");
 		System.out.println("Intrumentation finished !");

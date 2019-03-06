@@ -1,5 +1,6 @@
 {
   "targetApk": "",
+  "apkRemoteDirectory": "/home/lgitzing/apks/legacy",
   "description": "",
   "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
   "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
@@ -43,9 +44,18 @@
     "androidPlatforms": "/Users/lgitzing/Development/work/android-platforms",
     "outputDirectory": "./sootOutput"
   },
+  "sshConfiguration": {
+    "host": "gossple4.irisa.fr",
+    "port": 22,
+    "user": "lgitzing",
+    "pkeyPath": "./ssh/id_rsa_apk_management",
+    "pkeyPassphrase": "louison"
+  },
   "databaseConfiguration": {
     "connectToDatabase": false,
-    "name": "dynamic",
+    "storeOutputToDatabase": false,
+    "outputDatabaseName": "groom2",
+    "fetchDatabaseName": "TEST",
     "url": "localhost",
     "port": 27017,
     "authenticationConfiguration": {

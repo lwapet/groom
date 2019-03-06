@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "targetApk",
+    "apkRemoteDirectory",
     "description",
     "zipalignPath",
     "apksignerPath",
@@ -31,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "fridaInstrumenterConfiguration",
     "staticAnalysisConfiguration",
     "sootConfiguration",
+    "sshConfiguration",
     "databaseConfiguration"
 })
 public class InstrumenterConfiguration implements Serializable
@@ -43,6 +45,13 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("targetApk")
     @JsonPropertyDescription("path to the target apk")
     private String targetApk = "";
+    /**
+     * path the remote directory where the apk file can be found
+     * 
+     */
+    @JsonProperty("apkRemoteDirectory")
+    @JsonPropertyDescription("path the remote directory where the apk file can be found")
+    private String apkRemoteDirectory = "/home/lgitzing/apks/legacy";
     /**
      * optional description for the apk
      * 
@@ -142,13 +151,20 @@ public class InstrumenterConfiguration implements Serializable
     @JsonPropertyDescription("soot configuration for the program")
     private SootConfiguration sootConfiguration;
     /**
+     * configuration used to scp apks between local and remote server
+     * 
+     */
+    @JsonProperty("sshConfiguration")
+    @JsonPropertyDescription("configuration used to scp apks between local and remote server")
+    private SshConfiguration sshConfiguration;
+    /**
      * database configuration for mongodb instance
      * 
      */
     @JsonProperty("databaseConfiguration")
     @JsonPropertyDescription("database configuration for mongodb instance")
     private DatabaseConfiguration databaseConfiguration;
-    private final static long serialVersionUID = 1739061584179303344L;
+    private final static long serialVersionUID = 8898862433887051801L;
 
     /**
      * No args constructor for use in serialization
@@ -165,6 +181,7 @@ public class InstrumenterConfiguration implements Serializable
      * @param targetApk
      * @param description
      * @param instrumentedApkDirectory
+     * @param sshConfiguration
      * @param performStaticAnalysis
      * @param pathToKeystore
      * @param sootInstrumentationConfiguration
@@ -174,11 +191,13 @@ public class InstrumenterConfiguration implements Serializable
      * @param categorizedSourcesFile
      * @param apksignerPath
      * @param repackageApk
+     * @param apkRemoteDirectory
      * @param staticAnalysisConfiguration
      */
-    public InstrumenterConfiguration(String targetApk, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String instrumentedApkDirectory, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, DatabaseConfiguration databaseConfiguration) {
+    public InstrumenterConfiguration(String targetApk, String apkRemoteDirectory, String description, String zipalignPath, String apksignerPath, String pathToKeystore, String keyPassword, String categorizedSourcesFile, String categorizedSinksFile, boolean performStaticAnalysis, boolean repackageApk, String instrumentedApkDirectory, SootInstrumentationConfiguration sootInstrumentationConfiguration, FridaInstrumenterConfiguration fridaInstrumenterConfiguration, StaticAnalysisConfiguration staticAnalysisConfiguration, SootConfiguration sootConfiguration, SshConfiguration sshConfiguration, DatabaseConfiguration databaseConfiguration) {
         super();
         this.targetApk = targetApk;
+        this.apkRemoteDirectory = apkRemoteDirectory;
         this.description = description;
         this.zipalignPath = zipalignPath;
         this.apksignerPath = apksignerPath;
@@ -193,6 +212,7 @@ public class InstrumenterConfiguration implements Serializable
         this.fridaInstrumenterConfiguration = fridaInstrumenterConfiguration;
         this.staticAnalysisConfiguration = staticAnalysisConfiguration;
         this.sootConfiguration = sootConfiguration;
+        this.sshConfiguration = sshConfiguration;
         this.databaseConfiguration = databaseConfiguration;
     }
 
@@ -212,6 +232,24 @@ public class InstrumenterConfiguration implements Serializable
     @JsonProperty("targetApk")
     public void setTargetApk(String targetApk) {
         this.targetApk = targetApk;
+    }
+
+    /**
+     * path the remote directory where the apk file can be found
+     * 
+     */
+    @JsonProperty("apkRemoteDirectory")
+    public String getApkRemoteDirectory() {
+        return apkRemoteDirectory;
+    }
+
+    /**
+     * path the remote directory where the apk file can be found
+     * 
+     */
+    @JsonProperty("apkRemoteDirectory")
+    public void setApkRemoteDirectory(String apkRemoteDirectory) {
+        this.apkRemoteDirectory = apkRemoteDirectory;
     }
 
     /**
@@ -467,6 +505,24 @@ public class InstrumenterConfiguration implements Serializable
     }
 
     /**
+     * configuration used to scp apks between local and remote server
+     * 
+     */
+    @JsonProperty("sshConfiguration")
+    public SshConfiguration getSshConfiguration() {
+        return sshConfiguration;
+    }
+
+    /**
+     * configuration used to scp apks between local and remote server
+     * 
+     */
+    @JsonProperty("sshConfiguration")
+    public void setSshConfiguration(SshConfiguration sshConfiguration) {
+        this.sshConfiguration = sshConfiguration;
+    }
+
+    /**
      * database configuration for mongodb instance
      * 
      */
@@ -491,6 +547,10 @@ public class InstrumenterConfiguration implements Serializable
         sb.append("targetApk");
         sb.append('=');
         sb.append(((this.targetApk == null)?"<null>":this.targetApk));
+        sb.append(',');
+        sb.append("apkRemoteDirectory");
+        sb.append('=');
+        sb.append(((this.apkRemoteDirectory == null)?"<null>":this.apkRemoteDirectory));
         sb.append(',');
         sb.append("description");
         sb.append('=');
@@ -548,6 +608,10 @@ public class InstrumenterConfiguration implements Serializable
         sb.append('=');
         sb.append(((this.sootConfiguration == null)?"<null>":this.sootConfiguration));
         sb.append(',');
+        sb.append("sshConfiguration");
+        sb.append('=');
+        sb.append(((this.sshConfiguration == null)?"<null>":this.sshConfiguration));
+        sb.append(',');
         sb.append("databaseConfiguration");
         sb.append('=');
         sb.append(((this.databaseConfiguration == null)?"<null>":this.databaseConfiguration));
@@ -569,6 +633,7 @@ public class InstrumenterConfiguration implements Serializable
         result = ((result* 31)+((this.targetApk == null)? 0 :this.targetApk.hashCode()));
         result = ((result* 31)+((this.description == null)? 0 :this.description.hashCode()));
         result = ((result* 31)+((this.instrumentedApkDirectory == null)? 0 :this.instrumentedApkDirectory.hashCode()));
+        result = ((result* 31)+((this.sshConfiguration == null)? 0 :this.sshConfiguration.hashCode()));
         result = ((result* 31)+(this.performStaticAnalysis? 1 : 0));
         result = ((result* 31)+((this.pathToKeystore == null)? 0 :this.pathToKeystore.hashCode()));
         result = ((result* 31)+((this.sootInstrumentationConfiguration == null)? 0 :this.sootInstrumentationConfiguration.hashCode()));
@@ -578,6 +643,7 @@ public class InstrumenterConfiguration implements Serializable
         result = ((result* 31)+((this.categorizedSourcesFile == null)? 0 :this.categorizedSourcesFile.hashCode()));
         result = ((result* 31)+((this.apksignerPath == null)? 0 :this.apksignerPath.hashCode()));
         result = ((result* 31)+(this.repackageApk? 1 : 0));
+        result = ((result* 31)+((this.apkRemoteDirectory == null)? 0 :this.apkRemoteDirectory.hashCode()));
         result = ((result* 31)+((this.staticAnalysisConfiguration == null)? 0 :this.staticAnalysisConfiguration.hashCode()));
         return result;
     }
@@ -591,7 +657,7 @@ public class InstrumenterConfiguration implements Serializable
             return false;
         }
         InstrumenterConfiguration rhs = ((InstrumenterConfiguration) other);
-        return (((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&((this.instrumentedApkDirectory == rhs.instrumentedApkDirectory)||((this.instrumentedApkDirectory!= null)&&this.instrumentedApkDirectory.equals(rhs.instrumentedApkDirectory))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
+        return (((((((((((((((((((this.categorizedSinksFile == rhs.categorizedSinksFile)||((this.categorizedSinksFile!= null)&&this.categorizedSinksFile.equals(rhs.categorizedSinksFile)))&&((this.zipalignPath == rhs.zipalignPath)||((this.zipalignPath!= null)&&this.zipalignPath.equals(rhs.zipalignPath))))&&((this.databaseConfiguration == rhs.databaseConfiguration)||((this.databaseConfiguration!= null)&&this.databaseConfiguration.equals(rhs.databaseConfiguration))))&&((this.targetApk == rhs.targetApk)||((this.targetApk!= null)&&this.targetApk.equals(rhs.targetApk))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&((this.instrumentedApkDirectory == rhs.instrumentedApkDirectory)||((this.instrumentedApkDirectory!= null)&&this.instrumentedApkDirectory.equals(rhs.instrumentedApkDirectory))))&&((this.sshConfiguration == rhs.sshConfiguration)||((this.sshConfiguration!= null)&&this.sshConfiguration.equals(rhs.sshConfiguration))))&&(this.performStaticAnalysis == rhs.performStaticAnalysis))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.sootInstrumentationConfiguration == rhs.sootInstrumentationConfiguration)||((this.sootInstrumentationConfiguration!= null)&&this.sootInstrumentationConfiguration.equals(rhs.sootInstrumentationConfiguration))))&&((this.fridaInstrumenterConfiguration == rhs.fridaInstrumenterConfiguration)||((this.fridaInstrumenterConfiguration!= null)&&this.fridaInstrumenterConfiguration.equals(rhs.fridaInstrumenterConfiguration))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.sootConfiguration == rhs.sootConfiguration)||((this.sootConfiguration!= null)&&this.sootConfiguration.equals(rhs.sootConfiguration))))&&((this.categorizedSourcesFile == rhs.categorizedSourcesFile)||((this.categorizedSourcesFile!= null)&&this.categorizedSourcesFile.equals(rhs.categorizedSourcesFile))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&(this.repackageApk == rhs.repackageApk))&&((this.apkRemoteDirectory == rhs.apkRemoteDirectory)||((this.apkRemoteDirectory!= null)&&this.apkRemoteDirectory.equals(rhs.apkRemoteDirectory))))&&((this.staticAnalysisConfiguration == rhs.staticAnalysisConfiguration)||((this.staticAnalysisConfiguration!= null)&&this.staticAnalysisConfiguration.equals(rhs.staticAnalysisConfiguration))));
     }
 
 }
