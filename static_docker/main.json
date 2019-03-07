@@ -1,8 +1,9 @@
 {
   "targetApk": "",
+  "apkRemoteDirectory": "/home/lgitzing/apks/legacy",
   "description": "",
-  "zipalignPath": "/srv/sdk/build-tools/27.0.2/zipalign",
-  "apksignerPath": "/srv/sdk/build-tools/27.0.2/apksigner",
+  "zipalignPath": "/srv/sdk/build-tools/28.0.3/zipalign",
+  "apksignerPath": "/srv/sdk/build-tools/28.0.3/apksigner",
   "pathToKeystore": "keystore",
   "keyPassword": "!L0uL0u!",
   "categorizedSourcesFile": "required_files/categorized_sources.txt",
@@ -43,13 +44,22 @@
     "androidPlatforms": "/srv/android-platforms",
     "outputDirectory": "/tmp/sootOutput"
   },
+    "sshConfiguration": {
+    "host": "gossple4.irisa.fr",
+    "port": 22,
+    "user": "lgitzing",
+    "pkeyPath": "./ssh/id_rsa_apk_management",
+    "pkeyPassphrase": "louison"
+  },
   "databaseConfiguration": {
-    "connectToDatabase": false,
-    "name": "test",
+    "connectToDatabase": true,
+    "storeOutputToDatabase": true,
+    "fetchDatabaseName": "groom2",
+    "outputDatabaseName": "test",
     "url": "localhost",
-    "port": 27017,
+    "port": 9999,
     "authenticationConfiguration": {
-      "performAuthentication": false,
+      "performAuthentication": true,
       "authSourceDatabaseName": "admin",
       "username": "lgitzing",
       "password": "tout_petit_poney"
