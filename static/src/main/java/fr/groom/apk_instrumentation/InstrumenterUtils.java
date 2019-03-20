@@ -11,10 +11,8 @@ public class InstrumenterUtils {
 
 	public static File alignApk(File apkToAlign, String pathToZipAlign) throws IOException {
 		System.out.println("Aligning apk. = " + apkToAlign.getAbsolutePath());
-		System.out.println("EXISTS. = " + apkToAlign.exists());
 		File aligned = new File(apkToAlign.getAbsolutePath().replace(".apk", "") + "-aligned.apk");
 		Runtime rt = Runtime.getRuntime();
-		System.out.println("ZIP ALIGN PATH EXISTS :" + new File(pathToZipAlign).exists());
 		Process pr = rt.exec(pathToZipAlign + " " +
 				"-v -p 4 " +
 				apkToAlign + " " +
@@ -32,7 +30,6 @@ public class InstrumenterUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("EXISTS :" + aligned.exists());
 		return aligned;
 	}
 

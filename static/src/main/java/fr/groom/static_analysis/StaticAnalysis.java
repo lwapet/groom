@@ -46,6 +46,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 //		this.moduleManager.addModule(new DumpMethodUnitModule(this));
 		this.moduleManager.addModule(new CheckWebviewModule(this));
 		this.moduleManager.addModule(new DumpSpecificMethodsModule(this));
+		this.moduleManager.addModule(new DumpStringsModule(this));
 //		this.moduleManager.addModule(module);
 		if (Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
@@ -125,7 +126,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		Iterator<SootClass> sootClassIterator = Scene.v().getClasses().snapshotIterator();
 		while (sootClassIterator.hasNext()) {
 			SootClass sootClass = sootClassIterator.next();
-			if (sootClass.getName().contains("Groom"))
+			while (sootClass.getName().contains("Groom"))
 				sootClass = sootClassIterator.next();
 			handleClassLevel(sootClass);
 			List<SootMethod> clone = new ArrayList<>(sootClass.getMethods());

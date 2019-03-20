@@ -115,6 +115,7 @@ public class Main {
 	}
 
 	private void loadApkFromDatabase(String sha256) {
+		System.out.println("Trying to load apk from remote location.");
 		DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
 		Database db = new Database(
 				dbConfig.getUrl(),
@@ -313,14 +314,12 @@ public class Main {
 
 		if (!Configuration.v().isRepackageApk()) {
 			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
-			System.out.println("FINAL APK :" + finalApk.getAbsolutePath());
 			app.setFinalApk(finalApk);
 		} else {
 			this.updateStatus("repackaging");
 			File recompiledApk = recompileApk(app.getLastEditedApk());
 			this.updateStatus("repackaged");
 			app.setSootInstrumentedApk(recompiledApk);
-			System.out.println("RECOMPILED : " + recompiledApk.getAbsolutePath());
 			if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
 				this.updateStatus("adding .so files");
 				File modifiedApk = FridaInstrumenter.addSoFiles(app.getLastEditedApk());
@@ -330,7 +329,6 @@ public class Main {
 			this.updateStatus("aligning");
 			File aligned = InstrumenterUtils.alignApk(app.getLastEditedApk(), Configuration.v().getZipalignPath());
 			this.updateStatus("aligned");
-			System.out.println("ALIGNED: " + aligned.getAbsolutePath());
 			app.setAlignedApk(aligned);
 			this.updateStatus("signing");
 			File signed = InstrumenterUtils.signApk(
@@ -339,12 +337,10 @@ public class Main {
 					Configuration.v().getPathToKeystore(),
 					Configuration.v().getKeyPassword()
 			);
-			System.out.println("SIGNED : " + signed.getAbsolutePath());
 			app.setSignedApk(signed);
 			app.setFinalApk(signed);
 		}
 
-		System.out.println(app.getFinalApk().getAbsolutePath());
 		File instrumentedApkInDynamicDir = FileUtils.copyFileToInstrumentedApkDirectory(app.getFinalApk());
 
 
