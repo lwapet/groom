@@ -50,6 +50,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 //		this.moduleManager.addModule(module);
 		if (Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
+
 			flowDroidResults = flowDroid.run();
 		}
 		IModule sourceModule = new DumpSourcesAndSinksModule(this);
@@ -168,6 +169,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		data.put("sources", sourcesArray);
 		data.put("sinks", sinksArray);
 		data.put("flowdroid_results", flowDroidResults);
+		data.put("call_graph", Scene.v().getCallGraph().toString());
 		JSONObject filter = new JSONObject();
 		filter.put("sha256", this.app.getSha256());
 //		storage.insertData(app.toJson(), "application");

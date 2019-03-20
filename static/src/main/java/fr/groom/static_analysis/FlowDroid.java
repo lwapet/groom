@@ -2,6 +2,7 @@ package fr.groom.static_analysis;
 
 import fr.groom.Configuration;
 import org.json.JSONArray;
+import soot.Scene;
 import soot.jimple.infoflow.InfoflowConfiguration;
 import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
 import soot.jimple.infoflow.android.SetupApplication;
@@ -56,6 +57,7 @@ public class FlowDroid {
 //			this.dataHandler.updateAnalysis(new Document("$set", new Document("status", analysis.getStatus())));
 
 		InfoflowResults results = flowDroidApp.runInfoflow(provider);
+		Scene.v().removeClass(Scene.v().getSootClass("dummyMainClass"));
 		return resultsHandler.getResultsAsDocument(results);
 	}
 }
