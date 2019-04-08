@@ -7,8 +7,12 @@ import proguard.ClassPath;
 import proguard.ClassPathEntry;
 import proguard.ConfigurationParser;
 import proguard.ProGuard;
+import soot.Pack;
 import soot.PackManager;
 import soot.Transform;
+import soot.Transformer;
+import soot.jbco.jimpleTransformations.ClassRenamer;
+import soot.jbco.jimpleTransformations.MethodRenamer;
 import soot.jimple.infoflow.android.axml.AXmlAttribute;
 import soot.jimple.infoflow.android.axml.AXmlHandler;
 import soot.jimple.infoflow.android.axml.AXmlNode;
@@ -154,11 +158,27 @@ public class Main {
 		String pathToDex2Jar = Configuration.v().getDex2jarPath();
 		String pathToDx = Configuration.v().getDxPath();
 		String pathZip = Configuration.v().getZipCommandPath();
+		String pathToApkTool = "/usr/local/bin/apktool";
+		String apktoolOut = "apktool-out";
+		String apkToolOutput = Paths.get(apk.getParentFile().getAbsolutePath(), apktoolOut).toString();
+		String pathToReplace = "./replace.sh";
+
 
 		if (!apk.exists()) {
 			System.err.println("Wrong path");
 			System.exit(1);
 		}
+
+		runProcess(
+				pathToApkTool,
+				"d",
+				apk.getAbsolutePath(),
+				"-out",
+				apkToolOutput
+		);
+		runProcess(pathToReplace, apkToolOutput);
+		runProcess(pathToApkTool, "b", apk.getAbsolutePath().replace(".apk", ""));
+
 
 		if (Configuration.v().getApplyProguard()) {
 			File apkJar = new File(apk.getAbsolutePath().replace(".apk", ".jar"));
@@ -188,12 +208,15 @@ public class Main {
 		);
 
 //		changePackageInManifest(apk);
+//		ClassRenamer.v();
 		PackageTransformer packageTransformer = new PackageTransformer();
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.packageTransformer", packageTransformer));
 		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.reflectionTransformer", rt));
 		StringEncrypter se = new StringEncrypter();
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.stringEncrypter", se));
+		Pack wjtp = PackManager.v().getPack("wjtp");
+		wjtp.add(new Transform("wjtp.jbco_fr", MethodRenamer.v()));
 		PackManager.v().runPacks();
 		System.out.println("Recompiling apk.");
 		PackManager.v().writeOutput();
