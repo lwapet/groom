@@ -16,7 +16,6 @@ import soot.jimple.infoflow.android.axml.ApkHandler;
 import soot.jimple.infoflow.android.manifest.ProcessManifest;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,7 +24,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-public class MainProguardFirst {
+public class Main {
 	private static final String HELP_CATCH_PHRASE = "Obfuscator [OPTIONS]";
 	private static final String OPTION_APK_FILE = "a";
 	private static final String OPTION_CONFIG_FILE = "c";
@@ -57,7 +56,7 @@ public class MainProguardFirst {
 			System.exit(1);
 		} else {
 			try {
-				File out = new File(Paths.get(MainProguardFirst.TEMP_DIRECTORY.getAbsolutePath(), targetApk.getName()).toUri());
+				File out = new File(Paths.get(Main.TEMP_DIRECTORY.getAbsolutePath(), targetApk.getName()).toUri());
 				Files.copy(targetApk.toPath(), out.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				return out;
 			} catch (IOException e) {
@@ -211,7 +210,7 @@ public class MainProguardFirst {
 	}
 
 	public static void main(String[] args) throws ParseException, proguard.ParseException, InterruptedException, IOException {
-		MainProguardFirst main = new MainProguardFirst();
+		Main main = new Main();
 		main.run(args);
 	}
 
