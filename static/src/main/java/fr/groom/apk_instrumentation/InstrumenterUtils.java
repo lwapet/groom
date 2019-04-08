@@ -1,10 +1,13 @@
 package fr.groom.apk_instrumentation;
 
+import fr.groom.Configuration;
 import soot.*;
 import soot.jimple.*;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class InstrumenterUtils {
 	public static String groomClassName = "fr.groom.Groom";
@@ -32,6 +35,18 @@ public class InstrumenterUtils {
 		}
 		return aligned;
 	}
+	public static void setEnv(String key, String value) {
+		try {
+			Map<String, String> env = System.getenv();
+			Class<?> cl = env.getClass();
+			Field field = cl.getDeclaredField("m");
+			field.setAccessible(true);
+			Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+			writableEnv.put(key, value);
+		} catch (Exception e) {
+			throw new IllegalStateException("Failed to set environment variable", e);
+		}
+	}
 
 	public static File signApk(File apkToSign, String pathToApksigner, String pathToKeyStore, String keyPassword) throws IOException {
 		System.out.println("Signing apk.");
@@ -58,7 +73,6 @@ public class InstrumenterUtils {
 		}
 		return signed;
 	}
-
 
 
 	public static SootMethod getInitMethod(SootClass sootClass) {

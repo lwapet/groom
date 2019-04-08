@@ -25,11 +25,12 @@ import soot.jimple.infoflow.android.axml.AXmlNode;
 import soot.jimple.infoflow.android.axml.ApkHandler;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-import static fr.groom.FileUtils.TEMP_DIRECTORY;
 import static fr.groom.FileUtils.deleteDir;
 
 
@@ -45,6 +46,7 @@ public class Main {
 	private final Options options = new Options();
 	private Storage storage;
 	private Application app;
+	public static File TEMP_DIRECTORY = null;
 
 
 	public Main() {
@@ -72,7 +74,7 @@ public class Main {
 	private File recompileApk(File apk) {
 		System.out.println("Recompiling apk.");
 		PackManager.v().writeOutput();
-		Path sootApkPath = Paths.get(Configuration.v().getSootConfiguration().getOutputDirectory(), apk.getName());
+		Path sootApkPath = Paths.get(TEMP_DIRECTORY + "/sootOutput", apk.getName());
 		File sootApk = new File(sootApkPath.toUri());
 		if (!sootApk.exists()) {
 			try {
@@ -110,9 +112,15 @@ public class Main {
 			System.err.println("Invalid apk path : " + targetApk.getAbsolutePath());
 			System.exit(1);
 		} else {
-			Configuration.v().setTargetApk(targetApk.getAbsolutePath());
+			try {
+				Files.copy(targetApk.toPath(), Main.TEMP_DIRECTORY.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Configuration.v().setTargetApk(targetApk.getAbsolutePath());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
+
 
 	private void loadApkFromDatabase(String sha256) {
 		System.out.println("Trying to load apk from remote location.");
@@ -136,7 +144,6 @@ public class Main {
 				System.err.println("No apk file found for the sha: " + sha256);
 				System.exit(400);
 			} else {
-				String localDirectoryPath = "/tmp";
 				String fileName = matchingApk.getString("legacy_filename");
 				SshConfiguration sshConfig = Configuration.v().getSshConfiguration();
 				Session session = Scp.createSession(
@@ -147,8 +154,8 @@ public class Main {
 						sshConfig.getPkeyPassphrase()
 				);
 				try {
-					Scp.copyRemoteToLocal(session, Configuration.v().getApkRemoteDirectory(), localDirectoryPath, fileName);
-					Configuration.v().setTargetApk(Paths.get(localDirectoryPath, fileName).toFile().getAbsolutePath());
+					Scp.copyRemoteToLocal(session, Configuration.v().getApkRemoteDirectory(), Main.TEMP_DIRECTORY.getAbsolutePath(), fileName);
+					Configuration.v().setTargetApk(Paths.get(Main.TEMP_DIRECTORY.getAbsolutePath(), fileName).toFile().getAbsolutePath());
 				} catch (JSchException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -199,6 +206,9 @@ public class Main {
 			this.storage = new Printer();
 		}
 
+		TEMP_DIRECTORY = new File("./temp-" + UUID.randomUUID().toString());
+		TEMP_DIRECTORY.mkdirs();
+
 		if (cmd.getOptionValue(OPTION_SHA256) != null) {
 			if (!Configuration.v().getDatabaseConfiguration().isConnectToDatabase()) {
 				System.err.println("You must connect to the database to analyse apk from sha");
@@ -210,16 +220,11 @@ public class Main {
 			loadTargetApk(cmd.getOptionValue(OPTION_APK_FILE)); // Load target apk path from program arguments or config file
 		}
 
-		File receivedApk = new File(Configuration.v().getTargetApk());
-		File tempApk = FileUtils.copyFileToTempDirectory(receivedApk); // copy file to a temp directory
-		if(cmd.getOptionValue(OPTION_SHA256) != null)
-			receivedApk.delete();
-
-
+		File tempApk = new File(Configuration.v().getTargetApk());
 
 		SootSetup.initSootInstance(
 				new File(tempApk.getAbsolutePath()),
-				Configuration.v().getSootConfiguration().getOutputDirectory(),
+				TEMP_DIRECTORY.getAbsolutePath(),
 				Configuration.v().getSootConfiguration().getAndroidPlatforms()
 		);
 
@@ -254,14 +259,14 @@ public class Main {
 				InstrumenterUtils.setGroomConstants(field, value);
 			}
 			// Clean output directory
-			File folder = new File(Configuration.v().getSootConfiguration().getOutputDirectory());
-			if (folder.exists()) {
-				for (File file : Objects.requireNonNull(folder.listFiles())) {
-					if (file.getName().endsWith(".apk")) {
-						boolean success = file.delete();
-					}
-				}
-			}
+//			File folder = new File(Configuration.v().getSootConfiguration().getOutputDirectory());
+//			if (folder.exists()) {
+//				for (File file : Objects.requireNonNull(folder.listFiles())) {
+//					if (file.getName().endsWith(".apk")) {
+//						boolean success = file.delete();
+//					}
+//				}
+//			}
 			// Add Soot transformer instrumenter
 			sootInstrumenter = new SootInstrumenter(app, staticAnalysis);
 			PackManager.v().getPack("wjtp").add(new Transform("wjtp.mainTransformer", sootInstrumenter));
@@ -313,8 +318,8 @@ public class Main {
 		}
 
 		if (!Configuration.v().isRepackageApk()) {
-			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
-			app.setFinalApk(finalApk);
+//			File finalApk = FileUtils.copyFileToOutputDir(app.getApk());
+//			app.setFinalApk(finalApk);
 		} else {
 			this.updateStatus("repackaging");
 			File recompiledApk = recompileApk(app.getLastEditedApk());
@@ -345,7 +350,7 @@ public class Main {
 
 
 		deleteDir(TEMP_DIRECTORY);
-		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
+//		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
 		if (Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			JSONObject updateFilter = new JSONObject();

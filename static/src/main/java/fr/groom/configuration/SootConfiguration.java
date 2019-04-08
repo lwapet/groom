@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "androidPlatforms",
-    "outputDirectory"
+    "androidPlatforms"
 })
 public class SootConfiguration implements Serializable
 {
@@ -27,14 +26,7 @@ public class SootConfiguration implements Serializable
     @JsonProperty("androidPlatforms")
     @JsonPropertyDescription("path to the android platform folder")
     private String androidPlatforms = "/Users/lgitzing/Development/work/android-platforms";
-    /**
-     * where to output soot instrumented apk
-     * 
-     */
-    @JsonProperty("outputDirectory")
-    @JsonPropertyDescription("where to output soot instrumented apk")
-    private String outputDirectory = "./sootOutput";
-    private final static long serialVersionUID = 9169432055127332276L;
+    private final static long serialVersionUID = 7926547952987226078L;
 
     /**
      * No args constructor for use in serialization
@@ -45,13 +37,11 @@ public class SootConfiguration implements Serializable
 
     /**
      * 
-     * @param outputDirectory
      * @param androidPlatforms
      */
-    public SootConfiguration(String androidPlatforms, String outputDirectory) {
+    public SootConfiguration(String androidPlatforms) {
         super();
         this.androidPlatforms = androidPlatforms;
-        this.outputDirectory = outputDirectory;
     }
 
     /**
@@ -72,24 +62,6 @@ public class SootConfiguration implements Serializable
         this.androidPlatforms = androidPlatforms;
     }
 
-    /**
-     * where to output soot instrumented apk
-     * 
-     */
-    @JsonProperty("outputDirectory")
-    public String getOutputDirectory() {
-        return outputDirectory;
-    }
-
-    /**
-     * where to output soot instrumented apk
-     * 
-     */
-    @JsonProperty("outputDirectory")
-    public void setOutputDirectory(String outputDirectory) {
-        this.outputDirectory = outputDirectory;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -97,10 +69,6 @@ public class SootConfiguration implements Serializable
         sb.append("androidPlatforms");
         sb.append('=');
         sb.append(((this.androidPlatforms == null)?"<null>":this.androidPlatforms));
-        sb.append(',');
-        sb.append("outputDirectory");
-        sb.append('=');
-        sb.append(((this.outputDirectory == null)?"<null>":this.outputDirectory));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -113,7 +81,6 @@ public class SootConfiguration implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.outputDirectory == null)? 0 :this.outputDirectory.hashCode()));
         result = ((result* 31)+((this.androidPlatforms == null)? 0 :this.androidPlatforms.hashCode()));
         return result;
     }
@@ -127,7 +94,7 @@ public class SootConfiguration implements Serializable
             return false;
         }
         SootConfiguration rhs = ((SootConfiguration) other);
-        return (((this.outputDirectory == rhs.outputDirectory)||((this.outputDirectory!= null)&&this.outputDirectory.equals(rhs.outputDirectory)))&&((this.androidPlatforms == rhs.androidPlatforms)||((this.androidPlatforms!= null)&&this.androidPlatforms.equals(rhs.androidPlatforms))));
+        return ((this.androidPlatforms == rhs.androidPlatforms)||((this.androidPlatforms!= null)&&this.androidPlatforms.equals(rhs.androidPlatforms)));
     }
 
 }

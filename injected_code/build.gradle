@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'fr.groom'
+group 'com.lock.app'
 version '2'
 
 sourceCompatibility = 1.8

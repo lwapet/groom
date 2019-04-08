@@ -193,11 +193,6 @@
           "type": "string",
           "description": "path to the android platform folder",
           "default": "/Users/lgitzing/Development/work/android-platforms"
-        },
-        "outputDirectory": {
-          "type": "string",
-          "description": "where to output soot instrumented apk",
-          "default": "./sootOutput"
         }
       }
     },

@@ -10,7 +10,6 @@ import java.util.UUID;
 
 public class FileUtils {
 //	public static final File TEMP_DIRECTORY = new File("/tmp/temp" + UUID.randomUUID().toString());
-	public static final File TEMP_DIRECTORY = new File("/tmp/temp");
 
 
 	static void deleteDir(File file) {
@@ -26,7 +25,7 @@ public class FileUtils {
 	}
 
 	public static File copyFileToOutputDir(File file) {
-		File sootOutputDirectory = new File(Configuration.v().getSootConfiguration().getOutputDirectory());
+		File sootOutputDirectory = new File(Main.TEMP_DIRECTORY + "/sootOutput");
 		if (!sootOutputDirectory.exists()) {
 			sootOutputDirectory.mkdir();
 		}
@@ -70,25 +69,21 @@ public class FileUtils {
 		return newTempFile;
 	}
 
-	public static File copyFileToTempDirectory(File file) {
-		if (TEMP_DIRECTORY.exists()) {
-			deleteDir(TEMP_DIRECTORY);
-		}
-		TEMP_DIRECTORY.mkdir();
-
-		String newApkPath = TEMP_DIRECTORY.getAbsolutePath() + "/" + file.getName();
-		try {
-			Files.copy(file.toPath(), (new File(newApkPath)).toPath(), StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.err.println("Error while copying Apk to temp directory");
-			System.exit(1);
-		}
-		File newTempFile = new File(newApkPath);
-		if (!newTempFile.exists()) {
-			System.err.println("Temp apk doesn't exist");
-			System.exit(1);
-		}
-		return newTempFile;
-	}
+//	public static File copyFileToTempDirectory(File file) {
+//
+//		String newApkPath = "./" + file.getName();
+//		try {
+//			Files.copy(file.toPath(), (new File(newApkPath)).toPath(), StandardCopyOption.REPLACE_EXISTING);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			System.err.println("Error while copying Apk to temp directory");
+//			System.exit(1);
+//		}
+//		File newTempFile = new File(newApkPath);
+//		if (!newTempFile.exists()) {
+//			System.err.println("Temp apk doesn't exist");
+//			System.exit(1);
+//		}
+//		return newTempFile;
+//	}
 }

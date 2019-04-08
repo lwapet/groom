@@ -4,6 +4,7 @@
   "description": "",
   "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
   "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
+  "javaPath": "",
   "pathToKeystore": "/Users/lgitzing/.android/keystore",
   "keyPassword": "",
   "categorizedSourcesFile": "required_files/categorized_sources.txt",

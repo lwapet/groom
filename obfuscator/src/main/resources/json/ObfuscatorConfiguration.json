@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Crawler schema",
+  "description": "This schema describes available configurations for the program",
+  "type": "object",
+  "properties": {
+    "androidPlatforms": {
+      "type": "string",
+      "description": "path to android platforms",
+      "default": "/Users/lgitzing/Library/Android/sdk/platforms"
+    },
+    "dex2jarPath": {
+      "type": "string",
+      "description": "path to dex2jar script",
+      "default": "/Users/lgitzing/Development/work/dex-tools/d2j-dex2jar.sh"
+    },
+    "dxPath": {
+      "type": "string",
+      "description": "path to dx script",
+      "default": "/Users/lgitzing/Library/Android/sdk/build-tools/28.0.2/dx"
+    },
+    "zipCommandPath": {
+      "type": "string",
+      "description": "path to zip command",
+      "default": "/usr/bin/zip"
+    },
+    "apksignerPath": {
+      "type": "string",
+      "description": "path to apksigner binary",
+      "default": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner"
+    },
+    "pathToKeystore": {
+      "type": "string",
+      "description": "path to keystore (sign)",
+      "default": "/Users/lgitzing/.android/keystore"
+    },
+    "keyPassword": {
+      "type": "string",
+      "description": "sign key password",
+      "default": ""
+    },
+    "proguardConfigPath": {
+      "type": "string",
+      "description": "path to proguard configuration",
+      "default": "./test_original.pro"
+    },
+    "useEncryption": {
+      "type": "boolean",
+      "description": "whether to use string encryption in obfuscation or not",
+      "default": true
+    },
+    "applyProguard": {
+      "type": "boolean",
+      "description": "execute proguard on given apk",
+      "default": true
+    }
+  }
+}

@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static soot.SootClass.HIERARCHY;
 import static soot.SootClass.SIGNATURES;
 
 public class SootSetup {
@@ -21,8 +22,8 @@ public class SootSetup {
 		Options.v().set_android_jars(androidPlatforms);
 		List<String> dexToLoad = new ArrayList<>();
 		dexToLoad.add(apk.getAbsolutePath());
-		if(Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
-			dexToLoad.add(Configuration.v().getSootInstrumentationConfiguration().getGroomPath());
+		if (Configuration.v().getUseEncryption()) {
+			dexToLoad.add("Encryptor.dex");
 		}
 		Options.v().set_verbose(true);
 		Options.v().set_process_dir(dexToLoad);
@@ -31,12 +32,13 @@ public class SootSetup {
 		Options.v().set_output_dir(outputDirectory + "/sootOutput");
 		Options.v().set_output_format(Options.output_format_dex);
 		Options.v().set_force_overwrite(true);
-
+		Options.v().set_debug_resolver(true);
+		Options.v().set_debug(true);
 		// Triggers targetSdkVersion looking in AndroidManifest file to estimate compilation SDK
 		Scene.v().getAndroidJarPath(Options.v().android_jars(), apk.getAbsolutePath());
 		int choosenApiVersion = Scene.v().getAndroidAPIVersion();
 		if (choosenApiVersion > 23) {
-			Options.v().set_force_android_jar(Configuration.v().getSootConfiguration().getAndroidPlatforms() + "/android-23/android.jar");
+//			Options.v().set_force_android_jar(Configuration.v().getSootConfiguration().getAndroidPlatforms() + "/android-23/android.jar");
 		}
 
 
@@ -45,9 +47,10 @@ public class SootSetup {
 //			Options.v().set_output_format(Options.output_format_jimple);
 		System.out.println("Load necessary classes.");
 //		Scene.v().addBasicClass("InjectedHelper");
-		Scene.v().loadClassAndSupport("Groom");
+//		Scene.v().loadClassAndSupport("Groom");
 //		Scene.v().loadClass("InjectedHelper", SIGNATURES);
 		Scene.v().addBasicClass("android.util.Log", SIGNATURES);
+		Scene.v().addBasicClass("java.lang.ReflectiveOperationException",HIERARCHY);
 //		Scene.v().loadClass("android.content.Context", SIGNATURES);
 //		Scene.v().loadClass("android.app.Service", SIGNATURES);
 		Scene.v().loadNecessaryClasses();
