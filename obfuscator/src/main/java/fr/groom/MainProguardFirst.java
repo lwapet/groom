@@ -96,13 +96,13 @@ public class MainProguardFirst {
 		components.addAll(manifest.getAllActivities());
 		components.addAll(manifest.getServices());
 		components.addAll(manifest.getReceivers());
-		for(AXmlNode component : components) {
+		for (AXmlNode component : components) {
 			AXmlAttribute componentNameAttribute = component.getAttribute("name");
 			String componentName = (String) componentNameAttribute.getValue();
 			componentNameAttribute.setValue(componentName.replace(packageName, newPackageName));
 		}
 		byte[] newManifestBytes = aXmlHandler.toByteArray();
-		Path newManifestPath = Paths.get(apk.getParentFile().getAbsolutePath(),"AndroidManifest.xml");
+		Path newManifestPath = Paths.get(apk.getParentFile().getAbsolutePath(), "AndroidManifest.xml");
 		FileOutputStream fileOuputStream = new FileOutputStream(new File(newManifestPath.toUri()));
 		fileOuputStream.write(newManifestBytes);
 		fileOuputStream.close();
@@ -161,24 +161,26 @@ public class MainProguardFirst {
 			System.exit(1);
 		}
 
-		File apkJar = new File(apk.getAbsolutePath().replace(".apk", ".jar"));
-		runProcess(pathToDex2Jar, "--force", "-o", apkJar.getAbsolutePath(), apk.getAbsolutePath());
-		File proguardOutputJar = new File(Paths.get(TEMP_DIRECTORY.getAbsolutePath(), "classes.jar").toUri());
+		if (Configuration.v().getApplyProguard()) {
+			File apkJar = new File(apk.getAbsolutePath().replace(".apk", ".jar"));
+			runProcess(pathToDex2Jar, "--force", "-o", apkJar.getAbsolutePath(), apk.getAbsolutePath());
+			File proguardOutputJar = new File(Paths.get(TEMP_DIRECTORY.getAbsolutePath(), "classes.jar").toUri());
 //		File proguardOutputApk = new File(Paths.get(TEMP_DIRECTORY.getAbsolutePath(), "output.apk").toUri());
-		File proguardOutputDex = new File(Paths.get(TEMP_DIRECTORY.getAbsolutePath(), "classes.dex").toUri());
-		proguard.Configuration configuration = new proguard.Configuration();
-		File proguardConfigFile = new File(Configuration.v().getProguardConfigPath());
-		ConfigurationParser proguardParser = new ConfigurationParser(proguardConfigFile, System.getProperties());
-		ClassPath classPath = new ClassPath();
-		proguardParser.parse(configuration);
-		classPath.add(new ClassPathEntry(apkJar, false));
-		classPath.add(new ClassPathEntry(proguardOutputJar, true));
-		configuration.programJars = classPath;
-		configuration.verbose = true;
-		new ProGuard(configuration).execute();
-		runProcess(pathToDx, "--dex", "--output=" + proguardOutputDex.getAbsolutePath(), proguardOutputJar.getAbsolutePath());
-		runProcess(pathZip, "-d", apk.getAbsolutePath(), "classes.dex");
-		runProcess(pathZip, "-uj", apk.getAbsolutePath(), proguardOutputDex.getAbsolutePath());
+			File proguardOutputDex = new File(Paths.get(TEMP_DIRECTORY.getAbsolutePath(), "classes.dex").toUri());
+			proguard.Configuration configuration = new proguard.Configuration();
+			File proguardConfigFile = new File(Configuration.v().getProguardConfigPath());
+			ConfigurationParser proguardParser = new ConfigurationParser(proguardConfigFile, System.getProperties());
+			ClassPath classPath = new ClassPath();
+			proguardParser.parse(configuration);
+			classPath.add(new ClassPathEntry(apkJar, false));
+			classPath.add(new ClassPathEntry(proguardOutputJar, true));
+			configuration.programJars = classPath;
+			configuration.verbose = true;
+			new ProGuard(configuration).execute();
+			runProcess(pathToDx, "--dex", "--output=" + proguardOutputDex.getAbsolutePath(), proguardOutputJar.getAbsolutePath());
+			runProcess(pathZip, "-d", apk.getAbsolutePath(), "classes.dex");
+			runProcess(pathZip, "-uj", apk.getAbsolutePath(), proguardOutputDex.getAbsolutePath());
+		}
 
 		SootSetup.initSootInstance(
 				new File(apk.getAbsolutePath()),

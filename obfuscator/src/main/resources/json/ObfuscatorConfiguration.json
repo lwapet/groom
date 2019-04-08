@@ -53,6 +53,6 @@
       "type": "boolean",
       "description": "execute proguard on given apk",
       "default": true
-    }
+    },
   }
 }
