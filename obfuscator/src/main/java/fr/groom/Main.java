@@ -7,11 +7,9 @@ import proguard.ClassPath;
 import proguard.ClassPathEntry;
 import proguard.ConfigurationParser;
 import proguard.ProGuard;
-import soot.Pack;
-import soot.PackManager;
-import soot.Transform;
-import soot.Transformer;
+import soot.*;
 import soot.jbco.jimpleTransformations.ClassRenamer;
+import soot.jbco.jimpleTransformations.FieldRenamer;
 import soot.jbco.jimpleTransformations.MethodRenamer;
 import soot.jimple.infoflow.android.axml.AXmlAttribute;
 import soot.jimple.infoflow.android.axml.AXmlHandler;
@@ -77,6 +75,23 @@ public class Main {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private void modifyComponentsNames(File apk, HashMap<String, String> componentMappings) {
+		ProcessManifest manifest = getManifest(apk.getAbsolutePath());
+		List<AXmlNode> components = new ArrayList<>();
+		components.addAll(manifest.getAllActivities());
+		components.addAll(manifest.getServices());
+		components.addAll(manifest.getReceivers());
+		componentMappings.forEach((componentName, newName) -> {
+			for(AXmlNode c : components) {
+				AXmlAttribute componentNameAttribute = c.getAttribute("name");
+				String originalComponentName = (String) componentNameAttribute.getValue();
+				if(originalComponentName.equals(componentName)) {
+					componentNameAttribute.setValue(newName);
+				}
+			}
+		});
 	}
 
 	private void changePackageInManifest(File apk) throws IOException {
@@ -180,32 +195,38 @@ public class Main {
 			runProcess(pathZip, "-uj", apk.getAbsolutePath(), proguardOutputDex.getAbsolutePath());
 		}
 
+		changePackageInManifest(apk);
+
 		SootSetup.initSootInstance(
 				new File(apk.getAbsolutePath()),
 				TEMP_DIRECTORY.getAbsolutePath(),
 				Configuration.v().getAndroidPlatforms()
 		);
 
-//		changePackageInManifest(apk);
 //		ClassRenamer.v();
 		Pack wjtp = PackManager.v().getPack("wjtp");
-		PackageTransformer packageTransformer = new PackageTransformer();
-		wjtp.add(new Transform("wjtp.packageTransformer", packageTransformer));
+//		PackageTransformer packageTransformer = new PackageTransformer();
+//		wjtp.add(new Transform("wjtp.packageTransformer", packageTransformer));
 		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
 		wjtp.add(new Transform("wjtp.reflectionTransformer", rt));
-		StringEncrypter se = new StringEncrypter();
-		wjtp.add(new Transform("wjtp.stringEncrypter", se));
-		ClassRenamer.v().setRemovePackages(true);
-		wjtp.add(new Transform("wjtp.jbco_cr", ClassRenamer.v()));
-//		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
+		fr.groom.ClassRenamer cr = new fr.groom.ClassRenamer(getManifest(apk.getAbsolutePath()));
+		cr.setRenamePackages(true);
+//		wjtp.add(new Transform("wjtp.jbco_cr", cr));
+		if (Configuration.v().getUseEncryption()) {
+			StringEncrypter se = new StringEncrypter();
+			wjtp.add(new Transform("wjtp.stringEncrypter", se));
+		}
+		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
+		FieldRenamer.v().setRenameFields(true);
+		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 		PackManager.v().runPacks();
 		System.out.println("Recompiling apk.");
+//		modifyComponentsNames(apk, cr.componentMappings);
 		PackManager.v().writeOutput();
 		Path sootApkPath = Paths.get(TEMP_DIRECTORY + "/sootOutput", apk.getName());
 		Path sootOutputPath = Paths.get(TEMP_DIRECTORY + "/sootOutput");
 		File sootOutputDirectory = new File(sootOutputPath.toUri());
 		File sootApk = new File(sootApkPath.toUri());
-
 
 		File signedApk = signApk(sootApk, Configuration.v().getApksignerPath(), Configuration.v().getPathToKeystore(), Configuration.v().getKeyPassword());
 		runProcess(pathToDex2Jar, "--force", "-o", signedApk.getAbsolutePath().replace(".apk", ".jar"), signedApk.getAbsolutePath());

@@ -3,10 +3,17 @@ package fr.groom;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
+import soot.jimple.infoflow.android.data.CategoryDefinition;
+import soot.jimple.infoflow.android.data.parsers.CategorizedAndroidSourceSinkParser;
+import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
+import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
+import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkType;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.lang.reflect.Method;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -22,6 +29,9 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 	public static Type OBJECT_TYPE = RefType.v(OBJECT_CLASS_NAME);
 	public static Type CLASS_TYPE = RefType.v(CLASS_CLASS_NAME);
 	public static Type REFLECTION_EXCEPTION_TYPE = RefType.v(REFLECTION_EXCETPION_CLASS_NAME);
+
+	private Set<MethodSourceSinkDefinition> sources;
+	private Set<MethodSourceSinkDefinition> sinks;
 
 	public static String[] START_SERVICE = {
 			"startService(android.content.Intent,android.os.Bundle)>",
@@ -61,7 +71,29 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 	};
 
 	private void onStart() {
-		System.out.println("HELLO");
+		CategoryDefinition allCats = new CategoryDefinition(CategoryDefinition.CATEGORY.ALL);
+		Set<CategoryDefinition> categories = new HashSet<>();
+		categories.add(allCats);
+		String sourceFile = "categorized_sources.txt";
+		CategorizedAndroidSourceSinkParser sourceParser = new CategorizedAndroidSourceSinkParser(categories, sourceFile, SourceSinkType.Source);
+		try {
+			Set<SourceSinkDefinition> sourceDefs = sourceParser.parse();
+			this.sources = new HashSet<>();
+			sourceDefs.stream().forEach(s -> sources.add((MethodSourceSinkDefinition) s));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		String sinkFile = "categorized_sinks.txt";
+		CategorizedAndroidSourceSinkParser sinkParser = new CategorizedAndroidSourceSinkParser(categories, sinkFile, SourceSinkType.Sink);
+
+		try {
+			Set<SourceSinkDefinition> sinkDefs = sinkParser.parse();
+			this.sinks = new HashSet<>();
+			sinkDefs.stream().forEach(s -> sinks.add((MethodSourceSinkDefinition) s));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void onFinish() {
@@ -106,8 +138,8 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 
 
 	private void handleUnit(SootClass sootClass, SootMethod sootMethod, Unit unit) {
-		if(unit.toString().contains("com.lock.app")) {
-			System.out.println("cic");
+		if (unit.toString().contains("com.lock.app")) {
+//			System.out.println("cic");
 		}
 		toReflection(sootClass, sootMethod, unit);
 	}
@@ -122,9 +154,14 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 			return;
 		}
 		InvokeExpr cInvokExpr = stmt.getInvokeExpr();
+		if (cInvokExpr.getMethod().getName().startsWith("on")) {
+			return;
+		}
 		if (Arrays.stream(START_SERVICE).anyMatch(s -> unit.toString().contains(s))
 				|| Arrays.stream(START_ACTIVITY).anyMatch(s -> unit.toString().contains(s))
 				|| Arrays.stream(TO_TRANSFORM).anyMatch(s -> cInvokExpr.getMethod().getSignature().equals(s))
+				|| sources.stream().anyMatch(s -> cInvokExpr.getMethod().getSignature().equals(s.getMethod().getSignature()))
+				|| sinks.stream().anyMatch(s -> cInvokExpr.getMethod().getSignature().equals(s.getMethod().getSignature()))
 		) {
 
 			SootMethod toCall = cInvokExpr.getMethod();
@@ -136,8 +173,14 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 			} else if (cInvokExpr instanceof InterfaceInvokeExpr) {
 				InterfaceInvokeExpr interfaceInvokeExpr = (InterfaceInvokeExpr) cInvokExpr;
 				baseOrThis = interfaceInvokeExpr.getBase();
+			} else if (cInvokExpr instanceof StaticInvokeExpr) {
+				baseOrThis = NullConstant.v();
 			} else {
-				baseOrThis = body.getThisLocal();
+				try {
+					baseOrThis = body.getThisLocal();
+				} catch (RuntimeException e) {
+					baseOrThis = NullConstant.v();
+				}
 			}
 
 //			SootClass toInvoke = null;
@@ -228,7 +271,12 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 //				ClassConstant tempClassConstant = ClassConstant.fromType(arg.getType());
 				AssignStmt tempsStmt;
 				if (arg.getType() instanceof PrimType) {
-					PrimType primType = (PrimType) arg.getType();
+					PrimType primType;
+					if (cInvokExpr.getMethod().getParameterType(count) instanceof BooleanType) {
+						primType = BooleanType.v();
+					} else {
+						primType = (PrimType) arg.getType();
+					}
 					Local boxedLocal = localGenerator.generateLocal(primType.boxedType());
 					SootClass boxedClass = Scene.v().getSootClass(primType.boxedType().getClassName());
 					SootMethod boxedInit = boxedClass.getMethod("valueOf", Collections.singletonList(primType));
@@ -254,21 +302,41 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 			args.add(invokeArrayRef);
 			VirtualInvokeExpr reflectInvokeMethodExpr = Jimple.v().newVirtualInvokeExpr(declaredMethodInvokeLocal, reflectInvokeMethod.makeRef(), args);
 			Stmt resultStmt;
-			Stmt castStmt = null;
+			List<Stmt> statementsToInsert = new ArrayList<>();
 			if (stmt instanceof AssignStmt) {
 				AssignStmt resultAssignStmt = (AssignStmt) stmt;
-				Local toBeCasted = localGenerator.generateLocal(OBJECT_TYPE);
-
 				Value resultReference = resultAssignStmt.getLeftOp();
-				resultStmt = Jimple.v().newAssignStmt(toBeCasted, reflectInvokeMethodExpr);
-				CastExpr castExpr = Jimple.v().newCastExpr(toBeCasted, resultReference.getType());
-				castStmt = Jimple.v().newAssignStmt(resultReference, castExpr);
+				Local invokeResultLocal = localGenerator.generateLocal(OBJECT_TYPE);
+//				Local finalCast;
+				resultStmt = Jimple.v().newAssignStmt(invokeResultLocal, reflectInvokeMethodExpr);
+				statementsToInsert.add(resultStmt);
+				Type finalTypeToCast = resultReference.getType();
+				if (resultReference.getType() instanceof PrimType) {
+					PrimType t = (PrimType) resultReference.getType();
+					RefType intermediateTypeToCast = t.boxedType();
+					SootClass boxedClass = Scene.v().getSootClass(intermediateTypeToCast.toString());
+					SootMethod boxedMethodToPrim = boxedClass.getMethod(t.toString() + "Value", Collections.EMPTY_LIST, t);
+//					SpecialInvokeExpr initExpr = Jimple.v().newSpecialInvokeExpr(, arrayListInit.makeRef());
+					Local intermediateLocal = localGenerator.generateLocal(intermediateTypeToCast);
+					CastExpr intermediateCast = Jimple.v().newCastExpr(invokeResultLocal, intermediateTypeToCast);
+					AssignStmt intermediateAssign = Jimple.v().newAssignStmt(intermediateLocal, intermediateCast);
+					statementsToInsert.add(intermediateAssign);
+					VirtualInvokeExpr toPrimExpr = Jimple.v().newVirtualInvokeExpr(intermediateLocal, boxedMethodToPrim.makeRef());
+					AssignStmt toPrimStmt = Jimple.v().newAssignStmt(resultReference, toPrimExpr);
+					statementsToInsert.add(toPrimStmt);
+//					NewExpr primNewExpr = Jimple.v().n
+				} else {
+					CastExpr castExpr = Jimple.v().newCastExpr(invokeResultLocal, finalTypeToCast);
+					AssignStmt castStmt = Jimple.v().newAssignStmt(resultReference, castExpr);
+					statementsToInsert.add(castStmt);
+				}
 			} else {
 				resultStmt = Jimple.v().newInvokeStmt(reflectInvokeMethodExpr);
+				statementsToInsert.add(resultStmt);
 			}
-			body.getUnits().insertAfter(resultStmt, pointer);
-			if (castStmt != null) {
-				body.getUnits().insertAfter(castStmt, resultStmt);
+			for (Stmt toInsert : statementsToInsert) {
+				body.getUnits().insertAfter(toInsert, pointer);
+				pointer = toInsert;
 			}
 
 			Local exceptionLocal = localGenerator.generateLocal(REFLECTION_EXCEPTION_TYPE);
@@ -293,18 +361,33 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 					returnStmts.add((ReturnVoidStmt) bodyUnit);
 				}
 			}
-			Stmt lastReturnStmt = returnStmts.get(returnStmts.size() - 1);
-			body.getUnits().insertBefore(printStackTraceInvokeStmt, lastReturnStmt);
-			body.getUnits().insertBefore(exceptionStmt, printStackTraceInvokeStmt);
-			Value returnValue;
-			if (lastReturnStmt instanceof ReturnStmt) {
-				ReturnStmt returnStmt = (ReturnStmt) lastReturnStmt;
-				returnValue = returnStmt.getOp();
-				body.getUnits().insertBefore(Jimple.v().newReturnStmt(returnValue), exceptionStmt);
-			} else if (lastReturnStmt instanceof ReturnVoidStmt) {
+			// TODO
+			Stmt lastReturnStmt;
+			ReturnStmt returnStmt;
+			if (!returnStmts.isEmpty()) {
+				lastReturnStmt = returnStmts.get(returnStmts.size() - 1);
+				body.getUnits().insertBefore(printStackTraceInvokeStmt, lastReturnStmt);
+				body.getUnits().insertBefore(exceptionStmt, printStackTraceInvokeStmt);
+				Value returnValue;
+				if (lastReturnStmt instanceof ReturnStmt) {
+					returnStmt = (ReturnStmt) lastReturnStmt;
+					returnValue = returnStmt.getOp();
+					if (returnValue.getType() instanceof RefType) {
+						returnStmt.setOp(NullConstant.v());
+					} else if (returnValue.getType() instanceof PrimType) {
+						returnStmt.setOp(IntConstant.v(0));
+						System.out.println("ic");
+					}
+					body.getUnits().insertBefore(Jimple.v().newReturnStmt(returnValue), exceptionStmt);
+				} else if (lastReturnStmt instanceof ReturnVoidStmt) {
+					body.getUnits().insertBefore(Jimple.v().newReturnVoidStmt(), exceptionStmt);
+				}
+			} else {
+				body.getUnits().add(printStackTraceInvokeStmt);
+				body.getUnits().insertBefore(exceptionStmt, printStackTraceInvokeStmt);
 				body.getUnits().insertBefore(Jimple.v().newReturnVoidStmt(), exceptionStmt);
 			}
-
+//
 			Trap forNameTrap = Jimple.v().newTrap(Scene.v().getSootClass(REFLECTION_EXCETPION_CLASS_NAME), forNameAssignStmt, body.getUnits().getSuccOf(forNameAssignStmt), exceptionStmt);
 			body.getTraps().addFirst(forNameTrap);
 			Trap getDeclaredTrap = Jimple.v().newTrap(Scene.v().getSootClass(REFLECTION_EXCETPION_CLASS_NAME), getDeclaredMethodStmt, body.getUnits().getSuccOf(getDeclaredMethodStmt), exceptionStmt);
@@ -313,8 +396,13 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 			body.getTraps().insertAfter(invokeTrap, getDeclaredTrap);
 
 			body.getUnits().remove(unit);
-			body.validate();
+			System.out.println("Verifying sootMethod: " + sootMethod.getSignature());
+			try {
 
+				body.validate();
+			} catch (Exception e) {
+				System.out.println("cic");
+			}
 
 			System.out.println("METHOD INSTRUMENTED: sootMethod: " + sootMethod.getName() + " unit: " + unit.toString());
 
