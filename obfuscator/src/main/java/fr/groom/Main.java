@@ -20,6 +20,7 @@ import soot.jimple.infoflow.android.manifest.ProcessManifest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -196,6 +197,8 @@ public class Main {
 			runProcess(pathZip, "-uj", apk.getAbsolutePath(), proguardOutputDex.getAbsolutePath());
 		}
 
+		ApkHandler apkHandler = new ApkHandler(apk);
+
 //		changePackageInManifest(apk);
 
 		SootSetup.initSootInstance(
@@ -221,13 +224,15 @@ public class Main {
 //		FieldRenamer.v().setRenameFields(true);
 //		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 		PackManager.v().runPacks();
-		modifyComponentsNames(apk, cr.componentMappings);
+//		modifyComponentsNames(apk, cr.componentMappings);
 		System.out.println("Recompiling apk.");
 		PackManager.v().writeOutput();
 		Path sootApkPath = Paths.get(TEMP_DIRECTORY + "/sootOutput", apk.getName());
 		Path sootOutputPath = Paths.get(TEMP_DIRECTORY + "/sootOutput");
 		File sootOutputDirectory = new File(sootOutputPath.toUri());
 		File sootApk = new File(sootApkPath.toUri());
+
+
 
 //		String andResOutDir = "output";
 //		File andResOutput = new File(Paths.get(sootOutputDirectory.getAbsolutePath(), andResOutDir).toUri());
