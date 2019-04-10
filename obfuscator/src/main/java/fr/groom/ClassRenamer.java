@@ -217,20 +217,20 @@ public class ClassRenamer extends SceneTransformer {
 
 			final String fullyQualifiedName = applicationClass.getName();
 
-//			if (components.stream().anyMatch(c -> fullyQualifiedName.contains(c)) || oldToNewClassNames.containsValue(fullyQualifiedName)
-//					|| soot.jbco.Main.getWeight(phaseName, fullyQualifiedName) == 0) {
-//				continue;
-//			}
-			if (oldToNewClassNames.containsValue(fullyQualifiedName)
+			if (fullyQualifiedName.contains("Encryptor") ||components.stream().anyMatch(c -> fullyQualifiedName.contains(c)) || oldToNewClassNames.containsValue(fullyQualifiedName)
 					|| soot.jbco.Main.getWeight(phaseName, fullyQualifiedName) == 0) {
 				continue;
 			}
-			String component =  components.stream().filter(c -> fullyQualifiedName.contains(c)).findFirst().orElse(null);
-
+//			if (oldToNewClassNames.containsValue(fullyQualifiedName)
+//					|| soot.jbco.Main.getWeight(phaseName, fullyQualifiedName) == 0) {
+//				continue;
+//			}
+//			String component =  components.stream().filter(c -> fullyQualifiedName.contains(c)).findFirst().orElse(null);
+//
 			String newClassName = getOrAddNewName(getPackageName(fullyQualifiedName), getClassName(fullyQualifiedName));
-			if(component != null) {
-				componentMappings.put(component, newClassName);
-			}
+//			if(component != null) {
+//				componentMappings.put(component, newClassName);
+//			}
 
 			applicationClass.setName(newClassName);
 			RefType crt = RefType.v(newClassName);
