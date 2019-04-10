@@ -5,8 +5,10 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jsonschema2pojo'
 
-sourceCompatibility = 1.8
 mainClassName = 'fr.groom.Main'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 buildscript {
     repositories {
@@ -35,10 +37,11 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.jcraft', name: 'jsch', version: '0.1.55'
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
-//    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
-    implementation 'de.tud.sse:soot-infoflow-android:2.7.2-20190403.160103-2'
-    implementation 'heros:heros:1.1.0-20190305.141136-2:sources@jar'
+    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+//    implementation 'de.tud.sse:soot-infoflow-android:2.7.2-20190403.160103-2'
+//    implementation 'heros:heros:1.1.0-20190305.141136-2:sources@jar'
 //    compile group: 'ca.mcgill.sable', name: 'soot', version: '3.2.0'
     compile group: 'ca.mcgill.sable', name: 'soot', version: '3.3.0'
     compile group: 'org.json', name: 'json', version: '20180813'

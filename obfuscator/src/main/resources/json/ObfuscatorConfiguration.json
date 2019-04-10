@@ -29,10 +29,15 @@
       "description": "path to apksigner binary",
       "default": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner"
     },
+    "andResJarPath": {
+      "type": "string",
+      "description": "path to AndResGuard binary",
+      "default": "/Users/lgitzing/Development/work/Groom/obfuscator/AndResGuard-cli-1.2.15.jar"
+    },
     "pathToKeystore": {
       "type": "string",
       "description": "path to keystore (sign)",
-      "default": "/Users/lgitzing/.android/keystore"
+      "default": "/Users/lgitzing/.android/master_keystore"
     },
     "keyPassword": {
       "type": "string",
@@ -53,6 +58,6 @@
       "type": "boolean",
       "description": "execute proguard on given apk",
       "default": true
-    },
+    }
   }
 }

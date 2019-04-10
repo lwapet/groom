@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "dxPath",
     "zipCommandPath",
     "apksignerPath",
+    "andResJarPath",
     "pathToKeystore",
     "keyPassword",
     "proguardConfigPath",
@@ -69,12 +70,19 @@ public class ObfuscatorConfiguration {
     @JsonPropertyDescription("path to apksigner binary")
     private String apksignerPath = "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner";
     /**
+     * path to AndResGuard binary
+     * 
+     */
+    @JsonProperty("andResJarPath")
+    @JsonPropertyDescription("path to AndResGuard binary")
+    private String andResJarPath = "/Users/lgitzing/Development/work/Groom/obfuscator/AndResGuard-cli-1.2.15.jar";
+    /**
      * path to keystore (sign)
      * 
      */
     @JsonProperty("pathToKeystore")
     @JsonPropertyDescription("path to keystore (sign)")
-    private String pathToKeystore = "/Users/lgitzing/.android/keystore";
+    private String pathToKeystore = "/Users/lgitzing/.android/master_keystore";
     /**
      * sign key password
      * 
@@ -194,6 +202,24 @@ public class ObfuscatorConfiguration {
     @JsonProperty("apksignerPath")
     public void setApksignerPath(String apksignerPath) {
         this.apksignerPath = apksignerPath;
+    }
+
+    /**
+     * path to AndResGuard binary
+     * 
+     */
+    @JsonProperty("andResJarPath")
+    public String getAndResJarPath() {
+        return andResJarPath;
+    }
+
+    /**
+     * path to AndResGuard binary
+     * 
+     */
+    @JsonProperty("andResJarPath")
+    public void setAndResJarPath(String andResJarPath) {
+        this.andResJarPath = andResJarPath;
     }
 
     /**
@@ -320,6 +346,10 @@ public class ObfuscatorConfiguration {
         sb.append('=');
         sb.append(((this.apksignerPath == null)?"<null>":this.apksignerPath));
         sb.append(',');
+        sb.append("andResJarPath");
+        sb.append('=');
+        sb.append(((this.andResJarPath == null)?"<null>":this.andResJarPath));
+        sb.append(',');
         sb.append("pathToKeystore");
         sb.append('=');
         sb.append(((this.pathToKeystore == null)?"<null>":this.pathToKeystore));
@@ -356,6 +386,9 @@ public class ObfuscatorConfiguration {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.dex2jarPath == null)? 0 :this.dex2jarPath.hashCode()));
+        result = ((result* 31)+((this.andResJarPath == null)? 0 :this.andResJarPath.hashCode()));
+        result = ((result* 31)+((this.proguardConfigPath == null)? 0 :this.proguardConfigPath.hashCode()));
+        result = ((result* 31)+((this.pathToKeystore == null)? 0 :this.pathToKeystore.hashCode()));
         result = ((result* 31)+((this.keyPassword == null)? 0 :this.keyPassword.hashCode()));
         result = ((result* 31)+((this.applyProguard == null)? 0 :this.applyProguard.hashCode()));
         result = ((result* 31)+((this.useEncryption == null)? 0 :this.useEncryption.hashCode()));
@@ -363,9 +396,7 @@ public class ObfuscatorConfiguration {
         result = ((result* 31)+((this.apksignerPath == null)? 0 :this.apksignerPath.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.dxPath == null)? 0 :this.dxPath.hashCode()));
-        result = ((result* 31)+((this.proguardConfigPath == null)? 0 :this.proguardConfigPath.hashCode()));
         result = ((result* 31)+((this.androidPlatforms == null)? 0 :this.androidPlatforms.hashCode()));
-        result = ((result* 31)+((this.pathToKeystore == null)? 0 :this.pathToKeystore.hashCode()));
         return result;
     }
 
@@ -378,7 +409,7 @@ public class ObfuscatorConfiguration {
             return false;
         }
         ObfuscatorConfiguration rhs = ((ObfuscatorConfiguration) other);
-        return ((((((((((((this.dex2jarPath == rhs.dex2jarPath)||((this.dex2jarPath!= null)&&this.dex2jarPath.equals(rhs.dex2jarPath)))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.applyProguard == rhs.applyProguard)||((this.applyProguard!= null)&&this.applyProguard.equals(rhs.applyProguard))))&&((this.useEncryption == rhs.useEncryption)||((this.useEncryption!= null)&&this.useEncryption.equals(rhs.useEncryption))))&&((this.zipCommandPath == rhs.zipCommandPath)||((this.zipCommandPath!= null)&&this.zipCommandPath.equals(rhs.zipCommandPath))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.dxPath == rhs.dxPath)||((this.dxPath!= null)&&this.dxPath.equals(rhs.dxPath))))&&((this.proguardConfigPath == rhs.proguardConfigPath)||((this.proguardConfigPath!= null)&&this.proguardConfigPath.equals(rhs.proguardConfigPath))))&&((this.androidPlatforms == rhs.androidPlatforms)||((this.androidPlatforms!= null)&&this.androidPlatforms.equals(rhs.androidPlatforms))))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))));
+        return (((((((((((((this.dex2jarPath == rhs.dex2jarPath)||((this.dex2jarPath!= null)&&this.dex2jarPath.equals(rhs.dex2jarPath)))&&((this.andResJarPath == rhs.andResJarPath)||((this.andResJarPath!= null)&&this.andResJarPath.equals(rhs.andResJarPath))))&&((this.proguardConfigPath == rhs.proguardConfigPath)||((this.proguardConfigPath!= null)&&this.proguardConfigPath.equals(rhs.proguardConfigPath))))&&((this.pathToKeystore == rhs.pathToKeystore)||((this.pathToKeystore!= null)&&this.pathToKeystore.equals(rhs.pathToKeystore))))&&((this.keyPassword == rhs.keyPassword)||((this.keyPassword!= null)&&this.keyPassword.equals(rhs.keyPassword))))&&((this.applyProguard == rhs.applyProguard)||((this.applyProguard!= null)&&this.applyProguard.equals(rhs.applyProguard))))&&((this.useEncryption == rhs.useEncryption)||((this.useEncryption!= null)&&this.useEncryption.equals(rhs.useEncryption))))&&((this.zipCommandPath == rhs.zipCommandPath)||((this.zipCommandPath!= null)&&this.zipCommandPath.equals(rhs.zipCommandPath))))&&((this.apksignerPath == rhs.apksignerPath)||((this.apksignerPath!= null)&&this.apksignerPath.equals(rhs.apksignerPath))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.dxPath == rhs.dxPath)||((this.dxPath!= null)&&this.dxPath.equals(rhs.dxPath))))&&((this.androidPlatforms == rhs.androidPlatforms)||((this.androidPlatforms!= null)&&this.androidPlatforms.equals(rhs.androidPlatforms))));
     }
 
 }
