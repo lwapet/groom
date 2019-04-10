@@ -197,8 +197,6 @@ public class Main {
 			runProcess(pathZip, "-uj", apk.getAbsolutePath(), proguardOutputDex.getAbsolutePath());
 		}
 
-		ApkHandler apkHandler = new ApkHandler(apk);
-
 //		changePackageInManifest(apk);
 
 		SootSetup.initSootInstance(
@@ -214,15 +212,15 @@ public class Main {
 		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
 		wjtp.add(new Transform("wjtp.reflectionTransformer", rt));
 		fr.groom.ClassRenamer cr = new fr.groom.ClassRenamer(getManifest(apk.getAbsolutePath()));
-		cr.setRenamePackages(true);
+//		cr.setRenamePackages(true);
 		wjtp.add(new Transform("wjtp.jbco_cr", cr));
 		if (Configuration.v().getUseEncryption()) {
 			StringEncrypter se = new StringEncrypter();
 			wjtp.add(new Transform("wjtp.stringEncrypter", se));
 		}
-//		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
-//		FieldRenamer.v().setRenameFields(true);
-//		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
+		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
+		FieldRenamer.v().setRenameFields(true);
+		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 		PackManager.v().runPacks();
 //		modifyComponentsNames(apk, cr.componentMappings);
 		System.out.println("Recompiling apk.");
@@ -232,6 +230,8 @@ public class Main {
 		File sootOutputDirectory = new File(sootOutputPath.toUri());
 		File sootApk = new File(sootApkPath.toUri());
 
+//		runProcess(pathZip, "-d", apk.getAbsolutePath(), "classes.dex");
+//		runProcess(pathZip, "-uj", apk.getAbsolutePath(), new File(Paths.get(sootOutputDirectory.getAbsolutePath(), "classes.dex").toUri()).getAbsolutePath());
 
 
 //		String andResOutDir = "output";
