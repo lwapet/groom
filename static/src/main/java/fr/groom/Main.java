@@ -2,7 +2,6 @@ package fr.groom;
 
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import com.mongodb.client.model.UpdateOptions;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
@@ -113,7 +112,7 @@ public class Main {
 			System.exit(1);
 		} else {
 			try {
-				Files.copy(targetApk.toPath(), Main.TEMP_DIRECTORY.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(targetApk.toPath(), new File(Paths.get(Main.TEMP_DIRECTORY.getAbsolutePath(), targetApk.getName()).toUri()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 				Configuration.v().setTargetApk(targetApk.getAbsolutePath());
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -346,13 +345,14 @@ public class Main {
 			app.setFinalApk(signed);
 		}
 
-		File instrumentedApkInDynamicDir = FileUtils.copyFileToInstrumentedApkDirectory(app.getFinalApk());
 
 
-		deleteDir(TEMP_DIRECTORY);
+//		deleteDir(TEMP_DIRECTORY);
 //		deleteDir(new File(Configuration.v().getSootConfiguration().getOutputDirectory()));
 
+		System.out.println("STATIC ANALYSIS DONE.");
 		if (Configuration.v().isRepackageApk() && Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
+			File instrumentedApkInDynamicDir = FileUtils.copyFileToInstrumentedApkDirectory(app.getFinalApk());
 			JSONObject updateFilter = new JSONObject();
 			updateFilter.put("sha256", app.getSha256());
 //		storage.insertData(app.toJson(), "application");
@@ -361,9 +361,9 @@ public class Main {
 			data.put("recompile_sdk_version", Scene.v().getAndroidAPIVersion());
 			storage.update(updateFilter, data, "application");
 			System.out.println("apk_path : " + instrumentedApkInDynamicDir.getAbsolutePath());
+			System.out.println("Intrumentation finished !");
 		}
 		this.updateStatus("ok");
-		System.out.println("Intrumentation finished !");
 		if (storage instanceof Database) {
 			Database s = (Database) storage;
 			s.close();

@@ -127,7 +127,8 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		Iterator<SootClass> sootClassIterator = Scene.v().getClasses().snapshotIterator();
 		while (sootClassIterator.hasNext()) {
 			SootClass sootClass = sootClassIterator.next();
-			while (sootClass.getName().contains("Groom"))
+			while (sootClass.getName().contains("Groom") || sootClass.getName().startsWith("android.support"))
+//			while (sootClass.getName().contains("Groom"))
 				sootClass = sootClassIterator.next();
 			handleClassLevel(sootClass);
 			List<SootMethod> clone = new ArrayList<>(sootClass.getMethods());

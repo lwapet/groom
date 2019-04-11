@@ -1,5 +1,5 @@
 group 'fr.groom'
-version '1.0-SNAPSHOT'
+version '3.0'
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -58,7 +58,7 @@ configurations.all {
 }
 jar {
     baseName = 'static'
-    version = '0.2.0'
+    version = '3.0'
     manifest {
         attributes "Main-Class": "fr.groom.Main"
     }
