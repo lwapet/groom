@@ -221,7 +221,7 @@ public class Main {
 		FieldRenamer.v().setRenameFields(true);
 		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 //		wjtp.add(new Transform("wjtp.jbco_blbc", new LibraryMethodWrappersBuilder()));
-		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
+//		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
 		PackManager.v().runPacks();
 //		modifyComponentsNames(apk, cr.componentMappings);
 		System.out.println("Recompiling apk.");

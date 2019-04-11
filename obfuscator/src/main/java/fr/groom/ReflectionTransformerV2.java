@@ -417,6 +417,7 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 		while (sootClassIterator.hasNext()) {
 			final SootClass sootClass = sootClassIterator.next();
 			if (sootClass.getName().startsWith("android.support")) {
+				Scene.v().removeClass(sootClass);
 				continue;
 			}
 			List<SootMethod> clone = new ArrayList<>(sootClass.getMethods());
