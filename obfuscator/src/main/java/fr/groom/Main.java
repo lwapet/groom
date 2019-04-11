@@ -204,8 +204,6 @@ public class Main {
 				Configuration.v().getAndroidPlatforms()
 		);
 
-		// Hello je m'appelle louison
-		// Hello from Master
 
 //		ClassRenamer.v();
 		Pack wjtp = PackManager.v().getPack("wjtp");
