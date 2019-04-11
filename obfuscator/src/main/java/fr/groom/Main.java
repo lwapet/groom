@@ -204,12 +204,15 @@ public class Main {
 				Configuration.v().getAndroidPlatforms()
 		);
 
+		// Hello je m'appelle louison
+		// Hello from Master
+
 //		ClassRenamer.v();
 		Pack wjtp = PackManager.v().getPack("wjtp");
 //		PackageTransformer packageTransformer = new PackageTransformer();
 //		wjtp.add(new Transform("wjtp.packageTransformer", packageTransformer));
-		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
-		wjtp.add(new Transform("wjtp.reflectionTransformer", rt));
+//		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
+//		wjtp.add(new Transform("wjtp.reflectionTransformer", rt));
 		fr.groom.ClassRenamer cr = new fr.groom.ClassRenamer(getManifest(apk.getAbsolutePath()));
 //		cr.setRenamePackages(true);
 		wjtp.add(new Transform("wjtp.jbco_cr", cr));
@@ -221,7 +224,7 @@ public class Main {
 		FieldRenamer.v().setRenameFields(true);
 		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 //		wjtp.add(new Transform("wjtp.jbco_blbc", new LibraryMethodWrappersBuilder()));
-//		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
+		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
 		PackManager.v().runPacks();
 //		modifyComponentsNames(apk, cr.componentMappings);
 		System.out.println("Recompiling apk.");
@@ -235,24 +238,24 @@ public class Main {
 //		runProcess(pathZip, "-uj", apk.getAbsolutePath(), new File(Paths.get(sootOutputDirectory.getAbsolutePath(), "classes.dex").toUri()).getAbsolutePath());
 
 
-//		String andResOutDir = "output";
-//		File andResOutput = new File(Paths.get(sootOutputDirectory.getAbsolutePath(), andResOutDir).toUri());
+		String andResOutDir = "output";
+		File andResOutput = new File(Paths.get(sootOutputDirectory.getAbsolutePath(), andResOutDir).toUri());
 
-//		int andResReturnCode = runProcess(
-//				"java",
-//				"-jar",
-//				Configuration.v().getAndResJarPath(),
-//				"-config",
-//				"./config.xml",
-//				"-out",
-//				andResOutput.getAbsolutePath(),
-//				sootApk.getAbsolutePath());
-//		File andResapk = new File(Paths.get(
-//				andResOutput.getAbsolutePath(),
-//				sootApk.getName().replace(".apk", "") + "_unsigned.apk"
-//		).toUri());
-
-		File signedApk = signApk(sootApk, Configuration.v().getApksignerPath(), Configuration.v().getPathToKeystore(), Configuration.v().getKeyPassword());
+		int andResReturnCode = runProcess(
+				"java",
+				"-jar",
+				Configuration.v().getAndResJarPath(),
+				"-config",
+				"./config.xml",
+				"-out",
+				andResOutput.getAbsolutePath(),
+				sootApk.getAbsolutePath());
+		File andResapk = new File(Paths.get(
+				andResOutput.getAbsolutePath(),
+				sootApk.getName().replace(".apk", "") + "_unsigned.apk"
+		).toUri());
+//
+		File signedApk = signApk(andResapk, Configuration.v().getApksignerPath(), Configuration.v().getPathToKeystore(), Configuration.v().getKeyPassword());
 //		runProcess(pathToDex2Jar, "--force", "-o", signedApk.getAbsolutePath().replace(".apk", ".jar"), signedApk.getAbsolutePath());
 		System.out.println("APPLICATION OBFUSCATED");
 	}
