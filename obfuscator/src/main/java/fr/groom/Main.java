@@ -1,6 +1,7 @@
 package fr.groom;
 
 import fr.groom.configuration.ObfuscatorConfiguration;
+import fr.groom.models.Application;
 import org.apache.commons.cli.*;
 import org.xmlpull.v1.XmlPullParserException;
 import proguard.ClassPath;
@@ -174,6 +175,8 @@ public class Main {
 		String pathToDex2Jar = Configuration.v().getDex2jarPath();
 		String pathToDx = Configuration.v().getDxPath();
 		String pathZip = Configuration.v().getZipCommandPath();
+		Path sootOutputPath = Paths.get(TEMP_DIRECTORY + "/sootOutput");
+		File sootOutputDirectory = new File(sootOutputPath.toUri());
 
 		if (Configuration.v().getApplyProguard()) {
 			File apkJar = new File(apk.getAbsolutePath().replace(".apk", ".jar"));
@@ -204,6 +207,17 @@ public class Main {
 				Configuration.v().getAndroidPlatforms()
 		);
 
+		Application app = new Application(apk);
+
+		PackManager.v().writeOutput();
+		G.reset();
+		SootSetupFromJimple.initSootInstance(
+				sootOutputDirectory,
+				sootOutputDirectory.getAbsolutePath() + "sootOutput2",
+				Configuration.v().getAndroidPlatforms()
+		);
+		System.out.println("cic");
+		System.exit(0);
 
 //		ClassRenamer.v();
 		Pack wjtp = PackManager.v().getPack("wjtp");
@@ -228,8 +242,6 @@ public class Main {
 		System.out.println("Recompiling apk.");
 		PackManager.v().writeOutput();
 		Path sootApkPath = Paths.get(TEMP_DIRECTORY + "/sootOutput", apk.getName());
-		Path sootOutputPath = Paths.get(TEMP_DIRECTORY + "/sootOutput");
-		File sootOutputDirectory = new File(sootOutputPath.toUri());
 		File sootApk = new File(sootApkPath.toUri());
 
 //		runProcess(pathZip, "-d", apk.getAbsolutePath(), "classes.dex");

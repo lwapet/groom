@@ -62,6 +62,8 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 	@Override
 	public void resultHandler(Object result) {
 		SootMethod invokedMethod = (SootMethod) result;
+		if(invokedMethod == null)
+			return;
 		if(sourceSignatures.contains(invokedMethod.getSignature())) {
 			this.staticAnalysis.addSource(invokedMethod.getSignature());
 		}

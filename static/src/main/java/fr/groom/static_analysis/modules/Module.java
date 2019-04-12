@@ -2,7 +2,7 @@ package fr.groom.static_analysis.modules;
 
 import fr.groom.Storage;
 import fr.groom.static_analysis.StaticAnalysis;
-import fr.groom.models.Application;
+import fr.groom.static_models.Application;
 
 public abstract class Module<T> implements IModule {
 	protected StaticAnalysis staticAnalysis;

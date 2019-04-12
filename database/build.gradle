@@ -9,12 +9,26 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        name "soot-snapshot"
+        url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot"
+    }
+    maven {
+        name "soot-release"
+        url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release"
+    }
+    maven { url 'https://jitpack.io' }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':core')
+    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+    compile group: 'ca.mcgill.sable', name: 'soot', version: '3.2.0'
     compile group: 'org.mongodb', name: 'mongodb-driver', version: '3.9.1'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
     compile group: 'org.json', name: 'json', version: '20180813'
-    compile project(':utils')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

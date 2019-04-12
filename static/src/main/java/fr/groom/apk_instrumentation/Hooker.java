@@ -1,13 +1,11 @@
 package fr.groom.apk_instrumentation;
 
-import fr.groom.models.*;
+import fr.groom.static_models.*;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
 import soot.toolkits.graph.CompleteUnitGraph;
 import soot.toolkits.scalar.SimpleLocalDefs;
-import soot.util.Chain;
-import soot.util.HashChain;
 
 import java.util.*;
 
