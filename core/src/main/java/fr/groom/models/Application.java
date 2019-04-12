@@ -1,4 +1,4 @@
-package fr.groom.static_models;
+package fr.groom.models;
 
 import fr.groom.ResourceFileParser;
 import fr.groom.utils.FileUtils;

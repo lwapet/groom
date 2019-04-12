@@ -1,4 +1,4 @@
-package fr.groom.static_models;
+package fr.groom.models;
 
 public interface ComponentSwitch extends Switch {
 	public abstract void caseActivity(Activity activity);

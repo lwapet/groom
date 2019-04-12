@@ -211,6 +211,7 @@ public class Main {
 
 		PackManager.v().writeOutput();
 		G.reset();
+
 		SootSetupFromJimple.initSootInstance(
 				sootOutputDirectory,
 				sootOutputDirectory.getAbsolutePath() + "sootOutput2",

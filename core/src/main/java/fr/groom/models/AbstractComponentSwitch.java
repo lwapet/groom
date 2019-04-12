@@ -1,4 +1,4 @@
-package fr.groom.static_models;
+package fr.groom.models;
 
 public abstract class AbstractComponentSwitch implements ComponentSwitch {
 	@Override

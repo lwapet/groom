@@ -1,4 +1,4 @@
-package fr.groom.static_models;
+package fr.groom.models;
 
 import org.json.JSONObject;
 import soot.SootClass;

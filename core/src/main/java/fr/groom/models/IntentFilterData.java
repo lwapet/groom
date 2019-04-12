@@ -1,4 +1,4 @@
-package fr.groom.static_models;
+package fr.groom.models;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
