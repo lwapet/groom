@@ -8,7 +8,7 @@ import fr.groom.configuration.InstrumenterConfiguration;
 import fr.groom.apk_instrumentation.FridaInstrumenter;
 import fr.groom.apk_instrumentation.InstrumenterUtils;
 import fr.groom.configuration.SshConfiguration;
-import fr.groom.models.Application;
+import fr.groom.static_models.Application;
 import fr.groom.mongo.Database;
 import fr.groom.scp.Scp;
 import fr.groom.static_analysis.StaticAnalysis;
@@ -29,8 +29,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
-
-import static fr.groom.FileUtils.deleteDir;
 
 
 public class Main {

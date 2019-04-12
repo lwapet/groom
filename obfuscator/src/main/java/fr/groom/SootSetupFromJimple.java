@@ -10,7 +10,7 @@ import java.util.List;
 import static soot.SootClass.HIERARCHY;
 import static soot.SootClass.SIGNATURES;
 
-public class SootSetup {
+public class SootSetupFromJimple {
 
 	public static void initSootInstance(File apk, String outputDirectory, String androidPlatforms) {
 		System.out.println("Init soot instance with apk located at: " + apk.getAbsolutePath());
@@ -18,7 +18,7 @@ public class SootSetup {
 		Options.v().set_wrong_staticness(Options.wrong_staticness_ignore);
 		Options.v().set_allow_phantom_refs(true);
 		Options.v().set_validate(true);
-		Options.v().set_src_prec(Options.src_prec_apk);
+		Options.v().set_src_prec(Options.src_prec_apk_class_jimple);
 		Options.v().set_android_jars(androidPlatforms);
 		List<String> dexToLoad = new ArrayList<>();
 		dexToLoad.add(apk.getAbsolutePath());
@@ -30,7 +30,7 @@ public class SootSetup {
 		Options.v().set_process_multiple_dex(true);
 		Options.v().set_whole_program(true);
 		Options.v().set_output_dir(outputDirectory + "/sootOutput");
-		Options.v().set_output_format(Options.output_format_jimple);
+		Options.v().set_output_format(Options.output_format_dex);
 		Options.v().set_force_overwrite(true);
 		Options.v().set_debug_resolver(true);
 		Options.v().set_debug(true);

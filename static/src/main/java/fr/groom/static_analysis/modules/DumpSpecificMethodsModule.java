@@ -52,8 +52,9 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
 			SootMethod invokedMethod = invokeExpr.getMethod();
-			if (monitoredSignaturesSet.contains(invokedMethod.getSignature()))
+			if (invokedMethod != null) {
 				this.resultHandler(invokedMethod.getSignature());
+			}
 		}
 	}
 
@@ -73,7 +74,7 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 
 	@Override
 	public void resultHandler(Object result) {
-			this.signatures.add((String) result);
+		this.signatures.add((String) result);
 	}
 
 	@Override

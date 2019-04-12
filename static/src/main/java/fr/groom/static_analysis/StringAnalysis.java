@@ -1,7 +1,7 @@
 package fr.groom.static_analysis;
 
-import fr.groom.models.Pair;
-import fr.groom.models.TupleStringInt;
+import fr.groom.static_models.Pair;
+import fr.groom.static_models.TupleStringInt;
 import fr.groom.Configuration;
 import soot.Local;
 import soot.SootMethod;

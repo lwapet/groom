@@ -2,7 +2,7 @@ package fr.groom.static_analysis.modules;
 
 import fr.groom.Main;
 import fr.groom.static_analysis.StaticAnalysis;
-import fr.groom.models.JavascriptInterface;
+import fr.groom.static_models.JavascriptInterface;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.SootClass;
