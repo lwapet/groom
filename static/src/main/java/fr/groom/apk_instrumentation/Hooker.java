@@ -1,5 +1,9 @@
 package fr.groom.apk_instrumentation;
 
+import fr.groom.models.AbstractComponentSwitch;
+import fr.groom.models.Activity;
+import fr.groom.models.Application;
+import fr.groom.models.IComponent;
 import fr.groom.static_models.*;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;

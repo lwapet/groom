@@ -43,7 +43,8 @@ dependencies {
     compile project(':database')
     compile group: 'com.jcraft', name: 'jsch', version: '0.1.55'
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
-    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+//    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
+    implementation 'de.tud.sse:soot-infoflow-android:2.7.2-20190403.160103-2'
     compile group: 'ca.mcgill.sable', name: 'soot', version: '3.3.0'
     compile group: 'org.json', name: 'json', version: '20180813'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
