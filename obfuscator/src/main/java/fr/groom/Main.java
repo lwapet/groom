@@ -2,7 +2,10 @@ package fr.groom;
 
 import fr.groom.configuration.ObfuscatorConfiguration;
 import fr.groom.models.Application;
+import fr.groom.models.IComponent;
 import org.apache.commons.cli.*;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.xmlpull.v1.XmlPullParserException;
 import proguard.ClassPath;
 import proguard.ClassPathEntry;
@@ -17,10 +20,7 @@ import soot.jimple.infoflow.android.axml.AXmlNode;
 import soot.jimple.infoflow.android.axml.ApkHandler;
 import soot.jimple.infoflow.android.manifest.ProcessManifest;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -77,7 +77,8 @@ public class Main {
 		}
 		return null;
 	}
-//
+
+	//
 	private void modifyComponentsNames(File apk, HashMap<String, String> componentMappings) {
 		ProcessManifest manifest = getManifest(apk.getAbsolutePath());
 		List<AXmlNode> components = new ArrayList<>();
@@ -86,10 +87,10 @@ public class Main {
 		components.addAll(manifest.getReceivers());
 		componentMappings.forEach((componentName, newName) -> {
 			System.out.println("modifying: " + componentName + " with name: " + newName);
-			for(AXmlNode c : components) {
+			for (AXmlNode c : components) {
 				AXmlAttribute componentNameAttribute = c.getAttribute("name");
 				String originalComponentName = (String) componentNameAttribute.getValue();
-				if(originalComponentName.equals(componentName)) {
+				if (originalComponentName.equals(componentName)) {
 					componentNameAttribute.setValue(newName);
 				}
 			}
@@ -201,26 +202,81 @@ public class Main {
 
 //		changePackageInManifest(apk);
 
+//		SootSetup.initSootInstance(
+//				new File(apk.getAbsolutePath()),
+//				TEMP_DIRECTORY.getAbsolutePath(),
+//				Configuration.v().getAndroidPlatforms()
+//		);
+//
+//		Application app = new Application(apk);
+//		String constantPackageName = app.getPackageName().replace(".", "/");
+//		constantPackageName = "L" + constantPackageName;
+//		String newPackageName = "a.a.a";
+//		String newConstantPackageName = "La/a/a";
+//
+//		PackManager.v().writeOutput();
+//		G.reset();
+//
+//		HashSet<String> randomClassNames = new HashSet<>();
+//		for (File jimpleFile : sootOutputDirectory.listFiles()) {
+//			String content = IOUtils.toString(new FileInputStream(jimpleFile), "UTF-8");
+////			File newFile = new File(jimpleFile.getAbsolutePath().replace(app.getPackageName(), newPackageName));
+////			jimpleFile.renameTo(newFile);
+////		if(content.contains(app.getPackageName())) {
+////		}
+//			for (IComponent component : app.getComponents()) {
+//				String randomClassName;
+//				do {
+//					randomClassName = RandomStringUtils.randomAlphabetic(8).toUpperCase();
+//				} while (randomClassNames.contains(randomClassName));
+//				String newClassName = newPackageName + "." + randomClassName;
+//				if(jimpleFile.getName().contains(component.getSootClass().getName())) {
+//					File newClassFile = new File(jimpleFile.getAbsolutePath().replace(component.getSootClass().getName(),newClassName));
+//					jimpleFile.renameTo(newClassFile);
+//				}
+//				randomClassNames.add(randomClassName);
+//				String newConstantClassName = newConstantPackageName + "/" + randomClassName;
+//				content = content.replaceAll(component.getSootClass().getName(), newClassName);
+//				content = content.replaceAll("L" + component.getSootClass().getName().replace(".", "/"), newConstantClassName);
+//			}
+//			File newFile = new File(jimpleFile.getAbsolutePath().replace(app.getPackageName(), newPackageName));
+//			jimpleFile.renameTo(newFile);
+//
+//			content = content.replaceAll(app.getPackageName().replace(".", "\\."), newPackageName);
+//			content = content.replaceAll(constantPackageName, newConstantPackageName);
+//			IOUtils.write(content, new FileOutputStream(newFile), "UTF-8");
+//		}
+//
+//
+//		SootSetupFromJimple.initSootInstance(
+//				sootOutputDirectory,
+//				TEMP_DIRECTORY.getAbsolutePath(),
+//				Configuration.v().getAndroidPlatforms()
+//		);
+//		PackManager.v().writeOutput();
+//		File classeDex = new File(Paths.get(sootOutputDirectory.getAbsolutePath(), "classes.dex").toUri());
+//		if (!classeDex.exists()) {
+//			System.out.println("ci");
+//		}
+////		G.reset();
+//
+////		SootSetup.initSootInstance(
+////				new File(apk.getAbsolutePath()),
+////				TEMP_DIRECTORY.getAbsolutePath(),
+////				Configuration.v().getAndroidPlatforms()
+////		);
+//
+//		runProcess(pathZip, "-d", apk.getAbsolutePath(), "classes.dex");
+//		runProcess(pathZip, "-uj", apk.getAbsolutePath(), classeDex.getAbsolutePath());
+//		changePackageInManifest(apk);
+
+//		PackManager.v().writeOutput();
+//		ClassRenamer.v();
 		SootSetup.initSootInstance(
 				new File(apk.getAbsolutePath()),
 				TEMP_DIRECTORY.getAbsolutePath(),
 				Configuration.v().getAndroidPlatforms()
 		);
-
-		Application app = new Application(apk);
-
-		PackManager.v().writeOutput();
-		G.reset();
-
-		SootSetupFromJimple.initSootInstance(
-				sootOutputDirectory,
-				sootOutputDirectory.getAbsolutePath() + "sootOutput2",
-				Configuration.v().getAndroidPlatforms()
-		);
-		System.out.println("cic");
-		System.exit(0);
-
-//		ClassRenamer.v();
 		Pack wjtp = PackManager.v().getPack("wjtp");
 //		PackageTransformer packageTransformer = new PackageTransformer();
 //		wjtp.add(new Transform("wjtp.packageTransformer", packageTransformer));

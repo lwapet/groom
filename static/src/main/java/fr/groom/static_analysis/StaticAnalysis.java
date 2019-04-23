@@ -2,9 +2,9 @@ package fr.groom.static_analysis;
 
 import fr.groom.Main;
 import fr.groom.Configuration;
+import fr.groom.models.Application;
 import fr.groom.static_analysis.modules.*;
 import fr.groom.Storage;
-import fr.groom.static_models.Application;
 import fr.groom.static_models.CategorizedSourceSinkDefinitionProvider;
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -1,6 +1,6 @@
 package fr.groom.apk_instrumentation;
 
-import fr.groom.static_models.Application;
+import fr.groom.models.Application;
 import fr.groom.static_models.WebviewEntryPoint;
 import fr.groom.static_analysis.StaticAnalysis;
 import soot.*;

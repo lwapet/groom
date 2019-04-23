@@ -30,7 +30,7 @@ public class SootSetup {
 		Options.v().set_process_multiple_dex(true);
 		Options.v().set_whole_program(true);
 		Options.v().set_output_dir(outputDirectory + "/sootOutput");
-		Options.v().set_output_format(Options.output_format_jimple);
+		Options.v().set_output_format(Options.output_format_dex);
 		Options.v().set_force_overwrite(true);
 		Options.v().set_debug_resolver(true);
 		Options.v().set_debug(true);

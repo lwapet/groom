@@ -1,8 +1,8 @@
 package fr.groom.apk_instrumentation;
 
 import fr.groom.Configuration;
-import fr.groom.static_models.Application;
-import fr.groom.static_models.Receiver;
+import fr.groom.models.Application;
+import fr.groom.models.Receiver;
 import soot.*;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
