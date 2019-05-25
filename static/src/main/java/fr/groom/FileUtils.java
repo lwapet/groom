@@ -1,11 +1,16 @@
 package fr.groom;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class FileUtils {
@@ -46,7 +51,7 @@ public class FileUtils {
 		return newTempFile;
 	}
 
-		public static File copyFileToInstrumentedApkDirectory(File file) {
+	public static File copyFileToInstrumentedApkDirectory(File file) {
 		File sootOutputDirectory = new File(Configuration.v().getInstrumentedApkDirectory());
 		if (!sootOutputDirectory.exists()) {
 			sootOutputDirectory.mkdir();
@@ -67,6 +72,18 @@ public class FileUtils {
 			System.exit(1);
 		}
 		return newTempFile;
+	}
+
+	public static HashMap<String, Object> getJsonAsHashMap(String path) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.readValue(new File(
+					path), new TypeReference<Map<String, Object>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 //	public static File copyFileToTempDirectory(File file) {

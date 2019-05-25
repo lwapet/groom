@@ -5,8 +5,10 @@ import fr.groom.utils.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
+import soot.Body;
 import soot.Scene;
 import soot.SootClass;
+import soot.SootMethod;
 import soot.jimple.infoflow.android.axml.AXmlAttribute;
 import soot.jimple.infoflow.android.axml.AXmlNode;
 import soot.jimple.infoflow.android.manifest.ProcessManifest;
@@ -47,6 +49,7 @@ public class Application {
 	private boolean isRunning;
 	private String description;
 	private String legacyFilename;
+	private String applicationClassName;
 
 
 	public Application(File apk) {
@@ -73,6 +76,7 @@ public class Application {
 		this.permissions = manifest.getPermissions();
 		this.assets = extractAssets(this.apk.getAbsolutePath());
 		this.packageName = this.manifest.getPackageName();
+		this.applicationClassName = this.manifest.getApplicationName();
 
 		ArrayList<SootClass> launchableActivities = this.getLaunchableActivitySootClasses();
 		if (launchableActivities.isEmpty()) {
@@ -187,6 +191,7 @@ public class Application {
 				.collect(Collectors.toSet());
 	}
 
+
 	private static SootClass getComponentClass(AXmlNode componentNode, String packageName) {
 		String nameAttribute = componentNode.getAttribute("name").getValue().toString();
 		String componentFullName = getComponentFullName(packageName, nameAttribute);
@@ -224,8 +229,6 @@ public class Application {
 		AXmlAttribute attribute;
 		if (ProcessManifest.isAliasActivity(activity)) {
 			activity = this.manifest.getAliasActivityTarget(activity);
-			if (activity == null)
-				System.out.println("ici");
 		}
 		attribute = activity.getAttribute("name");
 		return (String) attribute.getValue();
@@ -396,6 +399,21 @@ public class Application {
 		return permissions;
 	}
 
+	public String getApplicationClassName() {
+		return applicationClassName;
+	}
+
+	public SootClass getApplicationClass() {
+		if (this.getApplicationClassName() != null) {
+			return Scene.v().getSootClass(this.getApplicationClassName());
+		}
+		return null;
+	}
+
+	public static List<String> getApplicationMethods(SootClass applicationClass) {
+		return applicationClass.getMethods().stream().map(SootMethod::getSignature).collect(Collectors.toList());
+	}
+
 	public JSONObject toJson() {
 		JSONObject jo = new JSONObject();
 		jo.put("legacy_filename", this.legacyFilename);
@@ -421,6 +439,15 @@ public class Application {
 		jo.put("permissions", permissions);
 		jo.put("package_name", packageName);
 		jo.put("main_activity", this.mainActivity.getName());
+		jo.put("application_class_name", this.applicationClassName);
+		if (this.applicationClassName != null) {
+			SootClass appClass = this.getApplicationClass();
+			jo.put("application_class_implemented_methods", getApplicationMethods(appClass));
+		}
+
+
+		List<String> launchableActivities = this.getLaunchableActivitySootClasses().stream().map(SootClass::getName).collect(Collectors.toList());
+		jo.put("launchable_activities", launchableActivities);
 		JSONArray components_array = new JSONArray();
 		for (IComponent component : this.components) {
 			components_array.put(component.toJson());
@@ -428,7 +455,6 @@ public class Application {
 		jo.put("components", components_array);
 		return jo;
 	}
-
 
 
 	public void setManifest(ProcessManifest manifest) {

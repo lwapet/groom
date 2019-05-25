@@ -69,7 +69,7 @@ public class StringEncrypter extends SceneTransformer {
 //	}
 
 	private void encryptStrings(SootClass sootClass, SootMethod sootMethod, Unit unit) {
-		if(sootClass.getName().equals("com.lock.app.Encryptor")) {
+		if(sootClass.getName().equals("a.a.Encryptor")) {
 			return;
 		}
 		Body body = sootMethod.retrieveActiveBody();
@@ -98,7 +98,7 @@ public class StringEncrypter extends SceneTransformer {
 					String encryptedString = encrypt(key, iv, cst.value);
 					AssignStmt encryptedStringAssignStmt = Jimple.v().newAssignStmt(encryptedStringLocal, StringConstant.v(encryptedString));
 					body.getUnits().insertAfter(encryptedStringAssignStmt, ivStringAssignStmt);
-					SootClass encryptorClass = Scene.v().getSootClass("com.lock.app.Encryptor");
+					SootClass encryptorClass = Scene.v().getSootClass("a.a.Encryptor");
 					List<Type> decryptMethodTypes = new ArrayList<>();
 					decryptMethodTypes.add(STRING_TYPE);
 					decryptMethodTypes.add(STRING_TYPE);
@@ -137,7 +137,7 @@ public class StringEncrypter extends SceneTransformer {
 				String encryptedString = encrypt(key, iv, cst.value);
 				AssignStmt encryptedStringAssignStmt = Jimple.v().newAssignStmt(encryptedStringLocal, StringConstant.v(encryptedString));
 				body.getUnits().insertAfter(encryptedStringAssignStmt, ivStringAssignStmt);
-				SootClass encryptorClass = Scene.v().getSootClass("com.lock.app.Encryptor");
+				SootClass encryptorClass = Scene.v().getSootClass("a.a.Encryptor");
 				List<Type> decryptMethodTypes = new ArrayList<>();
 				decryptMethodTypes.add(STRING_TYPE);
 				decryptMethodTypes.add(STRING_TYPE);

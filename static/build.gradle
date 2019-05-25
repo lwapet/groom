@@ -1,5 +1,5 @@
-//group 'fr.groom'
-//version '3.0'
+group 'fr.groom'
+version '3.0'
 
 apply plugin: 'java'
 apply plugin: 'application'

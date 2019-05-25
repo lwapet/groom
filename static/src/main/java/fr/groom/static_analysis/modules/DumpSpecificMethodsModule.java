@@ -1,7 +1,10 @@
 package fr.groom.static_analysis.modules;
 
+import com.mongodb.util.JSON;
+import fr.groom.FileUtils;
 import fr.groom.Main;
 import fr.groom.static_analysis.StaticAnalysis;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.SootClass;
 import soot.SootMethod;
@@ -9,12 +12,12 @@ import soot.Unit;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class DumpSpecificMethodsModule extends Module<List<String>> implements IModule {
+	private static HashMap<String, HashSet<String>> monitoredMethods;
+	private  HashMap<String, HashMap<String,Integer>> caughtSignatures;
+
 	private static String[] monitoredSignatures = {
 			"<java.lang.ProcessBuilder: java.lang.Process start()>",
 			"<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>",
@@ -43,17 +46,43 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 
 	public DumpSpecificMethodsModule(StaticAnalysis staticAnalysis) {
 		super(new ArrayList<>(), ModuleType.UNITLEVEL, staticAnalysis);
-		monitoredSignaturesSet.addAll(Arrays.asList(monitoredSignatures));
+		monitoredMethods = getMonitoredMethods();
+		caughtSignatures = new HashMap<>();
+//		monitoredSignaturesSet.addAll(Arrays.asList(monitoredSignatures));
+	}
+
+	public static HashMap<String, HashSet<String>> getMonitoredMethods() {
+		HashMap<String,Object> data = FileUtils.getJsonAsHashMap("required_files/monitored_method_signatures.json");
+		HashMap<String,HashSet<String>> monitoredMethods = new HashMap<>();
+		data.forEach((s,o) -> {
+			List<String> sigs = (List<String>)o;
+			HashSet<String> set = new HashSet<String>(sigs);
+			monitoredMethods.put(s,set);
+		});
+		return monitoredMethods;
 	}
 
 	@Override
 	public void executeModule(SootClass sootClass, SootMethod sootMethod, Unit unit) {
+		if(!sootClass.isApplicationClass()) {
+			return;
+		}
 		Stmt stmt = (Stmt) unit;
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
 			SootMethod invokedMethod = invokeExpr.getMethod();
 			if (invokedMethod != null) {
-				this.resultHandler(invokedMethod.getSignature());
+				monitoredMethods.forEach((key,set) -> {
+					if(set.contains(invokedMethod.getSignature())) {
+
+						HashMap<String,Integer> category = this.caughtSignatures.getOrDefault(key, new HashMap<>());
+						Integer count = category.getOrDefault(invokedMethod.getSignature(),0);
+						count += 1;
+						category.put(invokedMethod.getSignature(),count);
+						this.caughtSignatures.put(key,category);
+					}
+				});
+
 			}
 		}
 	}
@@ -66,7 +95,20 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 	@Override
 	public void saveResults() {
 		JSONObject field = new JSONObject();
-		field.put(this.storageField, this.signatures.toArray());
+		JSONArray caughtSignaturesJson = new JSONArray();
+		this.caughtSignatures.forEach((typeKey, map)-> {
+			JSONArray a = new JSONArray();
+			map.forEach((method,count)-> {
+				JSONObject o = new JSONObject();
+				o.put("method", method);
+				o.put("count",count);
+				a.put(o);
+			});
+			JSONObject o = new JSONObject();
+			o.put(typeKey,a);
+			caughtSignaturesJson.put(o);
+		});
+		field.put(this.storageField, caughtSignaturesJson);
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
 		this.storage.update(condition, field, Main.STATIC_COLLECTION);
@@ -74,7 +116,6 @@ public class DumpSpecificMethodsModule extends Module<List<String>> implements I
 
 	@Override
 	public void resultHandler(Object result) {
-		this.signatures.add((String) result);
 	}
 
 	@Override

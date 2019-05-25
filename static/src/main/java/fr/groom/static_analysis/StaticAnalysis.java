@@ -9,12 +9,14 @@ import fr.groom.static_models.CategorizedSourceSinkDefinitionProvider;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.*;
+import soot.jimple.Stmt;
 import soot.jimple.infoflow.android.data.parsers.PermissionMethodParser;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 	private Application app;
@@ -39,19 +41,18 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 //		IModule module = new DumpProtectedMethods(this);
 //		this.moduleManager.addModule(module);
 		this.moduleManager.addModule(new DumpClassModule(this));
-		this.moduleManager.addModule(new DumpMethodModule(this));
+//		this.moduleManager.addModule(new DumpMethodModule(this));
 //		this.moduleManager.addModule(new DumpMethodUnitModule(this));
-		this.moduleManager.addModule(new CheckWebviewModule(this));
+//		this.moduleManager.addModule(new CheckWebviewModule(this));
 		this.moduleManager.addModule(new DumpSpecificMethodsModule(this));
-		this.moduleManager.addModule(new DumpStringsModule(this));
-//		this.moduleManager.addModule(module);
+//		this.moduleManager.addModule(new DumpStringsModule(this));
+		this.moduleManager.addModule(new DumpActivityOrServiceRecieverCaller(this));
 		if (Configuration.v().getStaticAnalysisConfiguration().isRunFlowDroid()) {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
-
 			flowDroidResults = flowDroid.run();
 		}
-		IModule sourceModule = new DumpSourcesAndSinksModule(this);
-		this.moduleManager.addModule(sourceModule);
+//		IModule sourceModule = new DumpSourcesAndSinksModule(this);
+//		this.moduleManager.addModule(sourceModule);
 //		IModule dumpRgeisterReciever = new DumpRegisterReceiverSpots(this);
 //		this.moduleManager.addModule(dumpRgeisterReciever);
 	}
@@ -112,6 +113,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		this.sinks.add(sink);
 	}
 
+
 	private void onFinish() {
 		this.executionEndTime = new Timestamp(System.currentTimeMillis());
 		System.out.println("Finished static analysis.");
@@ -150,7 +152,6 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		this.onFinish();
 	}
 
-
 	@Override
 	public void storeAnalysis() {
 		JSONObject data = new JSONObject();
@@ -167,7 +168,7 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		data.put("sources", sourcesArray);
 		data.put("sinks", sinksArray);
 		data.put("flowdroid_results", flowDroidResults);
-		data.put("call_graph", Scene.v().getCallGraph().toString());
+//		data.put("call_graph", Scene.v().getCallGraph().toString());
 		JSONObject filter = new JSONObject();
 		filter.put("sha256", this.app.getSha256());
 //		storage.insertData(app.toJson(), "application");

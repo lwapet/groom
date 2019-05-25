@@ -282,18 +282,18 @@ public class Main {
 //		wjtp.add(new Transform("wjtp.packageTransformer", packageTransformer));
 //		ReflectionTransformerV2 rt = new ReflectionTransformerV2();
 //		wjtp.add(new Transform("wjtp.reflectionTransformer", rt));
-		fr.groom.ClassRenamer cr = new fr.groom.ClassRenamer(getManifest(apk.getAbsolutePath()));
+//		fr.groom.ClassRenamer cr = new fr.groom.ClassRenamer(getManifest(apk.getAbsolutePath()));
 //		cr.setRenamePackages(true);
-		wjtp.add(new Transform("wjtp.jbco_cr", cr));
+//		wjtp.add(new Transform("wjtp.jbco_cr", cr));
 		if (Configuration.v().getUseEncryption()) {
 			StringEncrypter se = new StringEncrypter();
 			wjtp.add(new Transform("wjtp.stringEncrypter", se));
 		}
-		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
-		FieldRenamer.v().setRenameFields(true);
-		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
+//		wjtp.add(new Transform("wjtp.jbco_mr", MethodRenamer.v()));
+//		FieldRenamer.v().setRenameFields(true);
+//		wjtp.add(new Transform("wjtp.jbco_fr", FieldRenamer.v()));
 //		wjtp.add(new Transform("wjtp.jbco_blbc", new LibraryMethodWrappersBuilder()));
-		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
+//		wjtp.add(new Transform("wjtp.jbco_bapibm", new BuildIntermediateAppClasses()));
 		PackManager.v().runPacks();
 //		modifyComponentsNames(apk, cr.componentMappings);
 		System.out.println("Recompiling apk.");

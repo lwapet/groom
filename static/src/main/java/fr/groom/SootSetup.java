@@ -1,12 +1,17 @@
 package fr.groom;
 
 import soot.Scene;
+import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
+import soot.jimple.infoflow.android.SetupApplication;
+import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
 import soot.options.Options;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static soot.SootClass.BODIES;
 import static soot.SootClass.SIGNATURES;
 
 public class SootSetup {
@@ -21,7 +26,7 @@ public class SootSetup {
 		Options.v().set_android_jars(androidPlatforms);
 		List<String> dexToLoad = new ArrayList<>();
 		dexToLoad.add(apk.getAbsolutePath());
-		if(Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
+		if (Configuration.v().getSootInstrumentationConfiguration().isInstrumentApkWithSoot()) {
 			dexToLoad.add(Configuration.v().getSootInstrumentationConfiguration().getGroomPath());
 		}
 		Options.v().set_verbose(true);
@@ -40,6 +45,8 @@ public class SootSetup {
 		}
 
 
+
+
 //		Options.v().set_prepend_classpath(true);
 //		Options.v().set_soot_classpath("/Users/lgitzing/Development/work/InjectedLogger/out/production/classes/InjectedHelper.dex");
 //			Options.v().set_output_format(Options.output_format_jimple);
@@ -52,5 +59,16 @@ public class SootSetup {
 //		Scene.v().loadClass("android.app.Service", SIGNATURES);
 		Scene.v().loadNecessaryClasses();
 		new File(outputDirectory + "/" + apk.getName());
+
+//		InfoflowAndroidConfiguration configuration = new InfoflowAndroidConfiguration();
+//		configuration.setSootIntegrationMode(InfoflowAndroidConfiguration.SootIntegrationMode.UseExistingInstance);
+//		configuration.getAnalysisFileConfig().setTargetAPKFile(apk.getAbsolutePath());
+//		configuration.getAnalysisFileConfig().setAndroidPlatformDir(androidPlatforms);
+//		configuration.getAnalysisFileConfig().validate();
+//		SetupApplication app = new SetupApplication(configuration);
+//		app.setCallbackFile(Configuration.v().getStaticAnalysisConfiguration().getFlowDroidConfiguration().getFlowDroidInputFiles().getAndroidCallbacks());
+//		System.out.println("Start constructing call graph");
+//		app.constructCallgraph();
+//		System.out.println("done");
 	}
 }
