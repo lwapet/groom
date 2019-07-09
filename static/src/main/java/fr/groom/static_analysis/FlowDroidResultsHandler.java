@@ -14,7 +14,7 @@ import soot.jimple.infoflow.results.InfoflowResults;
 import soot.jimple.infoflow.results.ResultSinkInfo;
 import soot.jimple.infoflow.results.ResultSourceInfo;
 import soot.jimple.infoflow.solver.cfg.IInfoflowCFG;
-import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
+import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 import soot.util.Chain;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class FlowDroidResultsHandler implements ResultsAvailableHandler {
 		JSONArray sinks = new JSONArray();
 		if (results.getResults() != null) {
 			for (ResultSinkInfo sink : results.getResults().keySet()) {
-				SourceSinkDefinition sinkDefinition = sink.getDefinition();
+				ISourceSinkDefinition sinkDefinition = sink.getDefinition();
 				JSONObject sinkObject = new JSONObject();
 				sinkObject.put("signature", sink.toString());
 				CategoryDefinition sinkCategoryDef = (CategoryDefinition) sinkDefinition.getCategory();
@@ -47,7 +47,7 @@ public class FlowDroidResultsHandler implements ResultsAvailableHandler {
 				sinkObject.put("category", sinkCategory);
 				JSONArray sources = new JSONArray();
 				for (ResultSourceInfo source : results.getResults().get(sink)) {
-					SourceSinkDefinition sourceDefinition = source.getDefinition();
+					ISourceSinkDefinition sourceDefinition = source.getDefinition();
 					JSONObject sourceObject = new JSONObject();
 					sourceObject.put("source", source.toString());
 					String sourceCategory;

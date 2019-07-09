@@ -36,8 +36,8 @@ public class Main {
 	private static final String OPTION_CONFIG_FILE = "c";
 	private static final String OPTION_APK_FILE = "a";
 	private static final String OPTION_SHA256 = "s";
-	public static final String APPLICATION_COLLECTION = "application";
-	public static final String STATIC_COLLECTION = "static";
+	public static String APPLICATION_COLLECTION;
+	public static String STATIC_COLLECTION;
 	public static final String DYNAMIC_COLLECTION = "dynamic";
 	public static final String STATUS_KEY = "status";
 	private final Options options = new Options();
@@ -202,6 +202,9 @@ public class Main {
 		} else {
 			this.storage = new Printer();
 		}
+		DatabaseConfiguration dbConfig = Configuration.v().getDatabaseConfiguration();
+		APPLICATION_COLLECTION = dbConfig.getApplicationCollectionName();
+		STATIC_COLLECTION = dbConfig.getStaticCollectionName();
 
 		TEMP_DIRECTORY = new File("./temp-" + UUID.randomUUID().toString());
 		TEMP_DIRECTORY.mkdirs();

@@ -89,6 +89,8 @@ public class Application {
 		this.components.addAll(this.extractComponents("activity", this.manifest.getAllActivities()));
 		this.components.addAll(this.extractComponents("service", this.manifest.getServices()));
 		this.components.addAll(this.extractComponents("receiver", this.manifest.getReceivers()));
+
+		this.getComponents().forEach(IComponent::addCallbacks);
 	}
 
 	public void setRunning(boolean running) {

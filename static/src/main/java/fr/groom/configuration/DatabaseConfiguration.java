@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "storeOutputToDatabase",
     "outputDatabaseName",
     "fetchDatabaseName",
+    "applicationCollectionName",
+    "staticCollectionName",
     "url",
     "port",
     "authenticationConfiguration"
@@ -54,6 +56,20 @@ public class DatabaseConfiguration implements Serializable
     @JsonPropertyDescription("name of the database where to fetch apks")
     private String fetchDatabaseName = "TEST";
     /**
+     * app collection name
+     * 
+     */
+    @JsonProperty("applicationCollectionName")
+    @JsonPropertyDescription("app collection name")
+    private String applicationCollectionName = "application_test";
+    /**
+     * static collection name
+     * 
+     */
+    @JsonProperty("staticCollectionName")
+    @JsonPropertyDescription("static collection name")
+    private String staticCollectionName = "static_test";
+    /**
      * url of the database, e.g localhost
      * (Required)
      * 
@@ -76,7 +92,7 @@ public class DatabaseConfiguration implements Serializable
     @JsonProperty("authenticationConfiguration")
     @JsonPropertyDescription("required authentication options")
     private AuthenticationConfiguration authenticationConfiguration;
-    private final static long serialVersionUID = 7696783732254418773L;
+    private final static long serialVersionUID = 6146694764424641647L;
 
     /**
      * No args constructor for use in serialization
@@ -92,15 +108,19 @@ public class DatabaseConfiguration implements Serializable
      * @param fetchDatabaseName
      * @param port
      * @param storeOutputToDatabase
+     * @param staticCollectionName
+     * @param applicationCollectionName
      * @param url
      * @param authenticationConfiguration
      */
-    public DatabaseConfiguration(boolean connectToDatabase, boolean storeOutputToDatabase, String outputDatabaseName, String fetchDatabaseName, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
+    public DatabaseConfiguration(boolean connectToDatabase, boolean storeOutputToDatabase, String outputDatabaseName, String fetchDatabaseName, String applicationCollectionName, String staticCollectionName, String url, int port, AuthenticationConfiguration authenticationConfiguration) {
         super();
         this.connectToDatabase = connectToDatabase;
         this.storeOutputToDatabase = storeOutputToDatabase;
         this.outputDatabaseName = outputDatabaseName;
         this.fetchDatabaseName = fetchDatabaseName;
+        this.applicationCollectionName = applicationCollectionName;
+        this.staticCollectionName = staticCollectionName;
         this.url = url;
         this.port = port;
         this.authenticationConfiguration = authenticationConfiguration;
@@ -176,6 +196,42 @@ public class DatabaseConfiguration implements Serializable
     @JsonProperty("fetchDatabaseName")
     public void setFetchDatabaseName(String fetchDatabaseName) {
         this.fetchDatabaseName = fetchDatabaseName;
+    }
+
+    /**
+     * app collection name
+     * 
+     */
+    @JsonProperty("applicationCollectionName")
+    public String getApplicationCollectionName() {
+        return applicationCollectionName;
+    }
+
+    /**
+     * app collection name
+     * 
+     */
+    @JsonProperty("applicationCollectionName")
+    public void setApplicationCollectionName(String applicationCollectionName) {
+        this.applicationCollectionName = applicationCollectionName;
+    }
+
+    /**
+     * static collection name
+     * 
+     */
+    @JsonProperty("staticCollectionName")
+    public String getStaticCollectionName() {
+        return staticCollectionName;
+    }
+
+    /**
+     * static collection name
+     * 
+     */
+    @JsonProperty("staticCollectionName")
+    public void setStaticCollectionName(String staticCollectionName) {
+        this.staticCollectionName = staticCollectionName;
     }
 
     /**
@@ -256,6 +312,14 @@ public class DatabaseConfiguration implements Serializable
         sb.append('=');
         sb.append(((this.fetchDatabaseName == null)?"<null>":this.fetchDatabaseName));
         sb.append(',');
+        sb.append("applicationCollectionName");
+        sb.append('=');
+        sb.append(((this.applicationCollectionName == null)?"<null>":this.applicationCollectionName));
+        sb.append(',');
+        sb.append("staticCollectionName");
+        sb.append('=');
+        sb.append(((this.staticCollectionName == null)?"<null>":this.staticCollectionName));
+        sb.append(',');
         sb.append("url");
         sb.append('=');
         sb.append(((this.url == null)?"<null>":this.url));
@@ -284,6 +348,8 @@ public class DatabaseConfiguration implements Serializable
         result = ((result* 31)+((this.fetchDatabaseName == null)? 0 :this.fetchDatabaseName.hashCode()));
         result = ((result* 31)+ this.port);
         result = ((result* 31)+(this.storeOutputToDatabase? 1 : 0));
+        result = ((result* 31)+((this.staticCollectionName == null)? 0 :this.staticCollectionName.hashCode()));
+        result = ((result* 31)+((this.applicationCollectionName == null)? 0 :this.applicationCollectionName.hashCode()));
         result = ((result* 31)+((this.url == null)? 0 :this.url.hashCode()));
         result = ((result* 31)+((this.authenticationConfiguration == null)? 0 :this.authenticationConfiguration.hashCode()));
         return result;
@@ -298,7 +364,7 @@ public class DatabaseConfiguration implements Serializable
             return false;
         }
         DatabaseConfiguration rhs = ((DatabaseConfiguration) other);
-        return (((((((this.connectToDatabase == rhs.connectToDatabase)&&((this.outputDatabaseName == rhs.outputDatabaseName)||((this.outputDatabaseName!= null)&&this.outputDatabaseName.equals(rhs.outputDatabaseName))))&&((this.fetchDatabaseName == rhs.fetchDatabaseName)||((this.fetchDatabaseName!= null)&&this.fetchDatabaseName.equals(rhs.fetchDatabaseName))))&&(this.port == rhs.port))&&(this.storeOutputToDatabase == rhs.storeOutputToDatabase))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
+        return (((((((((this.connectToDatabase == rhs.connectToDatabase)&&((this.outputDatabaseName == rhs.outputDatabaseName)||((this.outputDatabaseName!= null)&&this.outputDatabaseName.equals(rhs.outputDatabaseName))))&&((this.fetchDatabaseName == rhs.fetchDatabaseName)||((this.fetchDatabaseName!= null)&&this.fetchDatabaseName.equals(rhs.fetchDatabaseName))))&&(this.port == rhs.port))&&(this.storeOutputToDatabase == rhs.storeOutputToDatabase))&&((this.staticCollectionName == rhs.staticCollectionName)||((this.staticCollectionName!= null)&&this.staticCollectionName.equals(rhs.staticCollectionName))))&&((this.applicationCollectionName == rhs.applicationCollectionName)||((this.applicationCollectionName!= null)&&this.applicationCollectionName.equals(rhs.applicationCollectionName))))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.authenticationConfiguration == rhs.authenticationConfiguration)||((this.authenticationConfiguration!= null)&&this.authenticationConfiguration.equals(rhs.authenticationConfiguration))));
     }
 
 }

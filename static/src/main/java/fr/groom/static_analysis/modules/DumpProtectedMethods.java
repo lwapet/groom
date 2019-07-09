@@ -89,7 +89,7 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 		if (stmt.containsInvokeExpr()) {
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
 			SootMethod invokedMethod = invokeExpr.getMethod();
-			if (Arrays.stream(protectedMethodPatterns).anyMatch(p -> invokedMethod.getDeclaringClass().getName().startsWith(p))) {
+			if(invokedMethod != null && targetMethods.contains(invokedMethod.getSignature())) {
 				this.resultHandler(invokedMethod.getSignature());
 			}
 		}
@@ -102,22 +102,26 @@ public class DumpProtectedMethods extends Module<List<String>> implements IModul
 
 	@Override
 	public void saveResults() {
+//		JSONObject field = new JSONObject();
+//		JSONObject dataUpdate = new JSONObject();
+//		JSONArray protectedMethods = new JSONArray(this.data);
+//		field.put(this.storageField, protectedMethods);
+//		dataUpdate.put("$set", field);
+//		JSONObject condition = new JSONObject();
+//		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
+//		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
 		JSONObject field = new JSONObject();
-		JSONObject dataUpdate = new JSONObject();
-		JSONArray protectedMethods = new JSONArray(this.data);
-		field.put(this.storageField, protectedMethods);
-		dataUpdate.put("$set", field);
+		HashSet<String> data = new HashSet<>(this.data);
+		field.put(this.storageField, new ArrayList<>(data));
 		JSONObject condition = new JSONObject();
 		condition.put("sha256", this.staticAnalysis.getApp().getSha256());
-		this.storage.update(condition, dataUpdate, Main.STATIC_COLLECTION);
+		this.storage.update(condition, field, Main.STATIC_COLLECTION);
 	}
 
 	@Override
 	public void resultHandler(Object result) {
 		String signature = (String) result;
-		if (targetMethods.contains(signature)) {
-			this.data.add(signature);
-		}
+		this.data.add(signature);
 	}
 //
 	//	@Override

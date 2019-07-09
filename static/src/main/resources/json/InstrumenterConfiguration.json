@@ -257,6 +257,16 @@
           "description": "name of the database where to fetch apks",
           "default": "TEST"
         },
+        "applicationCollectionName": {
+          "type": "string",
+          "description": "app collection name",
+          "default": "application_test"
+        },
+        "staticCollectionName": {
+          "type": "string",
+          "description": "static collection name",
+          "default": "static_test"
+        },
         "url": {
           "type": "string",
           "description": "url of the database, e.g localhost",

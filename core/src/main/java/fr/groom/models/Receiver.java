@@ -88,14 +88,10 @@ public class Receiver extends Component {
 	}
 
 	public boolean launchActivity() {
-		List<Type> types = new ArrayList<>();
-		types.add(RefType.v("android.content.Context"));
-		types.add(RefType.v("android.content.Intent"));
-		SootMethod onReceiveMethod = this.getSootClass().getMethod("onReceive", types);
-		onReceiveMethod.retrieveActiveBody();
-//		return invokeMethod(onReceiveMethod, START_ACTIVITY_ALT, new HashSet<>());
-//		return invokeMethod(onReceiveMethod,START_ACTIVITY_ALT,new JimpleBasedInterproceduralCFG(),new HashSet<>(),false);
-		return invokeMethod(onReceiveMethod, START_ACTIVITY_ALT, new HashSet<>(), false);
+		for(Callback cb : this.getCallbacks()) {
+			return invokeMethod(cb.getSootMethod(), START_ACTIVITY_ALT, new HashSet<>(), false);
+		}
+		return false;
 	}
 
 	private static boolean invokeMethod(SootMethod method, String[] signatureToCheck, JimpleBasedInterproceduralCFG jimpleBasedInterproceduralCFG, HashSet<Unit> unitPassed, boolean result) {
@@ -128,11 +124,10 @@ public class Receiver extends Component {
 	}
 
 	public boolean launchService() {
-		List<Type> types = new ArrayList<>();
-		types.add(RefType.v("android.content.Context"));
-		types.add(RefType.v("android.content.Intent"));
-		SootMethod onReceiveMethod = this.getSootClass().getMethod("onReceive", types);
-		return invokeMethod(onReceiveMethod, START_SERVICE_ALT, new HashSet<>(), false);
+		for(Callback cb : this.getCallbacks()) {
+			return invokeMethod(cb.getSootMethod(), START_SERVICE_ALT, new HashSet<>(), false);
+		}
+		return false;
 	}
 
 	private static boolean invokeMethod(SootMethod sootMethod, String[] signatureToCheck, HashSet<String> passed, boolean result) {

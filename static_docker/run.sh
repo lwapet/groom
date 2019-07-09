@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 docker run \
 	--env var="$1" \
 	-v /home/lgitzing/apks/legacy:/srv/apks \

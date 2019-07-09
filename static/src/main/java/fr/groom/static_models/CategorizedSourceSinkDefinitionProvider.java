@@ -2,8 +2,8 @@ package fr.groom.static_models;
 
 import soot.jimple.infoflow.android.data.CategoryDefinition;
 import soot.jimple.infoflow.android.data.parsers.CategorizedAndroidSourceSinkParser;
+import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
-import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkType;
 
 import java.io.IOException;
@@ -11,10 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CategorizedSourceSinkDefinitionProvider implements ISourceSinkDefinitionProvider {
-	private Set<SourceSinkDefinition> sources;
-	private Set<SourceSinkDefinition> sinks;
+	private Set<ISourceSinkDefinition> sources;
+	private Set<ISourceSinkDefinition> sinks;
 
-	public CategorizedSourceSinkDefinitionProvider(Set<SourceSinkDefinition> sources, Set<SourceSinkDefinition> sinks) {
+	public CategorizedSourceSinkDefinitionProvider(Set<ISourceSinkDefinition> sources, Set<ISourceSinkDefinition> sinks) {
 		this.sources = sources;
 		this.sinks = sinks;
 	}
@@ -40,18 +40,18 @@ public class CategorizedSourceSinkDefinitionProvider implements ISourceSinkDefin
 	}
 
 	@Override
-	public Set<SourceSinkDefinition> getSources() {
+	public Set<ISourceSinkDefinition> getSources() {
 		return this.sources;
 	}
 
 	@Override
-	public Set<SourceSinkDefinition> getSinks() {
+	public Set<ISourceSinkDefinition> getSinks() {
 		return this.sinks;
 	}
 
 	@Override
-	public Set<SourceSinkDefinition> getAllMethods() {
-		Set<SourceSinkDefinition> all = this.sources;
+	public Set<ISourceSinkDefinition> getAllMethods() {
+		Set<ISourceSinkDefinition> all = this.sources;
 		all.addAll(this.sinks);
 		return all;
 	}

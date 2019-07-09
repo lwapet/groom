@@ -6,8 +6,9 @@ import fr.groom.static_analysis.StaticAnalysis;
 import soot.*;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;
+import soot.jimple.infoflow.sourcesSinks.definitions.AbstractSourceSinkDefinition;
+import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
-import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 
 import java.util.*;
 
@@ -97,7 +98,7 @@ public class SootInstrumenter extends SceneTransformer {
 			methodsToHook.put(webviewEntryPoint, v);
 		}
 //		methodInvokesToHook.addAll(Arrays.asList(sensitiveMethod));
-		for (SourceSinkDefinition def : this.staticAnalysis.getProvider().getSources()) {
+		for (ISourceSinkDefinition def : this.staticAnalysis.getProvider().getSources()) {
 			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
 			String category = methodDef.getCategory().getID();
 			String signature = methodDef.getMethod().getSignature();
@@ -106,7 +107,7 @@ public class SootInstrumenter extends SceneTransformer {
 			infos.put(categoryKey, category);
 			methodsToHook.put(signature, infos);
 		}
-		for (SourceSinkDefinition def : this.staticAnalysis.getProvider().getSinks()) {
+		for (ISourceSinkDefinition def : this.staticAnalysis.getProvider().getSinks()) {
 			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
 			String category = methodDef.getCategory().getID();
 			String signature = methodDef.getMethod().getSignature();

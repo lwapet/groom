@@ -25,8 +25,7 @@ repositories {
 
 dependencies {
     compile project(':core')
-//    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
-    implementation 'de.tud.sse:soot-infoflow-android:2.7.2-20190403.160103-2'
+    compile 'com.github.secure-software-engineering:FlowDroid:develop-SNAPSHOT'
     compile group: 'ca.mcgill.sable', name: 'soot', version: '3.2.0'
     compile group: 'org.mongodb', name: 'mongodb-driver', version: '3.9.1'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'

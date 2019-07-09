@@ -38,12 +38,12 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 		this.sinks = new HashSet<>();
 		this.executionStartTime = new Timestamp(System.currentTimeMillis());
 		setProvider();
-//		IModule module = new DumpProtectedMethods(this);
-//		this.moduleManager.addModule(module);
+		IModule module = new DumpProtectedMethods(this);
+		this.moduleManager.addModule(module);
 		this.moduleManager.addModule(new DumpClassModule(this));
-//		this.moduleManager.addModule(new DumpMethodModule(this));
+		this.moduleManager.addModule(new DumpMethodModule(this));
 //		this.moduleManager.addModule(new DumpMethodUnitModule(this));
-//		this.moduleManager.addModule(new CheckWebviewModule(this));
+		this.moduleManager.addModule(new CheckWebviewModule(this));
 		this.moduleManager.addModule(new DumpSpecificMethodsModule(this));
 //		this.moduleManager.addModule(new DumpStringsModule(this));
 		this.moduleManager.addModule(new DumpActivityOrServiceRecieverCaller(this));
@@ -51,8 +51,8 @@ public class StaticAnalysis extends SceneTransformer implements IAnalysis {
 			FlowDroid flowDroid = new FlowDroid(this.app.getLastEditedApk(), provider);
 			flowDroidResults = flowDroid.run();
 		}
-//		IModule sourceModule = new DumpSourcesAndSinksModule(this);
-//		this.moduleManager.addModule(sourceModule);
+		IModule sourceModule = new DumpSourcesAndSinksModule(this);
+		this.moduleManager.addModule(sourceModule);
 //		IModule dumpRgeisterReciever = new DumpRegisterReceiverSpots(this);
 //		this.moduleManager.addModule(dumpRgeisterReciever);
 	}

@@ -7,9 +7,9 @@ import soot.Unit;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.infoflow.data.SootMethodAndClass;
+import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
 import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
-import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 import soot.jimple.internal.AbstractInvokeExpr;
 
 import javax.crypto.Cipher;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>> implements IModule {
+public class DumpSourcesAndSinksModule extends Module<List<ISourceSinkDefinition>> implements IModule {
 	private ISourceSinkDefinitionProvider provider;
 	private HashSet<String> sourceSignatures = new HashSet<>();
 	private HashSet<String> sinkSignatures = new HashSet<>();
@@ -26,12 +26,12 @@ public class DumpSourcesAndSinksModule extends Module<List<SourceSinkDefinition>
 	public DumpSourcesAndSinksModule(StaticAnalysis staticAnalysis) {
 		super(new ArrayList<>(), ModuleType.UNITLEVEL, staticAnalysis);
 		this.provider = staticAnalysis.getProvider();
-		for (SourceSinkDefinition def : this.provider.getSources()) {
+		for (ISourceSinkDefinition def : this.provider.getSources()) {
 			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
 			String signature = methodDef.getMethod().getSignature();
 			this.sourceSignatures.add(signature);
 		}
-		for (SourceSinkDefinition def : this.staticAnalysis.getProvider().getSinks()) {
+		for (ISourceSinkDefinition def : this.staticAnalysis.getProvider().getSinks()) {
 			MethodSourceSinkDefinition methodDef = (MethodSourceSinkDefinition) def;
 			String signature = methodDef.getMethod().getSignature();
 			this.sinkSignatures.add(signature);

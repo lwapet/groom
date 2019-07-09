@@ -4,13 +4,14 @@ import java.sql.*;
 import java.util.Properties;
 
 public class JDBCDatabase {
-	private static String url = "jdbc:postgresql://localhost/android_permissions_2";
+	private static String url = "jdbc:postgresql://widecore24.irisa.fr/android";
 	private static Connection connection;
 	private static Properties props;
 
 	static {
 		props = new Properties();
-		props.setProperty("user", "lgitzing");
+		props.setProperty("user", "postgres");
+		props.setProperty("password", "docker");
 		try {
 			connection = DriverManager.getConnection(url, props);
 		} catch (SQLException e) {
@@ -48,8 +49,8 @@ public class JDBCDatabase {
 		String sql =
 				"SELECT method.method_name, method.method_arguments, method.method_class, method.return_type FROM method " +
 						"INNER JOIN method_found_in_api ON method.id = method_found_in_api.method_id " +
-						"INNER JOIN api on method_found_in_api.api_id = api.id " +
-						"WHERE api.api_level >= 27;";
+						"INNER JOIN api on method_found_in_api.api_id = api.id ";
+//						"WHERE api.api_level >= 27;";
 		try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 //			preparedStatement.setString(1, sensorType);
 			try (ResultSet rs = preparedStatement.executeQuery()) {
