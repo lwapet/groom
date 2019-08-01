@@ -55,8 +55,8 @@
     "storeOutputToDatabase": true,
     "fetchDatabaseName": "groom_dataset",
     "outputDatabaseName": "groom_dataset",
-    "applicationCollectionName": "killerdroid_xp1",
-    "staticCollectionName": "static_xp1",
+    "applicationCollectionName": "application",
+    "staticCollectionName": "static",
     "url": "widecore24.irisa.fr",
     "port": 27017,
     "authenticationConfiguration": {

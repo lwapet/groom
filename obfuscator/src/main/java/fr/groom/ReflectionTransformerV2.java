@@ -5,8 +5,8 @@ import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
 import soot.jimple.infoflow.android.data.CategoryDefinition;
 import soot.jimple.infoflow.android.data.parsers.CategorizedAndroidSourceSinkParser;
+import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.MethodSourceSinkDefinition;
-import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkDefinition;
 import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkType;
 
 import javax.crypto.Cipher;
@@ -77,7 +77,7 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 		String sourceFile = "categorized_sources.txt";
 		CategorizedAndroidSourceSinkParser sourceParser = new CategorizedAndroidSourceSinkParser(categories, sourceFile, SourceSinkType.Source);
 		try {
-			Set<SourceSinkDefinition> sourceDefs = sourceParser.parse();
+			Set<ISourceSinkDefinition> sourceDefs = sourceParser.parse();
 			this.sources = new HashSet<>();
 			sourceDefs.stream().forEach(s -> sources.add((MethodSourceSinkDefinition) s));
 		} catch (IOException e) {
@@ -88,7 +88,7 @@ public class ReflectionTransformerV2 extends SceneTransformer {
 		CategorizedAndroidSourceSinkParser sinkParser = new CategorizedAndroidSourceSinkParser(categories, sinkFile, SourceSinkType.Sink);
 
 		try {
-			Set<SourceSinkDefinition> sinkDefs = sinkParser.parse();
+			Set<ISourceSinkDefinition> sinkDefs = sinkParser.parse();
 			this.sinks = new HashSet<>();
 			sinkDefs.stream().forEach(s -> sinks.add((MethodSourceSinkDefinition) s));
 		} catch (IOException e) {

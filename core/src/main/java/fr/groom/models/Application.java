@@ -284,30 +284,32 @@ public class Application {
 				} else {
 					value = (String) attributeValue;
 				}
-				switch (tag) {
-					case "scheme":
-						intentFilterData.addScheme(value);
-						break;
-					case "host":
-						intentFilterData.addHost(value);
-						break;
-					case "port":
-						intentFilterData.addPort(value);
-						break;
-					case "path":
-						intentFilterData.addPath(value);
-						break;
-					case "pathPattern":
-						intentFilterData.addPathPattern(value);
-						break;
-					case "pathPrefix":
-						intentFilterData.addPathPrefix(value);
-						break;
-					case "mimeType":
-						intentFilterData.addMimeType(value);
-						break;
-					default:
-						System.out.println("ci");
+				if (value != null && intentFilterData != null) {
+					switch (tag) {
+						case "scheme":
+							intentFilterData.addScheme(value);
+							break;
+						case "host":
+							intentFilterData.addHost(value);
+							break;
+						case "port":
+							intentFilterData.addPort(value);
+							break;
+						case "path":
+							intentFilterData.addPath(value);
+							break;
+						case "pathPattern":
+							intentFilterData.addPathPattern(value);
+							break;
+						case "pathPrefix":
+							intentFilterData.addPathPrefix(value);
+							break;
+						case "mimeType":
+							intentFilterData.addMimeType(value);
+							break;
+						default:
+							System.out.println("ci");
+					}
 				}
 			}
 		}

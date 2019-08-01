@@ -10,7 +10,11 @@ public class Callback {
 
 	public Callback(String signature, boolean isStart) {
 		this.signature = signature;
-		this.sootMethod = Scene.v().getMethod(signature);
+		try {
+			this.sootMethod = Scene.v().getMethod(signature);
+		} catch(RuntimeException e) {
+			this.sootMethod = null;
+		}
 		this.isStart = isStart;
 	}
 
