@@ -1,6 +1,6 @@
 {
   "targetApk": "",
-  "apkRemoteDirectory": "/mnt/data/lgitzing/apks/killerdroid/killerdroid_xp1",
+  "apkRemoteDirectory": "/mnt/data/lgitzing/apks/killerdroid/killerdroid_test",
   "description": "",
   "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
   "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
@@ -51,8 +51,8 @@
     "pkeyPassphrase": "louison"
   },
   "databaseConfiguration": {
-    "connectToDatabase": true,
-    "storeOutputToDatabase": true,
+    "connectToDatabase": false,
+    "storeOutputToDatabase": false,
     "fetchDatabaseName": "groom_dataset",
     "outputDatabaseName": "groom_dataset",
     "applicationCollectionName": "application",

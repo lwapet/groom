@@ -362,7 +362,8 @@ public class Application {
 					List<ARSCFileParser.ResType> resTypes = resPackage.getDeclaredTypes();
 					for (ARSCFileParser.ResType resType : resTypes) {
 						ARSCFileParser.AbstractResource test = resType.getFirstResource(iconStringId);
-						if (test != null) {
+						System.out.println("ic");
+						if (test != null && test instanceof ARSCFileParser.StringResource) {
 							String fileName = ((ARSCFileParser.StringResource) test).getValue();
 							ResourceFileParser resourceFileParser = new ResourceFileParser();
 							Set<String> filter = new HashSet<>();
