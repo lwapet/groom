@@ -3,6 +3,7 @@ package fr.groom;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Projections;
 import fr.groom.models.App;
 import org.bson.Document;
 
@@ -110,7 +111,7 @@ public class DatabaseApkSelector implements ApkSelector {
 	}
 
 	private ArrayList<App> queryAllApplications() {
-		FindIterable<Document> iterable = applicationCollection.find();
+		FindIterable<Document> iterable = applicationCollection.find().projection(Projections.include("legacy_filename", "package_name", "main_activity","sha256","abis"));
 		ArrayList<App> apps = new ArrayList<>();
 		for (Document appData : iterable) {
 			if (appData.getString("legacy_filename") != null) {
@@ -122,9 +123,11 @@ public class DatabaseApkSelector implements ApkSelector {
 						appData.getString("sha256"),
 						(List<String>) appData.get("abis")
 				);
+				app.setApk(apk);
 				apps.add(app);
 			}
 		}
+		System.out.println("Number of apps : " + apps.size());
 		return apps;
 	}
 
