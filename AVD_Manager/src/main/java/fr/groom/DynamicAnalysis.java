@@ -8,7 +8,7 @@ import java.io.IOException;
 public class DynamicAnalysis extends WorkerEventListener {
 	App app;
 	IWorker worker;
-	private static int EXECUTION_DURATION = 10 * 1000;
+	public static int EXECUTION_DURATION = 10 * 1000;
 
 	public DynamicAnalysis(IWorker worker, App app) {
 		this.worker = worker;

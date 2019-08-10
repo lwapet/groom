@@ -11,17 +11,22 @@ import java.util.List;
 public class App {
 	private static String pathToRepo = AVDConfiguration.pathToInstrumentedApkDirectory;
 	private File apk;
+	private String legacyFilename;
 	private String packageName;
 	private String mainActivity;
 	private String sha256;
 	private List<String> abis;
 
-	public App(File apk, String packageName, String mainActivity, String sha256, List<String> abis) {
-		this.apk = apk;
+	public App(String legacyFilename, String packageName, String mainActivity, String sha256, List<String> abis) {
+		this.legacyFilename = legacyFilename;
 		this.packageName = packageName;
 		this.mainActivity = mainActivity;
 		this.sha256 = sha256;
 		this.abis = abis;
+	}
+
+	public String getLegacyFilename() {
+		return legacyFilename;
 	}
 
 	public File getApk() {
@@ -38,6 +43,10 @@ public class App {
 
 	public String getSha256() {
 		return sha256;
+	}
+
+	public void setApk(File apk) {
+		this.apk = apk;
 	}
 
 	public boolean isEmulatorCompatible() {

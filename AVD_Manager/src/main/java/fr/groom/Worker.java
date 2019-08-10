@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class Worker implements IWorker {
 	private boolean isIdle;
 	private IDevice device;
-//	private HashSet<IWorkerEventListener> listeners;
+	//	private HashSet<IWorkerEventListener> listeners;
 	private WorkerPool workerPool;
 	private IWorkerEventListener dynamicAnalysis;
 
@@ -63,6 +63,16 @@ public class Worker implements IWorker {
 			System.out.println("[install apk output]: install succeeded for apk: " + apk.getAbsolutePath());
 			dynamicAnalysis.onInstallApk(this);
 //			listeners.forEach(l -> l.onInstallApk(this));
+		}
+	}
+
+	public void cleanLogcat() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("logcat -c");
+		try {
+			this.getDevice().executeShellCommand(stringBuilder.toString(), new NullOutputReceiver());
+		} catch (TimeoutException | AdbCommandRejectedException | ShellCommandUnresponsiveException | IOException e) {
+			e.printStackTrace();
 		}
 	}
 

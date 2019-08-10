@@ -1,6 +1,6 @@
 {
   "targetApk": "",
-  "apkRemoteDirectory": "/mnt/data/lgitzing/apks/killerdroid/killerdroid_test",
+  "apkRemoteDirectory": "/mnt/data/lgitzing/apks/legacy",
   "description": "",
   "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
   "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
@@ -51,7 +51,7 @@
     "pkeyPassphrase": "louison"
   },
   "databaseConfiguration": {
-    "connectToDatabase": false,
+    "connectToDatabase": true,
     "storeOutputToDatabase": false,
     "fetchDatabaseName": "groom_dataset",
     "outputDatabaseName": "groom_dataset",

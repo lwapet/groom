@@ -6,7 +6,11 @@ import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 import org.bson.Document;
 
-import java.io.File;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,16 +21,16 @@ public class DatabaseApkSelector implements ApkSelector {
 	private MongoCollection<Document> applicationCollection;
 
 	public DatabaseApkSelector(MongoDatabase mongoDatabase) {
-		this.applicationCollection = mongoDatabase.getCollection("application");
+		this.applicationCollection = mongoDatabase.getCollection("killerdroid_log");
 		this.dynamicAnalysis = mongoDatabase.getCollection("dynamic");
 	}
 
 	private App queryBySha(String sha256) {
 		Document filter = new Document("sha256", sha256);
 		Document app = applicationCollection.find(filter).first();
-		File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, app.getString("file_name")).toFile();
+//		File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, app.getString("file_name")).toFile();
 		return new App(
-				apk,
+				app.getString("legacy_filename"),
 				app.getString("package_name"),
 				app.getString("main_activity"),
 				app.getString("sha256"),
@@ -55,7 +59,7 @@ public class DatabaseApkSelector implements ApkSelector {
 			if (appData.getString("instrumented_filename") != null) {
 				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("instrumented_filename")).toFile();
 				App app = new App(
-						apk,
+						appData.getString("legacy_filename"),
 						appData.getString("package_name"),
 						appData.getString("main_activity"),
 						appData.getString("sha256"),
@@ -68,20 +72,6 @@ public class DatabaseApkSelector implements ApkSelector {
 		return apps;
 	}
 
-	private ArrayList<App> queryAppFile() {
-		ArrayList<App> apps = new ArrayList<>();
-		String filePath = "";
-		List<String> abis = new ArrayList<>();
-		App app = new App(
-				new File("/Users/lgitzing/Development/work/Groom/static/instrumented/app-debug-soot-aligned-signed.apk"),
-				"com.asap.inria.webview_getcontacts",
-				".MainActivity",
-				"",
-				abis
-		);
-		apps.add(app);
-		return apps;
-	}
 
 	private ArrayList<App> queryMultipleApplications() {
 		String[] sha256Array = {
@@ -107,7 +97,7 @@ public class DatabaseApkSelector implements ApkSelector {
 			if (appData.getString("file_name") != null) {
 				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("file_name")).toFile();
 				App app = new App(
-						apk,
+						appData.getString("legacy_filename"),
 						appData.getString("package_name"),
 						appData.getString("main_activity"),
 						appData.getString("sha256"),
@@ -119,6 +109,27 @@ public class DatabaseApkSelector implements ApkSelector {
 		return apps;
 	}
 
+	private ArrayList<App> queryAllApplications() {
+		FindIterable<Document> iterable = applicationCollection.find();
+		ArrayList<App> apps = new ArrayList<>();
+		for (Document appData : iterable) {
+			if (appData.getString("legacy_filename") != null) {
+				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("legacy_filename")).toFile();
+				App app = new App(
+						appData.getString("legacy_filename"),
+						appData.getString("package_name"),
+						appData.getString("main_activity"),
+						appData.getString("sha256"),
+						(List<String>) appData.get("abis")
+				);
+				apps.add(app);
+			}
+		}
+		return apps;
+	}
+
+
+
 	@Override
 	public ArrayList<App> selectApplications() {
 		ArrayList apps = new ArrayList();
@@ -126,7 +137,8 @@ public class DatabaseApkSelector implements ApkSelector {
 //		apps.add(queryBySha("2AE2156C2CD91A43243C367F473D835B4EBD598040BA1E05EB9B2862F61DFE74"));
 //		apps.addAll(queryAppFile());
 //		return apps;
-		return queryUnanalyzedApplications();
+		return queryAllApplications();
+//		return queryUnanalyzedApplications();
 //		return queryMultipleApplications();
 	}
 }

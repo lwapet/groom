@@ -22,10 +22,11 @@ import fr.groom.models.App;
 import fr.groom.mongo.Database;
 import org.bson.Document;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,6 +34,43 @@ import java.util.Properties;
 
 public class Main {
 	private static String CONFIG = "avd-config.properties";
+	public static File downloadFile(String filename, String fileUrl) {
+		try {
+			URL website = new URL(fileUrl);
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream(filename);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new File(filename);
+	}
+	public static File signApk(File apkToSign, String pathToApksigner, String pathToKeyStore, String keyPassword) throws IOException {
+		System.out.println("Signing apk.");
+		File signed = new File(apkToSign.getAbsolutePath().replace(".apk", "") + "-signed.apk");
+		ProcessBuilder pb = new ProcessBuilder(pathToApksigner,
+				"sign",
+				"--ks",
+				pathToKeyStore,
+				"--key-pass",
+				"pass:" + keyPassword,
+				"--ks-pass",
+				"pass:" + keyPassword,
+				"--out",
+				signed.getAbsolutePath(),
+				apkToSign.getAbsolutePath()
+		);
+		pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+		pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+		Process p = pb.start();
+		try {
+			p.waitFor();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return signed;
+	}
 
 	public static void main(String[] args) throws AndroidLocation.AndroidLocationException, IOException {
 		Properties prop = new Properties();
@@ -53,13 +91,18 @@ public class Main {
 		MongoDatabase mongoDatabase = database.getDatabase();
 		ApkSelector apkSelector = new DatabaseApkSelector(mongoDatabase);
 		ArrayList<App> apps = apkSelector.selectApplications();
-
-		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
-		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
+//		for(App app : apps) {
+//			String filename = Paths.get("/Users/lgitzing/Development/work/Groom/AVD_Manager/temp", app.getLegacyFilename()).toAbsolutePath().toString();
+//			File apk = downloadFile(filename, "http://widecore24:7000/killerdroid/killerdroid_log/" + app.getLegacyFilename());
+//			File signedApk = signApk(apk, "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner","/Users/lgitzing/.android/keystore","!L0uL0u!");
+//			app.setApk(signedApk);
+//		}
+//
+//		File sdkRoot = new File(AVDConfiguration.androidSdkHome);
+//		AndroidSdkHandler androidSdkHandler = AndroidSdkHandler.getInstance(sdkRoot);
 //		AvdManager avdManager = AvdManager.getInstance(androidSdkHandler, new StdLogger(StdLogger.Level.INFO));
 
 //		String deviceName = prop.getProperty("device_name");
-//		AvdInfo avdInfo = Arrays.stream(avdManager.getAllAvds()).filter(a -> a.getName().equals(deviceName)).findFirst().orElse(null);
 //		EmulatorPool pool = EmulatorPool.create(avdInfo, Integer.valueOf(prop.getProperty("pool_count")));
 //		DynamicAnalysisManager dam = new DynamicAnalysisManager(pool);
 //		Server server = new Server(pool);

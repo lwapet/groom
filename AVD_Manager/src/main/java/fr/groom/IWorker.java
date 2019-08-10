@@ -23,6 +23,8 @@ public interface IWorker {
 
 	public void setDynamicAnalysis(DynamicAnalysis dynamicAnalysis);
 
+	public void cleanLogcat();
+
 //	public void addWorkerEventListener(IWorkerEventListener listener);
 
 //	public void removeEmulatorEventListener(IWorkerEventListener listener);

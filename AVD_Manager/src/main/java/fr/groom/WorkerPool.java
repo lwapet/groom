@@ -50,7 +50,8 @@ public class WorkerPool extends WorkerEventListener implements AndroidDebugBridg
 		}
 
 		App finalApp = app;
-		Runnable runnable = () -> new DynamicAnalysis(worker, finalApp).run();
+//		Runnable runnable = () -> new DynamicAnalysis(worker, finalApp).run();
+		Runnable runnable = () -> new LogWorkerEventListener(worker, finalApp).run();
 		new Thread(runnable).start();
 	}
 
