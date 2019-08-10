@@ -115,7 +115,7 @@ public class DatabaseApkSelector implements ApkSelector {
 		ArrayList<App> apps = new ArrayList<>();
 		for (Document appData : iterable) {
 			if (appData.getString("legacy_filename") != null) {
-				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("legacy_filename")).toFile();
+				File apk = Paths.get(AVDConfiguration.pathToInstrumentedApkDirectory, appData.getString("legacy_filename").replace(".apk", "") + "_signed.apk").toFile();
 				App app = new App(
 						appData.getString("legacy_filename"),
 						appData.getString("package_name"),
