@@ -52,7 +52,7 @@
   },
   "databaseConfiguration": {
     "connectToDatabase": true,
-    "storeOutputToDatabase": false,
+    "storeOutputToDatabase": true,
     "fetchDatabaseName": "groom_dataset",
     "outputDatabaseName": "groom_dataset",
     "applicationCollectionName": "application",

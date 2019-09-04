@@ -113,7 +113,7 @@ public class Main {
 //		}
 
 //		DdmPreferences.setDebugPortBase(8701);
-		WorkerPool pool = new WorkerPool(apps);
+		WorkerPool pool = new WorkerPool(apps, mongoDatabase);
 		AndroidDebugBridge.addDeviceChangeListener(pool);
 		AndroidDebugBridge.addDebugBridgeChangeListener(pool);
 		AndroidDebugBridge.initIfNeeded(true);

@@ -9,7 +9,6 @@ import fr.groom.static_models.CategorizedSourceSinkDefinitionProvider;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import soot.*;
-import soot.jimple.Stmt;
 import soot.jimple.infoflow.android.data.parsers.PermissionMethodParser;
 import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinitionProvider;
 

@@ -5,6 +5,7 @@ import com.android.ddmlib.Client;
 import com.android.ddmlib.IDevice;
 import com.android.sdklib.internal.avd.AvdInfo;
 import com.android.sdklib.internal.avd.AvdManager;
+import com.mongodb.client.MongoDatabase;
 import fr.groom.models.App;
 
 import java.util.*;
@@ -13,9 +14,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class WorkerPool extends WorkerEventListener implements AndroidDebugBridge.IDeviceChangeListener, AndroidDebugBridge.IDebugBridgeChangeListener {
 	//	private Set<IWorker> workers;
 	private Queue<App> apps = new LinkedBlockingQueue<>();
+	private MongoDatabase mongoDatabase;
 
-	WorkerPool(ArrayList<App> applicationCollection) {
+	WorkerPool(ArrayList<App> applicationCollection, MongoDatabase mongoDatabase) {
 		this.apps.addAll(applicationCollection);
+		this.mongoDatabase = mongoDatabase;
 //		this.workers = new HashSet<>();
 	}
 
@@ -51,7 +54,7 @@ public class WorkerPool extends WorkerEventListener implements AndroidDebugBridg
 
 		App finalApp = app;
 //		Runnable runnable = () -> new DynamicAnalysis(worker, finalApp).run();
-		Runnable runnable = () -> new LogWorkerEventListener(worker, finalApp).run();
+		Runnable runnable = () -> new LogWorkerEventListener(worker, finalApp, mongoDatabase).run();
 		new Thread(runnable).start();
 	}
 
