@@ -113,7 +113,7 @@ public class DatabaseApkSelector implements ApkSelector {
 	private ArrayList<App> queryAllApplications() {
 		Document filter = new Document();
 		Document filter2 = new Document();
-		filter2.append("$exists", true);
+		filter2.append("$exists", false);
 		filter.append("execution", filter2);
 		FindIterable<Document> iterable = applicationCollection.find(filter).projection(Projections.include("legacy_filename", "package_name", "main_activity","sha256","abis"));
 		ArrayList<App> apps = new ArrayList<>();
