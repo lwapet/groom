@@ -54,6 +54,13 @@ public class LogWorkerEventListener extends DynamicAnalysis {
 	@Override
 	public void onInstallApk(IWorker worker) {
 		worker.cleanLogcat();
+		Document update = new Document();
+		Document updateFields = new Document();
+		updateFields.append("installed", true);
+		update.append("$set", updateFields);
+		Document filter = new Document();
+		filter.append("sha256", app.getSha256());
+		mongoDatabase.getCollection("killerdroid_log").updateOne(filter, update);
 		this.logcatThread.start();
 		worker.startApp(app);
 	}
