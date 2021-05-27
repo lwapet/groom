@@ -1,18 +1,15 @@
 package fr.groom;
 
-import soot.Scene;
-import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
-import soot.jimple.infoflow.android.SetupApplication;
-import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
-import soot.options.Options;
+import static soot.SootClass.BODIES;
+import static soot.SootClass.SIGNATURES;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static soot.SootClass.BODIES;
-import static soot.SootClass.SIGNATURES;
+import fr.groom.apk_instrumentation.InstrumenterUtils;
+import soot.Scene;
+import soot.options.Options;
 
 public class SootSetup {
 
@@ -36,6 +33,7 @@ public class SootSetup {
 		Options.v().set_output_dir(outputDirectory + "/sootOutput");
 		Options.v().set_output_format(Options.output_format_dex);
 		Options.v().set_force_overwrite(true);
+		Options.v().set_include_all(true);
 
 		// Triggers targetSdkVersion looking in AndroidManifest file to estimate compilation SDK
 		Scene.v().getAndroidJarPath(Options.v().android_jars(), apk.getAbsolutePath());
@@ -51,14 +49,63 @@ public class SootSetup {
 //		Options.v().set_soot_classpath("/Users/lgitzing/Development/work/InjectedLogger/out/production/classes/InjectedHelper.dex");
 //			Options.v().set_output_format(Options.output_format_jimple);
 		System.out.println("Load necessary classes.");
+
 //		Scene.v().addBasicClass("InjectedHelper");
 		Scene.v().loadClassAndSupport("Groom");
 //		Scene.v().loadClass("InjectedHelper", SIGNATURES);
+		Scene.v().addBasicClass("java.lang.Object",BODIES);
+		Scene.v().addBasicClass("java.lang.RuntimeException",BODIES);
+		Scene.v().addBasicClass("java.lang.Exception",BODIES);
 		Scene.v().addBasicClass("android.util.Log", SIGNATURES);
+		Scene.v().addBasicClass("java.lang.Throwable",BODIES);
+		Scene.v().addBasicClass("java.lang.NullPointerException",BODIES);
+		Scene.v().addBasicClass("android.os.BaseBundle",BODIES);
+		Scene.v().addBasicClass("java.lang.Boolean",BODIES);
+		Scene.v().addBasicClass("java.util.concurrent.atomic.AtomicInteger",BODIES);
+		Scene.v().addBasicClass("java.lang.Number",BODIES);
+		Scene.v().addBasicClass("java.lang.Integer",BODIES);
+
+		Scene.v().addBasicClass("android.content.ContentResolver",BODIES);
+		Scene.v().addBasicClass("android.text.TextUtils",BODIES);
+		Scene.v().addBasicClass("android.content.Intent",BODIES);
+		Scene.v().addBasicClass("java.lang.String",BODIES);
+		Scene.v().addBasicClass("java.util.HashMap",BODIES);
+		Scene.v().addBasicClass("java.util.AbstractMap",BODIES);
+		Scene.v().addBasicClass("java.util.ArrayList",BODIES);
+		Scene.v().addBasicClass("java.util.AbstractList",BODIES);
+		Scene.v().addBasicClass("java.util.AbstractCollection",BODIES);
+		Scene.v().addBasicClass("android.os.Handler",BODIES);
+		Scene.v().addBasicClass("java.util.concurrent.atomic.AtomicBoolean",BODIES);
+		Scene.v().addBasicClass("java.util.Date",BODIES);
+		Scene.v().addBasicClass("java.lang.StringBuilder",BODIES);
+		Scene.v().addBasicClass("android.util.Log",BODIES);
+		Scene.v().addBasicClass("java.lang.AbstractStringBuilder",BODIES);
+		Scene.v().addBasicClass("android.content.IntentFilter",BODIES);
+		Scene.v().addBasicClass("java.lang.Thread",BODIES);
+		Scene.v().addBasicClass("java.lang.Enum",BODIES);
+		Scene.v().addBasicClass("java.lang.StackTraceElement",BODIES);
+		Scene.v().addBasicClass("java.lang.IllegalArgumentException",BODIES);
+		Scene.v().addBasicClass("java.lang.Class",BODIES);
+		Scene.v().addBasicClass("java.util.UUID",BODIES);
+		Scene.v().addBasicClass("java.lang.IllegalStateException",BODIES);
+
+
+
+
+
+
+
+
+
+
+		
 //		Scene.v().loadClass("android.content.Context", SIGNATURES);
 //		Scene.v().loadClass("android.app.Service", SIGNATURES);
+
 		Scene.v().loadNecessaryClasses();
 		new File(outputDirectory + "/" + apk.getName());
+		System.out.println("##########################Testing the problematic Method");
+		InstrumenterUtils.print_problematic_method();
 
 //		InfoflowAndroidConfiguration configuration = new InfoflowAndroidConfiguration();
 //		configuration.setSootIntegrationMode(InfoflowAndroidConfiguration.SootIntegrationMode.UseExistingInstance);

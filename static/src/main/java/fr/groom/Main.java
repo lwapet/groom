@@ -1,20 +1,39 @@
 package fr.groom;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.bson.Document;
+import org.json.JSONObject;
+
+import fr.groom.apk_instrumentation.FridaInstrumenter;
+import fr.groom.apk_instrumentation.InstrumenterUtils;
 import fr.groom.apk_instrumentation.SootInstrumenter;
 import fr.groom.configuration.DatabaseConfiguration;
 import fr.groom.configuration.InstrumenterConfiguration;
-import fr.groom.apk_instrumentation.FridaInstrumenter;
-import fr.groom.apk_instrumentation.InstrumenterUtils;
 import fr.groom.configuration.SshConfiguration;
 import fr.groom.models.Application;
 import fr.groom.mongo.Database;
 import fr.groom.scp.Scp;
 import fr.groom.static_analysis.StaticAnalysis;
-import org.apache.commons.cli.*;
-import org.bson.Document;
-import org.json.JSONObject;
 import soot.PackManager;
 import soot.Scene;
 import soot.Transform;
@@ -22,13 +41,6 @@ import soot.jimple.infoflow.android.axml.AXmlAttribute;
 import soot.jimple.infoflow.android.axml.AXmlHandler;
 import soot.jimple.infoflow.android.axml.AXmlNode;
 import soot.jimple.infoflow.android.axml.ApkHandler;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.*;
 
 
 public class Main {
@@ -227,6 +239,7 @@ public class Main {
 				TEMP_DIRECTORY.getAbsolutePath(),
 				Configuration.v().getSootConfiguration().getAndroidPlatforms()
 		);
+		
 
 
 		this.app = new Application(tempApk); // init Application object
@@ -243,6 +256,7 @@ public class Main {
 			PackManager.v().getPack("wjtp").add(new Transform("wjtp.staticAnalysisTransformer", staticAnalysis));
 		}
 
+		
 
 		if (Configuration.v().getFridaInstrumenterConfiguration().isInstrumentApkWithFrida()) {
 			FridaInstrumenter fridaInstrumenter = new FridaInstrumenter();

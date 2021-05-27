@@ -1,0 +1,8 @@
+{
+  "interaction": {
+    "type": "script",
+    "path": "fridaDroid.js"
+  },
+  "runtime" : "jit"
+  
+}

@@ -1,0 +1,8 @@
+{
+  "interaction": {
+    "type": "script",
+    "path": "libfridaDroidjs.so"
+  },
+  "runtime" : "jit"
+  
+}

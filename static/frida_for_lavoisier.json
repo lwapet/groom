@@ -1,0 +1,69 @@
+{
+  "targetApk": "",
+  "apkRemoteDirectory": "/mnt/data/lgitzing/apks/killerdroid/killerdroid_d1_benign",
+  "description": "",
+  "zipalignPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/zipalign",
+  "apksignerPath": "/Users/lgitzing/Library/Android/sdk/build-tools/27.0.2/apksigner",
+  "pathToKeystore": "/Users/lgitzing/.android/keystore",
+  "keyPassword": "",
+  "categorizedSourcesFile": "required_files/categorized_sources.txt",
+  "categorizedSinksFile": "required_files/categorized_sinks.txt",
+  "performStaticAnalysis": false,
+  "repackageApk": true,
+  "instrumentedApkDirectory": "/Users/lgitzing/Development/work/apks/instrumented/",
+  "sootInstrumentationConfiguration": {
+    "instrumentApkWithSoot": false,
+    "groomPath": "required_files/Groom.dex"
+  },
+  "fridaInstrumenterConfiguration": {
+    "instrumentApkWithFrida": true,
+    "fridaLibZipFile": "required_files/lib.zip",
+    "hookActivities": true,
+    "hookReceivers": true,
+    "fridaSoFilesName": "frida-gadget"
+  },
+  "staticAnalysisConfiguration": {
+    "runFlowDroid": false,
+    "flowDroidConfiguration": {
+      "contextSensitive": true,
+      "flowSensitive": true,
+      "ignoreFlowsInSystemPackages": true,
+      "flowDroidInputFiles": {
+        "androidCallbacks": "required_files/AndroidCallbacks.txt",
+        "taintWrapperSource": "required_files/EasyTaintWrapperSource.txt",
+        "sourcesAndSinksFiles": {
+          "categorizedSourcesAndSinks": true,
+          "sourceAndSinksTxtFile": "required_files/SourcesAndSinks.txt",
+          "categorizedSourcesFile": "required_files/categorized_sources.txt",
+          "categorizedSinksFile": "required_files/categorized_sinks.txt"
+        }
+      }
+    }
+  },
+  "sootConfiguration": {
+    "androidPlatforms": "/Users/lgitzing/Development/work/android-platforms"
+  },
+  "sshConfiguration": {
+    "host": "widecore24.irisa.fr",
+    "port": 22,
+    "user": "lgitzing",
+    "pkeyPath": "./ssh/id_rsa_apk_management",
+    "pkeyPassphrase": "louison"
+  },
+  "databaseConfiguration": {
+    "connectToDatabase": false,
+    "storeOutputToDatabase": false,
+    "fetchDatabaseName": "killerdroid_db",
+    "outputDatabaseName": "temp",
+    "applicationCollectionName": "killerdroid_d1_benign",
+    "staticCollectionName": "temp",
+    "url": "widecore24.irisa.fr",
+    "port": 27017,
+    "authenticationConfiguration": {
+      "performAuthentication": false,
+      "authSourceDatabaseName": "admin",
+      "username": "lgitzing",
+      "password": "tout_petit_poney"
+    }
+  }
+}

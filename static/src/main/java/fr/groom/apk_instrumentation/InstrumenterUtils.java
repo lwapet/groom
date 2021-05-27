@@ -1,13 +1,32 @@
 package fr.groom.apk_instrumentation;
 
-import fr.groom.Configuration;
-import soot.*;
-import soot.jimple.*;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
+
+import soot.Body;
+import soot.Modifier;
+import soot.RefType;
+import soot.Scene;
+import soot.SootClass;
+import soot.SootField;
+import soot.SootFieldRef;
+import soot.SootMethod;
+import soot.Type;
+import soot.Unit;
+import soot.VoidType;
+import soot.jimple.AssignStmt;
+import soot.jimple.DefinitionStmt;
+import soot.jimple.InvokeStmt;
+import soot.jimple.Jimple;
+import soot.jimple.StaticFieldRef;
+import soot.jimple.StringConstant;
 
 public class InstrumenterUtils {
 	public static String groomClassName = "fr.groom.Groom";
@@ -73,7 +92,34 @@ public class InstrumenterUtils {
 		}
 		return signed;
 	}
-
+	public static void print_problematic_method(){
+		Iterator<SootClass> classes = Scene.v().getApplicationClasses().snapshotIterator();
+		int instruction_count=0;
+		while (classes.hasNext()) {
+			final SootClass c = classes.next();
+			if(c.getName().contains("com.google.android.gms.internal.firebase-perf.yd")){
+				for (SootMethod m : c.getMethods()) {
+					Body body = m.retrieveActiveBody(c.getName());
+					if(m.toString().contains("com.google.android.gms.internal.firebase-perf") && m.toString().contains("a(int,java.lang.Object[])")){
+						System.out.println(" #####  >>>>  we print the method body in InstrumenterUtils; \n method name : " + m + " in thread : "
+								+ Thread.currentThread().getId() + "class name: " +  c.getName() );
+						System.out.println(" #####  >>>>  start ");
+						for (Unit u : body.getUnits()) {
+							System.out.println(instruction_count + ": " + u ); instruction_count++;
+							if (u instanceof DefinitionStmt && (u.toString().contains("r15") || u.toString().contains("$r8"))) {
+								DefinitionStmt astmt = (DefinitionStmt) u;
+								Type leftType = Type.toMachineType(astmt.getLeftOp().getType());
+								Type rightType = Type.toMachineType(astmt.getRightOp().getType());
+								System.out.println("---> leftType = " + leftType);
+								System.out.println("---> ryghtType = " + rightType);
+							}
+						}
+						System.out.println(" #####  >>>>  end ");
+					}	
+				}
+			}			
+		}
+	}
 
 	public static SootMethod getInitMethod(SootClass sootClass) {
 		SootMethod methodToReturn = null;

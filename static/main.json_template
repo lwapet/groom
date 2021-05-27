@@ -1,0 +1,56 @@
+{
+  "targetApk": "",
+  "description": "",
+  "zipalignPath": "/home/lavoisier/svn_workspace/wapet/security/android-sdk-linux/build-tools/27.0.2/zipalign",
+  "apksignerPath": "/home/lavoisier/svn_workspace/wapet/security/android-sdk-linux/build-tools/27.0.2/apksigner",
+  "pathToKeystore": "/home/lavoisier/svn_workspace/wapet/security/apk_keystore.jks",
+  "keyPassword": "2545poly",
+  "categorizedSourcesFile": "required_files/categorized_sources.txt",
+  "categorizedSinksFile": "required_files/categorized_sinks.txt",
+  "performStaticAnalysis": false,
+  "repackageApk": true,
+  "instrumentedApkDirectory": "instrumented_folder",
+  "sootInstrumentationConfiguration": {
+    "instrumentApkWithSoot": false,
+    "groomPath": "required_files/Groom.dex"
+  },
+  "fridaInstrumenterConfiguration": {
+    "instrumentApkWithFrida": true,
+    "fridaLibZipFile": "tmp_folder/lib.zip",
+    "hookActivities": true,
+    "hookReceivers": true,
+    "fridaSoFilesName": "gadget"
+  },
+  "staticAnalysisConfiguration": {
+    "runFlowDroid": null,
+    "flowDroidConfiguration": {
+      "contextSensitive": null,
+      "flowSensitive": null,
+      "ignoreFlowsInSystemPackages": null,
+      "flowDroidInputFiles": {
+        "androidCallbacks": "required_files/AndroidCallbacks.txt",
+        "taintWrapperSource": "required_files/EasyTaintWrapperSource.txt",
+        "sourcesAndSinksFiles": {
+          "categorizedSourcesAndSinks": null,
+          "sourceAndSinksTxtFile": "required_files/SourcesAndSinks.txt",
+          "categorizedSourcesFile": "required_files/catSources_Short.txt",
+          "categorizedSinksFile": "required_files/catSinks_Short.txt"
+        }
+      }
+    }
+  },
+  "sootConfiguration": {
+    "androidPlatforms": "/home/lavoisier/svn_workspace/wapet/security/android-sdk-linux/platforms"
+  },
+  "databaseConfiguration": {
+    "connectToDatabase": false,
+    "url": "",
+    "port": 27017,
+    "authenticationConfiguration": {
+      "performAuthentication": null,
+      "authSourceDatabaseName": "",
+      "username": "",
+      "password": ""
+    }
+  }
+}
